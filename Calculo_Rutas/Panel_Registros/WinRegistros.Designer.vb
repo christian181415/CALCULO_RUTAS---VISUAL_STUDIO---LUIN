@@ -22,6 +22,7 @@ Partial Class WinRegistros
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(WinRegistros))
         Me.P_NewCliente = New System.Windows.Forms.Panel()
         Me.P_OptionsC = New System.Windows.Forms.Panel()
@@ -188,19 +189,22 @@ Partial Class WinRegistros
         Me.LUpIDRuta = New System.Windows.Forms.Label()
         Me.LIDRuta = New System.Windows.Forms.Label()
         Me.LNewRuta = New System.Windows.Forms.Label()
-        Me.PHistorialPDF = New System.Windows.Forms.Panel()
+        Me.PLastPDF = New System.Windows.Forms.Panel()
         Me.Panel28 = New System.Windows.Forms.Panel()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.BtnLastPDFClose = New System.Windows.Forms.Button()
         Me.Panel33 = New System.Windows.Forms.Panel()
-        Me.BtnGenerarPDF = New System.Windows.Forms.Button()
-        Me.Panel34 = New System.Windows.Forms.Panel()
-        Me.Calendario = New System.Windows.Forms.MonthCalendar()
+        Me.BtnGenerarHPDF = New System.Windows.Forms.Button()
         Me.Panel35 = New System.Windows.Forms.Panel()
         Me.Label63 = New System.Windows.Forms.Label()
-        Me.PrintPDialogHistorial = New System.Windows.Forms.PrintPreviewDialog()
+        Me.Panel34 = New System.Windows.Forms.Panel()
+        Me.LLastHoras = New System.Windows.Forms.ListBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.LHistorial = New System.Windows.Forms.Label()
+        Me.LHorarioConsulta = New System.Windows.Forms.Label()
+        Me.LLastPDF = New System.Windows.Forms.Label()
         Me.LFechaConsulta = New System.Windows.Forms.Label()
+        Me.SaveLastPDF = New System.Windows.Forms.SaveFileDialog()
+        Me.TimerGlobalRegistros = New System.Windows.Forms.Timer(Me.components)
+        Me.CalendarLastPDF = New System.Windows.Forms.MonthCalendar()
         Me.Label50 = New System.Windows.Forms.Label()
         Me.P_NewCliente.SuspendLayout()
         Me.P_OptionsC.SuspendLayout()
@@ -256,11 +260,11 @@ Partial Class WinRegistros
         Me.Panel31.SuspendLayout()
         Me.Panel32.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
-        Me.PHistorialPDF.SuspendLayout()
+        Me.PLastPDF.SuspendLayout()
         Me.Panel28.SuspendLayout()
         Me.Panel33.SuspendLayout()
-        Me.Panel34.SuspendLayout()
         Me.Panel35.SuspendLayout()
+        Me.Panel34.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -1343,6 +1347,7 @@ Partial Class WinRegistros
         Me.GroupBox1.TabIndex = 13
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Variables Ejecucion"
+        Me.GroupBox1.Visible = False
         '
         'P_NewRuta
         '
@@ -1927,6 +1932,7 @@ Partial Class WinRegistros
         Me.GroupBox2.TabIndex = 14
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Variables Rutas"
+        Me.GroupBox2.Visible = False
         '
         'LIDClienteUp
         '
@@ -1994,77 +2000,62 @@ Partial Class WinRegistros
         Me.LNewRuta.TabIndex = 0
         Me.LNewRuta.Text = "LNewRuta"
         '
-        'PHistorialPDF
+        'PLastPDF
         '
-        Me.PHistorialPDF.Controls.Add(Me.Panel28)
-        Me.PHistorialPDF.Controls.Add(Me.Panel33)
-        Me.PHistorialPDF.Controls.Add(Me.Panel34)
-        Me.PHistorialPDF.Controls.Add(Me.Panel35)
-        Me.PHistorialPDF.Location = New System.Drawing.Point(774, 681)
-        Me.PHistorialPDF.Name = "PHistorialPDF"
-        Me.PHistorialPDF.Size = New System.Drawing.Size(261, 322)
-        Me.PHistorialPDF.TabIndex = 11
+        Me.PLastPDF.Controls.Add(Me.Panel28)
+        Me.PLastPDF.Controls.Add(Me.Panel33)
+        Me.PLastPDF.Controls.Add(Me.Panel35)
+        Me.PLastPDF.Controls.Add(Me.Panel34)
+        Me.PLastPDF.Location = New System.Drawing.Point(774, 681)
+        Me.PLastPDF.Name = "PLastPDF"
+        Me.PLastPDF.Size = New System.Drawing.Size(345, 322)
+        Me.PLastPDF.TabIndex = 11
         '
         'Panel28
         '
         Me.Panel28.BackColor = System.Drawing.Color.FromArgb(CType(CType(152, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.Panel28.Controls.Add(Me.Button1)
+        Me.Panel28.Controls.Add(Me.BtnLastPDFClose)
         Me.Panel28.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel28.Location = New System.Drawing.Point(0, 0)
         Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(261, 22)
+        Me.Panel28.Size = New System.Drawing.Size(345, 22)
         Me.Panel28.TabIndex = 6
         '
-        'Button1
+        'BtnLastPDFClose
         '
-        Me.Button1.BackgroundImage = CType(resources.GetObject("Button1.BackgroundImage"), System.Drawing.Image)
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Location = New System.Drawing.Point(238, 3)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(15, 15)
-        Me.Button1.TabIndex = 1
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.BtnLastPDFClose.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnLastPDFClose.BackgroundImage = CType(resources.GetObject("BtnLastPDFClose.BackgroundImage"), System.Drawing.Image)
+        Me.BtnLastPDFClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.BtnLastPDFClose.FlatAppearance.BorderSize = 0
+        Me.BtnLastPDFClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.BtnLastPDFClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.BtnLastPDFClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtnLastPDFClose.Location = New System.Drawing.Point(313, 3)
+        Me.BtnLastPDFClose.Name = "BtnLastPDFClose"
+        Me.BtnLastPDFClose.Size = New System.Drawing.Size(15, 15)
+        Me.BtnLastPDFClose.TabIndex = 1
+        Me.BtnLastPDFClose.UseVisualStyleBackColor = True
         '
         'Panel33
         '
-        Me.Panel33.Controls.Add(Me.BtnGenerarPDF)
+        Me.Panel33.Controls.Add(Me.BtnGenerarHPDF)
         Me.Panel33.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel33.Location = New System.Drawing.Point(0, 286)
         Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(261, 36)
+        Me.Panel33.Size = New System.Drawing.Size(345, 36)
         Me.Panel33.TabIndex = 5
         '
-        'BtnGenerarPDF
+        'BtnGenerarHPDF
         '
-        Me.BtnGenerarPDF.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnGenerarPDF.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnGenerarPDF.Location = New System.Drawing.Point(0, 0)
-        Me.BtnGenerarPDF.Name = "BtnGenerarPDF"
-        Me.BtnGenerarPDF.Size = New System.Drawing.Size(261, 36)
-        Me.BtnGenerarPDF.TabIndex = 0
-        Me.BtnGenerarPDF.Text = "GENERAR PDF"
-        Me.BtnGenerarPDF.UseVisualStyleBackColor = True
-        '
-        'Panel34
-        '
-        Me.Panel34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel34.Controls.Add(Me.Label50)
-        Me.Panel34.Controls.Add(Me.Calendario)
-        Me.Panel34.Location = New System.Drawing.Point(0, 73)
-        Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(261, 213)
-        Me.Panel34.TabIndex = 4
-        '
-        'Calendario
-        '
-        Me.Calendario.BoldedDates = New Date() {New Date(2023, 8, 1, 0, 0, 0, 0), New Date(2023, 8, 2, 0, 0, 0, 0), New Date(2023, 8, 3, 0, 0, 0, 0), New Date(2023, 8, 4, 18, 15, 22, 0), New Date(2023, 8, 8, 0, 0, 0, 0)}
-        Me.Calendario.Location = New System.Drawing.Point(5, 45)
-        Me.Calendario.Name = "Calendario"
-        Me.Calendario.TabIndex = 0
+        Me.BtnGenerarHPDF.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnGenerarHPDF.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnGenerarHPDF.Location = New System.Drawing.Point(0, 0)
+        Me.BtnGenerarHPDF.Name = "BtnGenerarHPDF"
+        Me.BtnGenerarHPDF.Size = New System.Drawing.Size(345, 36)
+        Me.BtnGenerarHPDF.TabIndex = 0
+        Me.BtnGenerarHPDF.Text = "GENERAR PDF"
+        Me.BtnGenerarHPDF.UseVisualStyleBackColor = True
         '
         'Panel35
         '
@@ -2074,7 +2065,7 @@ Partial Class WinRegistros
         Me.Panel35.Controls.Add(Me.Label63)
         Me.Panel35.Location = New System.Drawing.Point(-1, 22)
         Me.Panel35.Name = "Panel35"
-        Me.Panel35.Size = New System.Drawing.Size(262, 54)
+        Me.Panel35.Size = New System.Drawing.Size(346, 54)
         Me.Panel35.TabIndex = 3
         '
         'Label63
@@ -2084,24 +2075,36 @@ Partial Class WinRegistros
         Me.Label63.ForeColor = System.Drawing.Color.White
         Me.Label63.Location = New System.Drawing.Point(0, 0)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(262, 54)
+        Me.Label63.Size = New System.Drawing.Size(346, 54)
         Me.Label63.TabIndex = 0
         Me.Label63.Text = "HISTORIAL DE RUTAS"
         Me.Label63.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'PrintPDialogHistorial
+        'Panel34
         '
-        Me.PrintPDialogHistorial.AutoScrollMargin = New System.Drawing.Size(0, 0)
-        Me.PrintPDialogHistorial.AutoScrollMinSize = New System.Drawing.Size(0, 0)
-        Me.PrintPDialogHistorial.ClientSize = New System.Drawing.Size(400, 300)
-        Me.PrintPDialogHistorial.Enabled = True
-        Me.PrintPDialogHistorial.Icon = CType(resources.GetObject("PrintPDialogHistorial.Icon"), System.Drawing.Icon)
-        Me.PrintPDialogHistorial.Name = "PrintPDialogHistorial"
-        Me.PrintPDialogHistorial.Visible = False
+        Me.Panel34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel34.Controls.Add(Me.CalendarLastPDF)
+        Me.Panel34.Controls.Add(Me.Label50)
+        Me.Panel34.Controls.Add(Me.LLastHoras)
+        Me.Panel34.Location = New System.Drawing.Point(0, 75)
+        Me.Panel34.Name = "Panel34"
+        Me.Panel34.Size = New System.Drawing.Size(345, 211)
+        Me.Panel34.TabIndex = 4
+        '
+        'LLastHoras
+        '
+        Me.LLastHoras.BackColor = System.Drawing.SystemColors.Control
+        Me.LLastHoras.FormattingEnabled = True
+        Me.LLastHoras.Items.AddRange(New Object() {"00:00 a.m.", "00:00 a.m.", "00:00 a.m.", ""})
+        Me.LLastHoras.Location = New System.Drawing.Point(261, 45)
+        Me.LLastHoras.Name = "LLastHoras"
+        Me.LLastHoras.Size = New System.Drawing.Size(76, 160)
+        Me.LLastHoras.TabIndex = 2
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.LHistorial)
+        Me.GroupBox3.Controls.Add(Me.LHorarioConsulta)
+        Me.GroupBox3.Controls.Add(Me.LLastPDF)
         Me.GroupBox3.Controls.Add(Me.LFechaConsulta)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(12, 816)
@@ -2109,18 +2112,30 @@ Partial Class WinRegistros
         Me.GroupBox3.Size = New System.Drawing.Size(152, 84)
         Me.GroupBox3.TabIndex = 14
         Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "Variables Ejecucion"
+        Me.GroupBox3.Text = "Variables LastPDF"
+        Me.GroupBox3.Visible = False
         '
-        'LHistorial
+        'LHorarioConsulta
         '
-        Me.LHistorial.AutoSize = True
-        Me.LHistorial.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LHistorial.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.LHistorial.Location = New System.Drawing.Point(15, 25)
-        Me.LHistorial.Name = "LHistorial"
-        Me.LHistorial.Size = New System.Drawing.Size(50, 13)
-        Me.LHistorial.TabIndex = 9
-        Me.LHistorial.Text = "LHistorial"
+        Me.LHorarioConsulta.AutoSize = True
+        Me.LHorarioConsulta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LHorarioConsulta.ForeColor = System.Drawing.SystemColors.ControlDark
+        Me.LHorarioConsulta.Location = New System.Drawing.Point(15, 54)
+        Me.LHorarioConsulta.Name = "LHorarioConsulta"
+        Me.LHorarioConsulta.Size = New System.Drawing.Size(88, 13)
+        Me.LHorarioConsulta.TabIndex = 10
+        Me.LHorarioConsulta.Text = "LHorarioConsulta"
+        '
+        'LLastPDF
+        '
+        Me.LLastPDF.AutoSize = True
+        Me.LLastPDF.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LLastPDF.ForeColor = System.Drawing.SystemColors.ControlDark
+        Me.LLastPDF.Location = New System.Drawing.Point(15, 25)
+        Me.LLastPDF.Name = "LLastPDF"
+        Me.LLastPDF.Size = New System.Drawing.Size(54, 13)
+        Me.LLastPDF.TabIndex = 9
+        Me.LLastPDF.Text = "LLastPDF"
         '
         'LFechaConsulta
         '
@@ -2133,15 +2148,27 @@ Partial Class WinRegistros
         Me.LFechaConsulta.TabIndex = 5
         Me.LFechaConsulta.Text = "LFechaConsulta"
         '
+        'TimerGlobalRegistros
+        '
+        '
+        'CalendarLastPDF
+        '
+        Me.CalendarLastPDF.FirstDayOfWeek = System.Windows.Forms.Day.Monday
+        Me.CalendarLastPDF.Location = New System.Drawing.Point(6, 43)
+        Me.CalendarLastPDF.Name = "CalendarLastPDF"
+        Me.CalendarLastPDF.ShowTodayCircle = False
+        Me.CalendarLastPDF.TabIndex = 3
+        '
         'Label50
         '
         Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label50.Location = New System.Drawing.Point(5, 5)
+        Me.Label50.ForeColor = System.Drawing.SystemColors.ControlDark
+        Me.Label50.Location = New System.Drawing.Point(-2, 0)
         Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(247, 35)
-        Me.Label50.TabIndex = 1
-        Me.Label50.Text = "Las fechas en negritas indican un registro en ese dia."
+        Me.Label50.Size = New System.Drawing.Size(346, 46)
+        Me.Label50.TabIndex = 4
+        Me.Label50.Text = "Las fechas en negritas indican un registro."
+        Me.Label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'WinRegistros
         '
@@ -2149,7 +2176,7 @@ Partial Class WinRegistros
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1315, 1018)
         Me.Controls.Add(Me.GroupBox3)
-        Me.Controls.Add(Me.PHistorialPDF)
+        Me.Controls.Add(Me.PLastPDF)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.P_UpRuta)
         Me.Controls.Add(Me.P_NewRuta)
@@ -2236,11 +2263,11 @@ Partial Class WinRegistros
         Me.Panel32.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
-        Me.PHistorialPDF.ResumeLayout(False)
+        Me.PLastPDF.ResumeLayout(False)
         Me.Panel28.ResumeLayout(False)
         Me.Panel33.ResumeLayout(False)
-        Me.Panel34.ResumeLayout(False)
         Me.Panel35.ResumeLayout(False)
+        Me.Panel34.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
@@ -2412,18 +2439,21 @@ Partial Class WinRegistros
     Friend WithEvents Label49 As Label
     Friend WithEvents PBoxFegali As PictureBox
     Friend WithEvents PBoxToka As PictureBox
-    Friend WithEvents PHistorialPDF As Panel
+    Friend WithEvents PLastPDF As Panel
     Friend WithEvents Panel28 As Panel
-    Friend WithEvents Button1 As Button
+    Friend WithEvents BtnLastPDFClose As Button
     Friend WithEvents Panel33 As Panel
-    Friend WithEvents BtnGenerarPDF As Button
+    Friend WithEvents BtnGenerarHPDF As Button
     Friend WithEvents Panel34 As Panel
     Friend WithEvents Panel35 As Panel
     Friend WithEvents Label63 As Label
-    Friend WithEvents Calendario As MonthCalendar
-    Friend WithEvents PrintPDialogHistorial As PrintPreviewDialog
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents LHistorial As Label
+    Friend WithEvents LLastPDF As Label
     Friend WithEvents LFechaConsulta As Label
+    Friend WithEvents LLastHoras As ListBox
+    Friend WithEvents LHorarioConsulta As Label
+    Friend WithEvents SaveLastPDF As SaveFileDialog
+    Friend WithEvents TimerGlobalRegistros As Timer
+    Friend WithEvents CalendarLastPDF As MonthCalendar
     Friend WithEvents Label50 As Label
 End Class

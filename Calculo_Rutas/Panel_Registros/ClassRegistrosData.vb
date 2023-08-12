@@ -319,4 +319,59 @@ Public Class ClassRegistrosData
     End Function
 #End Region
 #End Region
+
+
+#Region "HISTORIAL PDF"
+    Public Function ShowDatePDF(Componente As Object)
+        Dim conexionDB As New OleDbConnection(CadenaConexion)
+        Try
+            Dim consulta As String = "SELECT  FORMAT(Fecha_Registro, 'dd/MM/yyyy') FROM Bitacoras" &
+                                    " GROUP BY FORMAT(Fecha_Registro, 'dd/MM/yyyy');"
+            Dim comando As OleDbCommand = New OleDbCommand(consulta)
+            comando.Connection = conexionDB
+            conexionDB.Open()
+            Dim reader As OleDbDataReader = comando.ExecuteReader
+            While reader.Read
+                Componente.AddBoldedDate(reader.GetString(0))
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDClienteUp")
+        End Try
+    End Function
+    Public Function ShowHoursPDF(Componente As Object, ListHoras As ListBox)
+        Dim conexionDB As New OleDbConnection(CadenaConexion)
+        Try
+            Dim consulta As String = "SELECT  FORMAT(Fecha_Registro, 'hh:nn:ss am/pm') FROM Bitacoras" &
+                                    " WHERE FORMAT(Fecha_Registro, 'dd/MM/yyyy') = '" & Componente.SelectionStart & "'" &
+                                    " GROUP BY FORMAT(Fecha_Registro, 'hh:nn:ss am/pm');"
+            Dim comando As OleDbCommand = New OleDbCommand(consulta)
+            comando.Connection = conexionDB
+            conexionDB.Open()
+            Dim reader As OleDbDataReader = comando.ExecuteReader
+            ListHoras.Items.Clear()
+            ListHoras.DataSource = Nothing
+            While reader.Read
+                ListHoras.Items.Add(reader.GetString(0))
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDClienteUp")
+        End Try
+    End Function
+    Public Function GetLastPDF(Componente As MonthCalendar, ListHoras As ListBox)
+        Dim conexionDB As New OleDbConnection(CadenaConexion)
+        Try
+            Dim consulta As String = "SELECT * FROM Bitacoras" &
+                                    " WHERE (((Bitacoras.[Fecha_Registro])=DateValue('" & Componente.SelectionStart & "')+TimeValue('" & ListHoras.SelectedItem & "')));"
+            Dim comando As OleDbCommand = New OleDbCommand(consulta)
+            comando.Connection = conexionDB
+            conexionDB.Open()
+            Dim reader As OleDbDataReader = comando.ExecuteReader
+            While reader.Read
+                MsgBox(reader.GetString(5))
+            End While
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDClienteUp")
+        End Try
+    End Function
+#End Region
 End Class

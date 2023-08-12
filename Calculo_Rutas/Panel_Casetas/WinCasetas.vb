@@ -10,7 +10,7 @@ Public Class WinCasetas
         Location = New Point(Largo, Alto)
 
         If LNewCaseta.Text = "NuevaCasetaRuta" Then
-            'Me.Size = New Size(707, 444)
+            Me.Size = New Size(707, 444)
             P_CasetaRuta.Location = New Point(0, 0)
             Dim dtDestinos As DataTable = NewConfig.MostrarDestinosCR(CmbCRDestino)
             CmbCRDestino.DataSource = dtDestinos

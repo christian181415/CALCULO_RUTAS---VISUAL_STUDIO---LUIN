@@ -15,7 +15,7 @@ Public Class ClassPrincipalConfig
     Public Function LastPDF(Panel As String, Form As Form)
         Try
             Form.Opacity = 0.6
-            FormAC.LHistorial.Text = Panel
+            FormAC.LLastPDF.Text = Panel
             FormAC.ShowDialog()
         Catch ex As Exception
             MsgBox(ex.Message)

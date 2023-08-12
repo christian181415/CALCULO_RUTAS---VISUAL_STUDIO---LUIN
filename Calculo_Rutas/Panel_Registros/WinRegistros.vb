@@ -3,6 +3,9 @@
 Public Class WinRegistros
     Dim NewRegistroDta As New ClassRegistrosData
     Private Sub FormActionsConfig_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TimerGlobalRegistros.Start()
+
+
         Dim r As Rectangle = My.Computer.Screen.WorkingArea
         Dim Largo = (r.Width / 2) - 100
         Dim Alto = (r.Height / 2) - 130
@@ -50,10 +53,7 @@ Public Class WinRegistros
             NewRegistroDta.ObtenerDomicilioRuta(LIDCliente, LDestinoUp)
         End If
 
-        If LHistorial.Text = "ConsultarPDF" Then
-            Me.Size = New Size(261, 286)
-            PHistorialPDF.Location = New Point(0, 0)
-        End If
+
     End Sub
 
 #Region "---------------------------------------------------------------ACCIONES REGISTER CATALOGO----------------------------------------------------------------"
@@ -322,8 +322,34 @@ Public Class WinRegistros
 
 
 
-    Private Sub BtnGenerarPDF_Click(sender As Object, e As EventArgs) Handles BtnGenerarPDF.Click
-        MsgBox(Calendario.SelectionStart)
+    Private Sub BtnGenerarHPDF_Click(sender As Object, e As EventArgs) Handles BtnGenerarHPDF.Click
+        'MsgBox(CalendarLastPDF.SelectionStart & " " & LLastHoras.SelectedItem)
+        NewRegistroDta.GetLastPDF(CalendarLastPDF, LLastHoras)
+    End Sub
+    Private Sub BtnLastPDFClose_Click(sender As Object, e As EventArgs) Handles BtnLastPDFClose.Click
+        LLastPDF.Text = ""
+        PLastPDF.Location = New Point(774, 681)
+        Me.Close()
+        WinPrincipal.Opacity = 1
+    End Sub
+
+    Private Sub TimerGlobalRegistros_Tick(sender As Object, e As EventArgs) Handles TimerGlobalRegistros.Tick
+        If LLastPDF.Text = "ConsultarPDF" Then
+            Me.Size = New Size(345, 322)
+            NewRegistroDta.ShowDatePDF(CalendarLastPDF)
+            CalendarLastPDF.SelectionStart = DateValue("10/12/2001")
+            CalendarLastPDF.SelectionStart = Date.Now
+            LLastPDF.Text = ""
+            PLastPDF.Location = New Point(0, 0)
+        End If
+    End Sub
+
+    Private Sub CalendarLastPDF_DateChanged(sender As Object, e As DateRangeEventArgs) Handles CalendarLastPDF.DateChanged
+
+    End Sub
+
+    Private Sub CalendarLastPDF_DateSelected(sender As Object, e As DateRangeEventArgs) Handles CalendarLastPDF.DateSelected
+        NewRegistroDta.ShowHoursPDF(CalendarLastPDF, LLastHoras)
     End Sub
 #End Region
 End Class
