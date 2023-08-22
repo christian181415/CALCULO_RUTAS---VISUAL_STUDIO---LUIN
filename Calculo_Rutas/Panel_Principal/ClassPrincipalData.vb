@@ -1,5 +1,7 @@
 ﻿Imports System.Configuration
 Imports System.Data.OleDb
+Imports System.IO
+Imports Org.BouncyCastle.X509
 
 Public Class ClassPrincipalData
 #Region "---------------------------------------------------------------CONEXION A DB----------------------------------------------------------------"
@@ -230,59 +232,47 @@ Public Class ClassPrincipalData
 
 
 #Region "-------------------------------------------------------PANEL PRINCIPAL (OPCIONES EXTRA)-----------------------------------------------------"
-    Public Function ObtenerIDsBitcaora(L_Ruta_Destino As Label, LRutaIDBit As Label, LOrigenBit As Label, LLitroCombustibleBit As Label, CMB_Chofer As ComboBox, LChoferIDBit As Label)
-        If L_Ruta_Destino.Text <> "Corporativo LUIN" Then
-            Try
-                Dim conexionDB As New OleDbConnection(CadenaConexion)
-                Dim consulta As String = "SELECT idRuta, Origen, Litros_Combustible FROM Clientes " &
-                                        "INNER JOIN Rutas ON Clientes.IdCliente = Rutas.Cliente_ID " &
-                                        "WHERE Domicilio = '" & L_Ruta_Destino.Text & "' AND Status = True " &
-                                        "GROUP BY idRuta, Origen, Litros_Combustible;"
-                Dim comando As OleDbCommand = New OleDbCommand(consulta)
-                comando.Connection = conexionDB
-                conexionDB.Open()
-                Dim reader As OleDbDataReader = comando.ExecuteReader
-                While reader.Read
-                    LRutaIDBit.Text = reader.GetInt32(0)
-                    LOrigenBit.Text = reader.GetString(1)
-                    LLitroCombustibleBit.Text = reader.GetDouble(2)
-                End While
-            Catch ex As Exception
-                MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarBitacora01")
-            End Try
-        End If
-
-        If CMB_Chofer.Text <> String.Empty Then
-            Try
-                Dim conexionDB As New OleDbConnection(CadenaConexion)
-                Dim consulta As String = "SELECT IdChofer FROM Choferes " &
-                                        "WHERE Nombre = '" & CMB_Chofer.Text & "' AND Status = True ;"
-                Dim comando As OleDbCommand = New OleDbCommand(consulta)
-                comando.Connection = conexionDB
-                conexionDB.Open()
-                Dim reader As OleDbDataReader = comando.ExecuteReader
-                While reader.Read
-                    LChoferIDBit.Text = reader.GetInt32(0)
-                End While
-            Catch ex As Exception
-                MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarBitacora02")
-            End Try
-        End If
+    Public Function ConvertToBinary(RutaPDF As String) As Byte()
+        '//https://social.msdn.microsoft.com/Forums/es-ES/1555c186-872d-4eea-805b-acf53b863ce5/guardar-un-archivo-en-base-de-datos-access-desde-vb-2010?forum=vsexes
+        Dim PDF_Byte As New FileStream(RutaPDF, FileMode.Open, FileAccess.Read)
+        Dim Bytes(PDF_Byte.Length) As Byte
+        PDF_Byte.Read(Bytes, 0, PDF_Byte.Length) 'Leo el archivo y lo convierto a binario
+        Return Bytes
+        PDF_Byte.Close() 'Cierro el FileStream
+        PDF_Byte.Dispose()
     End Function
-    Public Function RegistrarBitacora(DTP_Fecha As DateTime, LRutaIDBit As Label, LChoferIDBit As Label, LOrigenBit As Label, L_Ruta_Destino As Label, LKilometrosPDF As Label, LTiempoTrayectoPDF As Label, TxTViaticos As TextBox, LLitroCombustibleBit As Label, TxTCostoCombustible As TextBox, Total_Casetas As Label, TXT_Notas As TextBox, E_Alimentos As TextBox, CMB_Chofer As ComboBox)
+    Public Function ConvertToPDFStream(BinaryStr As Stream) As Byte()
+        Dim Bytes(BinaryStr.Length) As Byte
+        BinaryStr.Read(Bytes, 0, BinaryStr.Length) 'Leo el archivo y lo convierto a binario
+        Return Bytes
+        BinaryStr.Close() 'Cierro el Stream
+        BinaryStr.Dispose()
+    End Function
+    Public Function RegistrarBitacora(RutaArchivo As String, ByRef Cliente As String)
         Try
-            If LRutaIDBit.Text <> "LRutaIDBit" And LChoferIDBit.Text <> "LChoferIDBit" And LOrigenBit.Text <> "LOrigenBit" And L_Ruta_Destino.Text <> "Corporativo LUIN" And LKilometrosPDF.Text <> "LKilometrosPDF" And LTiempoTrayectoPDF.Text <> "LTiempoTrayectoPDF" And TxTViaticos.Text <> String.Empty And LLitroCombustibleBit.Text <> "LLitroCombustibleBit" And TxTCostoCombustible.Text <> String.Empty And Total_Casetas.Text <> String.Empty And E_Alimentos.Text <> String.Empty Then
-                Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-                Dim consulta = "INSERT INTO Bitacoras(Fecha_Registro_Ruta, Ruta_ID, Chofer_ID, Origen, Destino, Kilometros, Tiempo_Trayecto, Viaticos, Litros_Combustible, PL_Combustible, Total_Importe_Casetas, Descripcion, Gasto_Alimentacion, Fecha_Registro) " &
-                                "VALUES('" & DTP_Fecha.Date & "', " & LRutaIDBit.Text & ", " & LChoferIDBit.Text & ", '" & LOrigenBit.Text & "', '" & L_Ruta_Destino.Text & "', " & LKilometrosPDF.Text & ", '" & LTiempoTrayectoPDF.Text & "', " & TxTViaticos.Text & ", " & LLitroCombustibleBit.Text & ", " & TxTCostoCombustible.Text & ", " & Total_Casetas.Text & ", '" & TXT_Notas.Text & "', " & E_Alimentos.Text & ", '" & Date.Now() & "')"
-                conexionDB.Open()
-                Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
-                comando.ExecuteNonQuery()
-            Else
-                MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
-            End If
+            Dim Binario As Byte() = Nothing
+            Dim NombreArchivo As String = Nothing
+            Dim Extension As String = Nothing
+
+            NombreArchivo = Path.GetFileName(RutaArchivo)
+            Extension = Path.GetExtension(RutaArchivo)
+            Binario = ConvertToBinary(RutaArchivo)
+
+            Dim ConexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
+            Dim Consulta As String = "INSERT INTO Bitacoras(Nombre, Tipo, PDF, Cliente, FechaRegistro) " &
+                                     "VALUES(@Nombre,@Tipo,@PDF,@Cliente,'" & Date.Now() & "')"
+            Dim Comando As OleDbCommand = New OleDbCommand(Consulta, ConexionDB)
+            Comando.Parameters.AddWithValue("@Nombre", OleDbType.VarChar).Value = NombreArchivo
+            Comando.Parameters.AddWithValue("@Tipo", OleDbType.VarChar).Value = Extension
+            Comando.Parameters.AddWithValue("@PDF", OleDbType.Binary).Value = Binario
+            Comando.Parameters.AddWithValue("@Cliente", OleDbType.VarChar).Value = Cliente
+            ConexionDB.Open()
+            Comando.ExecuteNonQuery()
+            ConexionDB.Close()
+            ConexionDB.Dispose()
+            MsgBox("PDF Registrado", MsgBoxStyle.Information, "Corporativo LUIN | GUARDAR")
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarBitacora03")
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarBitacora")
         End Try
     End Function
     Public Function LimpiarInfo(CMB_Cliente As ComboBox, CMB_Chofer As ComboBox, CMB_Vehiculo As ComboBox, L_Ruta_Destino As Label, E_Alimentos As TextBox, TxTViaticos As TextBox, TXT_Notas As TextBox, L_Desgloce_Casetas As ListBox, Total_Casetas As Label, Total_Combustible As Label, CBox_Alimentos As CheckBox)

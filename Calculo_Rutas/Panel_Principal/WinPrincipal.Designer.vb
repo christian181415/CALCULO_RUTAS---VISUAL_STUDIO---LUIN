@@ -30,6 +30,7 @@ Partial Class WinPrincipal
         Me.PBoxAlertIcon = New System.Windows.Forms.PictureBox()
         Me.BTN_Salir = New System.Windows.Forms.Button()
         Me.Panel_Destino = New System.Windows.Forms.Panel()
+        Me.PBoxLastPDF = New System.Windows.Forms.PictureBox()
         Me.PBoxConfiguracion = New System.Windows.Forms.PictureBox()
         Me.P_InfoDestino = New System.Windows.Forms.Panel()
         Me.LEfectivoTotal = New System.Windows.Forms.Label()
@@ -61,7 +62,6 @@ Partial Class WinPrincipal
         Me.L_Ruta_Destino = New System.Windows.Forms.Label()
         Me.LRuta = New System.Windows.Forms.Label()
         Me.P_OpcionesExtra = New System.Windows.Forms.Panel()
-        Me.PBoxLastPDF = New System.Windows.Forms.PictureBox()
         Me.PBoxPDF = New System.Windows.Forms.PictureBox()
         Me.BTN_Limpiar = New System.Windows.Forms.Button()
         Me.P_GastosDestino = New System.Windows.Forms.Panel()
@@ -142,9 +142,11 @@ Partial Class WinPrincipal
         Me.TimerAcciones = New System.Windows.Forms.Timer(Me.components)
         Me.TimerInfoDB = New System.Windows.Forms.Timer(Me.components)
         Me.TimerErrorAlert = New System.Windows.Forms.Timer(Me.components)
+        Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Panel_Trabajo.SuspendLayout()
         CType(Me.PBoxAlertIcon, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel_Destino.SuspendLayout()
+        CType(Me.PBoxLastPDF, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxConfiguracion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_InfoDestino.SuspendLayout()
         CType(Me.PBoxEfectivo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,7 +155,6 @@ Partial Class WinPrincipal
         CType(Me.PBoxCasetas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_Destino.SuspendLayout()
         Me.P_OpcionesExtra.SuspendLayout()
-        CType(Me.PBoxLastPDF, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxPDF, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_GastosDestino.SuspendLayout()
         Me.Panel6.SuspendLayout()
@@ -173,7 +174,6 @@ Partial Class WinPrincipal
         Me.Panel_Trabajo.Controls.Add(Me.DTP_Fecha)
         Me.Panel_Trabajo.Controls.Add(Me.LFecha)
         Me.Panel_Trabajo.Controls.Add(Me.PBoxAlertIcon)
-        Me.Panel_Trabajo.Controls.Add(Me.BTN_Salir)
         Me.Panel_Trabajo.Controls.Add(Me.Panel_Destino)
         Me.Panel_Trabajo.Controls.Add(Me.P_Chofer)
         Me.Panel_Trabajo.Controls.Add(Me.Panel_Titulo)
@@ -215,12 +215,16 @@ Partial Class WinPrincipal
         '
         'BTN_Salir
         '
-        Me.BTN_Salir.Location = New System.Drawing.Point(460, 558)
+        Me.BTN_Salir.BackColor = System.Drawing.SystemColors.Control
+        Me.BTN_Salir.FlatAppearance.BorderSize = 0
+        Me.BTN_Salir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.BTN_Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BTN_Salir.Location = New System.Drawing.Point(448, 307)
         Me.BTN_Salir.Name = "BTN_Salir"
         Me.BTN_Salir.Size = New System.Drawing.Size(75, 23)
         Me.BTN_Salir.TabIndex = 1
         Me.BTN_Salir.Text = "Salir"
-        Me.BTN_Salir.UseVisualStyleBackColor = True
+        Me.BTN_Salir.UseVisualStyleBackColor = False
         '
         'Panel_Destino
         '
@@ -228,6 +232,7 @@ Partial Class WinPrincipal
         Me.Panel_Destino.Controls.Add(Me.PBoxLastPDF)
         Me.Panel_Destino.Controls.Add(Me.PBoxConfiguracion)
         Me.Panel_Destino.Controls.Add(Me.P_InfoDestino)
+        Me.Panel_Destino.Controls.Add(Me.BTN_Salir)
         Me.Panel_Destino.Controls.Add(Me.P_Destino)
         Me.Panel_Destino.Controls.Add(Me.P_OpcionesExtra)
         Me.Panel_Destino.Controls.Add(Me.P_GastosDestino)
@@ -236,6 +241,20 @@ Partial Class WinPrincipal
         Me.Panel_Destino.Name = "Panel_Destino"
         Me.Panel_Destino.Size = New System.Drawing.Size(533, 340)
         Me.Panel_Destino.TabIndex = 3
+        '
+        'PBoxLastPDF
+        '
+        Me.PBoxLastPDF.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.PBoxLastPDF.BackColor = System.Drawing.Color.Transparent
+        Me.PBoxLastPDF.BackgroundImage = CType(resources.GetObject("PBoxLastPDF.BackgroundImage"), System.Drawing.Image)
+        Me.PBoxLastPDF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PBoxLastPDF.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.PBoxLastPDF.Location = New System.Drawing.Point(50, 300)
+        Me.PBoxLastPDF.Name = "PBoxLastPDF"
+        Me.PBoxLastPDF.Size = New System.Drawing.Size(35, 35)
+        Me.PBoxLastPDF.TabIndex = 18
+        Me.PBoxLastPDF.TabStop = False
         '
         'PBoxConfiguracion
         '
@@ -344,9 +363,9 @@ Partial Class WinPrincipal
         Me.LKilometrosPDF.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.LKilometrosPDF.Location = New System.Drawing.Point(172, 167)
         Me.LKilometrosPDF.Name = "LKilometrosPDF"
-        Me.LKilometrosPDF.Size = New System.Drawing.Size(82, 13)
+        Me.LKilometrosPDF.Size = New System.Drawing.Size(13, 13)
         Me.LKilometrosPDF.TabIndex = 47
-        Me.LKilometrosPDF.Text = "LKilometrosPDF"
+        Me.LKilometrosPDF.Text = "1"
         Me.LKilometrosPDF.Visible = False
         '
         'LTiempoTrayectoPDF
@@ -355,9 +374,9 @@ Partial Class WinPrincipal
         Me.LTiempoTrayectoPDF.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.LTiempoTrayectoPDF.Location = New System.Drawing.Point(17, 167)
         Me.LTiempoTrayectoPDF.Name = "LTiempoTrayectoPDF"
-        Me.LTiempoTrayectoPDF.Size = New System.Drawing.Size(111, 13)
+        Me.LTiempoTrayectoPDF.Size = New System.Drawing.Size(13, 13)
         Me.LTiempoTrayectoPDF.TabIndex = 48
-        Me.LTiempoTrayectoPDF.Text = "LTiempoTrayectoPDF"
+        Me.LTiempoTrayectoPDF.Text = "1"
         Me.LTiempoTrayectoPDF.Visible = False
         '
         'Label24
@@ -410,7 +429,7 @@ Partial Class WinPrincipal
         '
         'TxTCostoCombustible
         '
-        Me.TxTCostoCombustible.BackColor = System.Drawing.Color.White
+        Me.TxTCostoCombustible.BackColor = System.Drawing.SystemColors.Control
         Me.TxTCostoCombustible.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TxTCostoCombustible.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxTCostoCombustible.Location = New System.Drawing.Point(204, 248)
@@ -577,20 +596,6 @@ Partial Class WinPrincipal
         Me.P_OpcionesExtra.Size = New System.Drawing.Size(355, 44)
         Me.P_OpcionesExtra.TabIndex = 30
         '
-        'PBoxLastPDF
-        '
-        Me.PBoxLastPDF.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.PBoxLastPDF.BackColor = System.Drawing.Color.Transparent
-        Me.PBoxLastPDF.BackgroundImage = CType(resources.GetObject("PBoxLastPDF.BackgroundImage"), System.Drawing.Image)
-        Me.PBoxLastPDF.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PBoxLastPDF.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.PBoxLastPDF.Location = New System.Drawing.Point(50, 300)
-        Me.PBoxLastPDF.Name = "PBoxLastPDF"
-        Me.PBoxLastPDF.Size = New System.Drawing.Size(35, 35)
-        Me.PBoxLastPDF.TabIndex = 18
-        Me.PBoxLastPDF.TabStop = False
-        '
         'PBoxPDF
         '
         Me.PBoxPDF.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -609,12 +614,16 @@ Partial Class WinPrincipal
         '
         Me.BTN_Limpiar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BTN_Limpiar.Location = New System.Drawing.Point(271, 9)
+        Me.BTN_Limpiar.BackColor = System.Drawing.SystemColors.Control
+        Me.BTN_Limpiar.FlatAppearance.BorderSize = 0
+        Me.BTN_Limpiar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BTN_Limpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BTN_Limpiar.Location = New System.Drawing.Point(271, 11)
         Me.BTN_Limpiar.Name = "BTN_Limpiar"
         Me.BTN_Limpiar.Size = New System.Drawing.Size(75, 23)
         Me.BTN_Limpiar.TabIndex = 4
         Me.BTN_Limpiar.Text = "Limpiar"
-        Me.BTN_Limpiar.UseVisualStyleBackColor = True
+        Me.BTN_Limpiar.UseVisualStyleBackColor = False
         '
         'P_GastosDestino
         '
@@ -668,13 +677,14 @@ Partial Class WinPrincipal
         '
         'TxTViaticos
         '
-        Me.TxTViaticos.BackColor = System.Drawing.SystemColors.Window
+        Me.TxTViaticos.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTViaticos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TxTViaticos.Enabled = False
         Me.TxTViaticos.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTViaticos.Location = New System.Drawing.Point(140, 44)
+        Me.TxTViaticos.Location = New System.Drawing.Point(140, 47)
         Me.TxTViaticos.MaxLength = 8
         Me.TxTViaticos.Name = "TxTViaticos"
-        Me.TxTViaticos.Size = New System.Drawing.Size(73, 20)
+        Me.TxTViaticos.Size = New System.Drawing.Size(73, 13)
         Me.TxTViaticos.TabIndex = 56
         Me.TxTViaticos.Text = "0.00"
         '
@@ -733,10 +743,12 @@ Partial Class WinPrincipal
         '
         'E_Alimentos
         '
+        Me.E_Alimentos.BackColor = System.Drawing.SystemColors.Control
+        Me.E_Alimentos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.E_Alimentos.Enabled = False
-        Me.E_Alimentos.Location = New System.Drawing.Point(9, 44)
+        Me.E_Alimentos.Location = New System.Drawing.Point(9, 47)
         Me.E_Alimentos.Name = "E_Alimentos"
-        Me.E_Alimentos.Size = New System.Drawing.Size(73, 20)
+        Me.E_Alimentos.Size = New System.Drawing.Size(73, 13)
         Me.E_Alimentos.TabIndex = 25
         Me.E_Alimentos.Text = "0.00"
         '
@@ -808,8 +820,10 @@ Partial Class WinPrincipal
         '
         'CMB_Vehiculo
         '
+        Me.CMB_Vehiculo.BackColor = System.Drawing.SystemColors.Control
         Me.CMB_Vehiculo.Cursor = System.Windows.Forms.Cursors.Hand
         Me.CMB_Vehiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMB_Vehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CMB_Vehiculo.FormattingEnabled = True
         Me.CMB_Vehiculo.Location = New System.Drawing.Point(22, 149)
         Me.CMB_Vehiculo.Name = "CMB_Vehiculo"
@@ -827,8 +841,10 @@ Partial Class WinPrincipal
         '
         'CMB_Chofer
         '
+        Me.CMB_Chofer.BackColor = System.Drawing.SystemColors.Control
         Me.CMB_Chofer.Cursor = System.Windows.Forms.Cursors.Hand
         Me.CMB_Chofer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMB_Chofer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CMB_Chofer.FormattingEnabled = True
         Me.CMB_Chofer.Location = New System.Drawing.Point(22, 91)
         Me.CMB_Chofer.Name = "CMB_Chofer"
@@ -837,8 +853,10 @@ Partial Class WinPrincipal
         '
         'CMB_Cliente
         '
+        Me.CMB_Cliente.BackColor = System.Drawing.SystemColors.Control
         Me.CMB_Cliente.Cursor = System.Windows.Forms.Cursors.Hand
         Me.CMB_Cliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMB_Cliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CMB_Cliente.FormattingEnabled = True
         Me.CMB_Cliente.Location = New System.Drawing.Point(22, 35)
         Me.CMB_Cliente.Name = "CMB_Cliente"
@@ -877,7 +895,7 @@ Partial Class WinPrincipal
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.White
-        Me.Label1.Location = New System.Drawing.Point(180, 17)
+        Me.Label1.Location = New System.Drawing.Point(168, 17)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(220, 20)
         Me.Label1.TabIndex = 0
@@ -896,8 +914,8 @@ Partial Class WinPrincipal
         '
         'P_Cofiguracion
         '
-        Me.P_Cofiguracion.Controls.Add(Me.Panel1)
         Me.P_Cofiguracion.Controls.Add(Me.Configura)
+        Me.P_Cofiguracion.Controls.Add(Me.Panel1)
         Me.P_Cofiguracion.Controls.Add(Me.BTN_Cerrar)
         Me.P_Cofiguracion.Location = New System.Drawing.Point(562, 0)
         Me.P_Cofiguracion.Name = "P_Cofiguracion"
@@ -908,6 +926,7 @@ Partial Class WinPrincipal
         '
         Me.Panel1.BackColor = System.Drawing.Color.Maroon
         Me.Panel1.Controls.Add(Me.Label17)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(185, 54)
@@ -918,7 +937,7 @@ Partial Class WinPrincipal
         Me.Label17.AutoSize = True
         Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label17.ForeColor = System.Drawing.Color.White
-        Me.Label17.Location = New System.Drawing.Point(10, 19)
+        Me.Label17.Location = New System.Drawing.Point(13, 17)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(158, 20)
         Me.Label17.TabIndex = 1
@@ -929,14 +948,16 @@ Partial Class WinPrincipal
         Me.Configura.Controls.Add(Me.Consultas)
         Me.Configura.Controls.Add(Me.Rutas)
         Me.Configura.Controls.Add(Me.ImporteCasetas)
-        Me.Configura.Location = New System.Drawing.Point(3, 60)
+        Me.Configura.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Configura.Location = New System.Drawing.Point(0, 54)
         Me.Configura.Name = "Configura"
         Me.Configura.SelectedIndex = 0
-        Me.Configura.Size = New System.Drawing.Size(179, 486)
+        Me.Configura.Size = New System.Drawing.Size(185, 495)
         Me.Configura.TabIndex = 6
         '
         'Consultas
         '
+        Me.Consultas.BackColor = System.Drawing.Color.White
         Me.Consultas.Controls.Add(Me.BtnEliminarCatalogo)
         Me.Consultas.Controls.Add(Me.BtnNewCatalogo)
         Me.Consultas.Controls.Add(Me.BtnUpdateCatalogo)
@@ -947,45 +968,56 @@ Partial Class WinPrincipal
         Me.Consultas.Location = New System.Drawing.Point(4, 22)
         Me.Consultas.Name = "Consultas"
         Me.Consultas.Padding = New System.Windows.Forms.Padding(3)
-        Me.Consultas.Size = New System.Drawing.Size(171, 460)
+        Me.Consultas.Size = New System.Drawing.Size(177, 469)
         Me.Consultas.TabIndex = 0
         Me.Consultas.Text = "Consultas"
-        Me.Consultas.UseVisualStyleBackColor = True
         '
         'BtnEliminarCatalogo
         '
+        Me.BtnEliminarCatalogo.BackColor = System.Drawing.SystemColors.Control
         Me.BtnEliminarCatalogo.Enabled = False
+        Me.BtnEliminarCatalogo.FlatAppearance.BorderSize = 0
+        Me.BtnEliminarCatalogo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.BtnEliminarCatalogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnEliminarCatalogo.Location = New System.Drawing.Point(9, 424)
         Me.BtnEliminarCatalogo.Name = "BtnEliminarCatalogo"
         Me.BtnEliminarCatalogo.Size = New System.Drawing.Size(152, 23)
         Me.BtnEliminarCatalogo.TabIndex = 42
         Me.BtnEliminarCatalogo.Text = "Eliminar"
-        Me.BtnEliminarCatalogo.UseVisualStyleBackColor = True
+        Me.BtnEliminarCatalogo.UseVisualStyleBackColor = False
         '
         'BtnNewCatalogo
         '
+        Me.BtnNewCatalogo.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnNewCatalogo.FlatAppearance.BorderSize = 0
+        Me.BtnNewCatalogo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewCatalogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewCatalogo.Location = New System.Drawing.Point(7, 393)
         Me.BtnNewCatalogo.Name = "BtnNewCatalogo"
         Me.BtnNewCatalogo.Size = New System.Drawing.Size(75, 23)
         Me.BtnNewCatalogo.TabIndex = 41
         Me.BtnNewCatalogo.Text = "Nuevo"
-        Me.BtnNewCatalogo.UseVisualStyleBackColor = True
+        Me.BtnNewCatalogo.UseVisualStyleBackColor = False
         '
         'BtnUpdateCatalogo
         '
+        Me.BtnUpdateCatalogo.BackColor = System.Drawing.SystemColors.Control
         Me.BtnUpdateCatalogo.Enabled = False
+        Me.BtnUpdateCatalogo.FlatAppearance.BorderSize = 0
+        Me.BtnUpdateCatalogo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnUpdateCatalogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnUpdateCatalogo.Location = New System.Drawing.Point(88, 393)
         Me.BtnUpdateCatalogo.Name = "BtnUpdateCatalogo"
         Me.BtnUpdateCatalogo.Size = New System.Drawing.Size(75, 23)
         Me.BtnUpdateCatalogo.TabIndex = 40
         Me.BtnUpdateCatalogo.Text = "Modificar"
-        Me.BtnUpdateCatalogo.UseVisualStyleBackColor = True
+        Me.BtnUpdateCatalogo.UseVisualStyleBackColor = False
         '
         'L_Directorio
         '
         Me.L_Directorio.AutoSize = True
         Me.L_Directorio.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.L_Directorio.Location = New System.Drawing.Point(48, 75)
+        Me.L_Directorio.Location = New System.Drawing.Point(50, 75)
         Me.L_Directorio.Name = "L_Directorio"
         Me.L_Directorio.Size = New System.Drawing.Size(70, 16)
         Me.L_Directorio.TabIndex = 10
@@ -1001,11 +1033,13 @@ Partial Class WinPrincipal
         '
         'CMB_Directorio
         '
+        Me.CMB_Directorio.BackColor = System.Drawing.SystemColors.Control
         Me.CMB_Directorio.Cursor = System.Windows.Forms.Cursors.Default
         Me.CMB_Directorio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMB_Directorio.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CMB_Directorio.FormattingEnabled = True
         Me.CMB_Directorio.Items.AddRange(New Object() {"Clientes", "Choferes", "Unidades", "Casetas"})
-        Me.CMB_Directorio.Location = New System.Drawing.Point(21, 36)
+        Me.CMB_Directorio.Location = New System.Drawing.Point(23, 36)
         Me.CMB_Directorio.Name = "CMB_Directorio"
         Me.CMB_Directorio.Size = New System.Drawing.Size(125, 21)
         Me.CMB_Directorio.TabIndex = 10
@@ -1022,6 +1056,7 @@ Partial Class WinPrincipal
         '
         'Rutas
         '
+        Me.Rutas.BackColor = System.Drawing.Color.White
         Me.Rutas.Controls.Add(Me.TxTDestino)
         Me.Rutas.Controls.Add(Me.Label39)
         Me.Rutas.Controls.Add(Me.TxTCombustible)
@@ -1045,10 +1080,9 @@ Partial Class WinPrincipal
         Me.Rutas.Location = New System.Drawing.Point(4, 22)
         Me.Rutas.Name = "Rutas"
         Me.Rutas.Padding = New System.Windows.Forms.Padding(3)
-        Me.Rutas.Size = New System.Drawing.Size(171, 460)
+        Me.Rutas.Size = New System.Drawing.Size(177, 469)
         Me.Rutas.TabIndex = 1
         Me.Rutas.Text = "Rutas"
-        Me.Rutas.UseVisualStyleBackColor = True
         '
         'TxTDestino
         '
@@ -1109,12 +1143,16 @@ Partial Class WinPrincipal
         '
         'BtnEliminarRuta
         '
+        Me.BtnEliminarRuta.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnEliminarRuta.FlatAppearance.BorderSize = 0
+        Me.BtnEliminarRuta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.BtnEliminarRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnEliminarRuta.Location = New System.Drawing.Point(9, 432)
         Me.BtnEliminarRuta.Name = "BtnEliminarRuta"
         Me.BtnEliminarRuta.Size = New System.Drawing.Size(156, 23)
         Me.BtnEliminarRuta.TabIndex = 52
         Me.BtnEliminarRuta.Text = "Eliminar"
-        Me.BtnEliminarRuta.UseVisualStyleBackColor = True
+        Me.BtnEliminarRuta.UseVisualStyleBackColor = False
         '
         'LIDRuta
         '
@@ -1196,12 +1234,16 @@ Partial Class WinPrincipal
         '
         'BtnNewRuta
         '
+        Me.BtnNewRuta.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnNewRuta.FlatAppearance.BorderSize = 0
+        Me.BtnNewRuta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewRuta.Location = New System.Drawing.Point(9, 402)
         Me.BtnNewRuta.Name = "BtnNewRuta"
         Me.BtnNewRuta.Size = New System.Drawing.Size(75, 23)
         Me.BtnNewRuta.TabIndex = 39
         Me.BtnNewRuta.Text = "Nuevo"
-        Me.BtnNewRuta.UseVisualStyleBackColor = True
+        Me.BtnNewRuta.UseVisualStyleBackColor = False
         '
         'Label27
         '
@@ -1215,17 +1257,23 @@ Partial Class WinPrincipal
         '
         'BtnUpdateRuta
         '
+        Me.BtnUpdateRuta.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnUpdateRuta.FlatAppearance.BorderSize = 0
+        Me.BtnUpdateRuta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnUpdateRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnUpdateRuta.Location = New System.Drawing.Point(90, 402)
         Me.BtnUpdateRuta.Name = "BtnUpdateRuta"
         Me.BtnUpdateRuta.Size = New System.Drawing.Size(75, 23)
         Me.BtnUpdateRuta.TabIndex = 6
         Me.BtnUpdateRuta.Text = "Modificar"
-        Me.BtnUpdateRuta.UseVisualStyleBackColor = True
+        Me.BtnUpdateRuta.UseVisualStyleBackColor = False
         '
         'CMB_Rutas
         '
+        Me.CMB_Rutas.BackColor = System.Drawing.SystemColors.Control
         Me.CMB_Rutas.Cursor = System.Windows.Forms.Cursors.Default
         Me.CMB_Rutas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CMB_Rutas.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CMB_Rutas.FormattingEnabled = True
         Me.CMB_Rutas.Location = New System.Drawing.Point(9, 26)
         Me.CMB_Rutas.Name = "CMB_Rutas"
@@ -1244,6 +1292,7 @@ Partial Class WinPrincipal
         '
         'ImporteCasetas
         '
+        Me.ImporteCasetas.BackColor = System.Drawing.Color.White
         Me.ImporteCasetas.Controls.Add(Me.Label18)
         Me.ImporteCasetas.Controls.Add(Me.Label13)
         Me.ImporteCasetas.Controls.Add(Me.LVehiculoID)
@@ -1260,10 +1309,9 @@ Partial Class WinPrincipal
         Me.ImporteCasetas.Location = New System.Drawing.Point(4, 22)
         Me.ImporteCasetas.Name = "ImporteCasetas"
         Me.ImporteCasetas.Padding = New System.Windows.Forms.Padding(3)
-        Me.ImporteCasetas.Size = New System.Drawing.Size(171, 460)
+        Me.ImporteCasetas.Size = New System.Drawing.Size(177, 469)
         Me.ImporteCasetas.TabIndex = 2
         Me.ImporteCasetas.Text = "Casetas"
-        Me.ImporteCasetas.UseVisualStyleBackColor = True
         '
         'Label18
         '
@@ -1295,6 +1343,7 @@ Partial Class WinPrincipal
         Me.LVehiculoID.TabIndex = 51
         Me.LVehiculoID.Text = "VehiculoID"
         Me.LVehiculoID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LVehiculoID.Visible = False
         '
         'LRutaID
         '
@@ -1308,15 +1357,20 @@ Partial Class WinPrincipal
         Me.LRutaID.TabIndex = 50
         Me.LRutaID.Text = "RutaID"
         Me.LRutaID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LRutaID.Visible = False
         '
         'BtnEliminarCasetaRuta
         '
+        Me.BtnEliminarCasetaRuta.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnEliminarCasetaRuta.FlatAppearance.BorderSize = 0
+        Me.BtnEliminarCasetaRuta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.BtnEliminarCasetaRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnEliminarCasetaRuta.Location = New System.Drawing.Point(9, 430)
         Me.BtnEliminarCasetaRuta.Name = "BtnEliminarCasetaRuta"
         Me.BtnEliminarCasetaRuta.Size = New System.Drawing.Size(152, 23)
         Me.BtnEliminarCasetaRuta.TabIndex = 49
         Me.BtnEliminarCasetaRuta.Text = "Eliminar"
-        Me.BtnEliminarCasetaRuta.UseVisualStyleBackColor = True
+        Me.BtnEliminarCasetaRuta.UseVisualStyleBackColor = False
         '
         'Label22
         '
@@ -1341,27 +1395,37 @@ Partial Class WinPrincipal
         '
         'BtnNewImporteC
         '
+        Me.BtnNewImporteC.BackColor = System.Drawing.SystemColors.Control
+        Me.BtnNewImporteC.FlatAppearance.BorderSize = 0
+        Me.BtnNewImporteC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewImporteC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewImporteC.Location = New System.Drawing.Point(7, 401)
         Me.BtnNewImporteC.Name = "BtnNewImporteC"
         Me.BtnNewImporteC.Size = New System.Drawing.Size(75, 23)
         Me.BtnNewImporteC.TabIndex = 44
         Me.BtnNewImporteC.Text = "Nuevo"
-        Me.BtnNewImporteC.UseVisualStyleBackColor = True
+        Me.BtnNewImporteC.UseVisualStyleBackColor = False
         '
         'BtnUpdateImporteC
         '
+        Me.BtnUpdateImporteC.BackColor = System.Drawing.SystemColors.Control
         Me.BtnUpdateImporteC.Enabled = False
+        Me.BtnUpdateImporteC.FlatAppearance.BorderSize = 0
+        Me.BtnUpdateImporteC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnUpdateImporteC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnUpdateImporteC.Location = New System.Drawing.Point(88, 401)
         Me.BtnUpdateImporteC.Name = "BtnUpdateImporteC"
         Me.BtnUpdateImporteC.Size = New System.Drawing.Size(75, 23)
         Me.BtnUpdateImporteC.TabIndex = 43
         Me.BtnUpdateImporteC.Text = "Modificar"
-        Me.BtnUpdateImporteC.UseVisualStyleBackColor = True
+        Me.BtnUpdateImporteC.UseVisualStyleBackColor = False
         '
         'CmbVehiculoImporte
         '
+        Me.CmbVehiculoImporte.BackColor = System.Drawing.SystemColors.Control
         Me.CmbVehiculoImporte.Cursor = System.Windows.Forms.Cursors.Default
         Me.CmbVehiculoImporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbVehiculoImporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbVehiculoImporte.FormattingEnabled = True
         Me.CmbVehiculoImporte.Location = New System.Drawing.Point(9, 84)
         Me.CmbVehiculoImporte.Name = "CmbVehiculoImporte"
@@ -1380,8 +1444,10 @@ Partial Class WinPrincipal
         '
         'CmbRutaImporte
         '
+        Me.CmbRutaImporte.BackColor = System.Drawing.SystemColors.Control
         Me.CmbRutaImporte.Cursor = System.Windows.Forms.Cursors.Default
         Me.CmbRutaImporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbRutaImporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbRutaImporte.FormattingEnabled = True
         Me.CmbRutaImporte.Location = New System.Drawing.Point(9, 25)
         Me.CmbRutaImporte.Name = "CmbRutaImporte"
@@ -1400,17 +1466,21 @@ Partial Class WinPrincipal
         '
         'BTN_Cerrar
         '
-        Me.BTN_Cerrar.Location = New System.Drawing.Point(93, 558)
+        Me.BTN_Cerrar.BackColor = System.Drawing.SystemColors.Control
+        Me.BTN_Cerrar.FlatAppearance.BorderSize = 0
+        Me.BTN_Cerrar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.BTN_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BTN_Cerrar.Location = New System.Drawing.Point(15, 560)
         Me.BTN_Cerrar.Name = "BTN_Cerrar"
-        Me.BTN_Cerrar.Size = New System.Drawing.Size(75, 23)
+        Me.BTN_Cerrar.Size = New System.Drawing.Size(154, 23)
         Me.BTN_Cerrar.TabIndex = 5
         Me.BTN_Cerrar.Text = "Cerrar"
-        Me.BTN_Cerrar.UseVisualStyleBackColor = True
+        Me.BTN_Cerrar.UseVisualStyleBackColor = False
         '
         'SFDialogPDF
         '
-        Me.SFDialogPDF.DefaultExt = "Archivos PDF (*.pdf)|*.pdf|Todos los archivos (*.*)|*.*"
-        Me.SFDialogPDF.Filter = "Archivos PDF (*.pdf)|*.pdf|Todos los archivos (*.*)|*.*"
+        Me.SFDialogPDF.DefaultExt = "Archivos PDF (*.pdf)|*.pdf"
+        Me.SFDialogPDF.Filter = "Archivos PDF (*.pdf)|*.pdf"
         '
         'TimerAcciones
         '
@@ -1421,23 +1491,34 @@ Partial Class WinPrincipal
         'TimerErrorAlert
         '
         '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.LightGray
+        Me.Panel2.Location = New System.Drawing.Point(554, -13)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(10, 619)
+        Me.Panel2.TabIndex = 2
+        '
         'WinPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(751, 599)
+        Me.ClientSize = New System.Drawing.Size(746, 597)
+        Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.P_Cofiguracion)
         Me.Controls.Add(Me.Panel_Trabajo)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "WinPrincipal"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Form1"
+        Me.Text = "CALCULO DE RUTAS"
+        Me.TransparencyKey = System.Drawing.Color.LightGray
         Me.Panel_Trabajo.ResumeLayout(False)
         Me.Panel_Trabajo.PerformLayout()
         CType(Me.PBoxAlertIcon, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel_Destino.ResumeLayout(False)
+        CType(Me.PBoxLastPDF, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBoxConfiguracion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.P_InfoDestino.ResumeLayout(False)
         Me.P_InfoDestino.PerformLayout()
@@ -1448,7 +1529,6 @@ Partial Class WinPrincipal
         Me.P_Destino.ResumeLayout(False)
         Me.P_Destino.PerformLayout()
         Me.P_OpcionesExtra.ResumeLayout(False)
-        CType(Me.PBoxLastPDF, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBoxPDF, System.ComponentModel.ISupportInitialize).EndInit()
         Me.P_GastosDestino.ResumeLayout(False)
         Me.P_GastosDestino.PerformLayout()
@@ -1591,4 +1671,5 @@ Partial Class WinPrincipal
     Friend WithEvents TxTDestino As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents PBoxLastPDF As PictureBox
+    Friend WithEvents Panel2 As Panel
 End Class

@@ -5,7 +5,9 @@ Imports iTextSharp.text.pdf
 Public Class PDF
     Public Function GenerarPDF(SFDialogPDF As SaveFileDialog, TXTFecha As String, CMBCliente As String, CMBVehiculo As String, L_Ruta_Destino As String, TXT_Notas As String, Total_Combustible As String, LEfectivoTotal As String, Total_Casetas As String, L_Desgloce_Casetas As ListBox, LKilometrosPDF As String, LTiempoTrayectoPDF As String)
         Try
+            SFDialogPDF.FileName = CMBCliente & "_" & Format(Date.Today, "ddMMyy")
             If SFDialogPDF.ShowDialog = System.Windows.Forms.DialogResult.OK Then
+
                 Dim oDoc As New iTextSharp.text.Document(PageSize.LETTER, 55, 60, 305, 0)
                 Dim pdfw As iTextSharp.text.pdf.PdfWriter
                 Dim cb As PdfContentByte
@@ -235,15 +237,18 @@ Public Class PDF
                         If oDoc.IsOpen Then oDoc.Close()
                         File.Delete(NombreArchivo)
                     End If
-                    Throw New Exception("Error al generar archivo PDF (" + ex.Message + ")")
+                    MsgBox("Error al generar el archivo PDF." & Chr(10) & ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN | GENERAR PDF")
+                    'Throw New Exception("Error al generar archivo PDF (" + ex.Message + ")")
                 Finally
                     cb = Nothing
                     pdfw = Nothing
                     oDoc = Nothing
                 End Try
+                SFDialogPDF.Dispose()
             End If
         Catch ex As Exception
-
+            MsgBox("Error al generar el archivo PDF." & Chr(10) & ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN | GENERAR PDF")
+            SFDialogPDF.Dispose()
         End Try
     End Function
 End Class

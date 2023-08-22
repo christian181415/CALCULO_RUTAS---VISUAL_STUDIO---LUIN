@@ -95,7 +95,7 @@ Public Class ClassCasetasData
     Public Function RegistrarCasetaCR(CmbCRDestino As ComboBox, CmbCRVehiculo As ComboBox, DTGCasetaSelect As DataGridView, Window As Form, LImporte As Label, LIDRuta As Label, LIDCaseta As Label, LIDVehiculo As Label, P_CasetaRuta As Panel)
         Try
             For Fila As Integer = 0 To DTGCasetaSelect.Rows.Count - 1
-                If CmbCRDestino.Text <> String.Empty And CmbCRVehiculo.Text <> String.Empty Then
+                If CmbCRDestino.Text <> String.Empty And CmbCRVehiculo.Text <> String.Empty And DTGCasetaSelect.Rows(Fila).Cells(1).Value IsNot Nothing Then
                     Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
                     Dim consultaIDRuta As String = "SELECT IdCaseta FROM Casetas WHERE Caseta = '" & DTGCasetaSelect.Rows(Fila).Cells(0).Value & "';"
                     Dim comandoIDRuta As OleDbCommand = New OleDbCommand(consultaIDRuta)
@@ -107,9 +107,15 @@ Public Class ClassCasetasData
                         LImporte.Text = DTGCasetaSelect.Rows(Fila).Cells(1).Value
                     End While
                     conexionDB.Close()
+                Else
+                    If DTGCasetaSelect.Rows(Fila).Cells(1).Value Is Nothing Then
+                        MsgBox("Complete el importe de la celda: " & Fila, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
+                    Else
+                        MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
+                    End If
                 End If
 
-                If CmbCRDestino.Text <> String.Empty And CmbCRVehiculo.Text <> String.Empty Then
+                If CmbCRDestino.Text <> String.Empty And CmbCRVehiculo.Text <> String.Empty And DTGCasetaSelect.Rows(Fila).Cells(1).Value IsNot Nothing Then
                     Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
                     Dim consulta = "INSERT INTO InfoRutas(Importe_Caseta, Ruta_ID, Caseta_ID, Unidad_ID) VALUES('" & LImporte.Text & "', " & LIDRuta.Text & ", " & LIDCaseta.Text & ", " & LIDVehiculo.Text & ")"
                     conexionDB.Open()
@@ -118,11 +124,10 @@ Public Class ClassCasetasData
                     conexionDB.Close()
                     Window.Close()
                     P_CasetaRuta.Location = New Point(726, 0)
-                Else
-                    MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
+                    MsgBox("Casetas asignadas", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 End If
             Next
-            MsgBox("Casetas asignadas", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
+            Window.Opacity = 1
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarRuta")
         End Try

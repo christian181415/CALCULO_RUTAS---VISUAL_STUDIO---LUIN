@@ -3,9 +3,6 @@
 Public Class WinRegistros
     Dim NewRegistroDta As New ClassRegistrosData
     Private Sub FormActionsConfig_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TimerGlobalRegistros.Start()
-
-
         Dim r As Rectangle = My.Computer.Screen.WorkingArea
         Dim Largo = (r.Width / 2) - 100
         Dim Alto = (r.Height / 2) - 130
@@ -14,28 +11,44 @@ Public Class WinRegistros
         If LInfoTabla.Text = "Clientes" Then
             Me.Size = New Size(241, 322)
             P_NewCliente.Location = New Point(0, 0)
+            TxTNombreC.Select()
+            LInfoTabla.Text = ""
         ElseIf LInfoTabla.Text = "Choferes" Then
             Me.Size = New Size(241, 322)
             P_NewChofer.Location = New Point(0, 0)
+            TxTNombreCH.Select()
+            LInfoTabla.Text = ""
         ElseIf LInfoTabla.Text = "Unidades" Then
             Me.Size = New Size(241, 322)
             P_NewUnidad.Location = New Point(0, 0)
+            TxTVehiculoU.Select()
+            LInfoTabla.Text = ""
         ElseIf LInfoTabla.Text = "Casetas" Then
             Me.Size = New Size(241, 322)
             P_NewCaseta.Location = New Point(0, 0)
+            TxTCaseta.Select()
+            LInfoTabla.Text = ""
         End If
         If LUpTabla.Text = "Clientes" Then
             Me.Size = New Size(241, 322)
             P_UpdateCliente.Location = New Point(0, 0)
+            TxTNombreCUp.Select()
+            LUpTabla.Text = ""
         ElseIf LUpTabla.Text = "Choferes" Then
             Me.Size = New Size(241, 322)
             P_UpdateChofer.Location = New Point(0, 0)
+            TxTNombreCHUp.Select()
+            LUpTabla.Text = ""
         ElseIf LUpTabla.Text = "Unidades" Then
             Me.Size = New Size(241, 322)
             P_UpdateUnidad.Location = New Point(0, 0)
+            TxTVehiculoUUp.Select()
+            LUpTabla.Text = ""
         ElseIf LUpTabla.Text = "Casetas" Then
             Me.Size = New Size(241, 322)
             P_UpdateCaseta.Location = New Point(0, 0)
+            TxTCasetaUp.Select()
+            LUpTabla.Text = ""
         End If
 
 
@@ -46,14 +59,27 @@ Public Class WinRegistros
             CmbDestino.DataSource = dtDestinos
             CmbDestino.DisplayMember = "Nombre"
             CmbDestino.SelectedIndex = -1
+            TxTOrigen.Select()
+            LNewRuta.Text = ""
         End If
         If LUpRuta.Text = "ActualizarRuta" Then
             Me.Size = New Size(241, 322)
             P_UpRuta.Location = New Point(0, 0)
             NewRegistroDta.ObtenerDomicilioRuta(LIDCliente, LDestinoUp)
+            TxTOrigenUp.Select()
+            LUpRuta.Text = ""
         End If
 
-
+        If LLastPDF.Text = "ConsultarPDF" Then
+            Location = New Point(Largo - 245, Alto)
+            Me.Size = New Size(501, 322)
+            NewRegistroDta.ShowDatePDF(CalendarLastPDF)
+            CalendarLastPDF.SelectionStart = DateValue("10/12/2001")
+            CalendarLastPDF.SelectionStart = Date.Now
+            PLastPDF.Location = New Point(0, 0)
+            CalendarLastPDF.Select()
+            LLastPDF.Text = ""
+        End If
     End Sub
 
 #Region "---------------------------------------------------------------ACCIONES REGISTER CATALOGO----------------------------------------------------------------"
@@ -323,8 +349,15 @@ Public Class WinRegistros
 
 
     Private Sub BtnGenerarHPDF_Click(sender As Object, e As EventArgs) Handles BtnGenerarHPDF.Click
-        'MsgBox(CalendarLastPDF.SelectionStart & " " & LLastHoras.SelectedItem)
-        NewRegistroDta.GetLastPDF(CalendarLastPDF, LLastHoras)
+        If DTGLastPDF.Rows.Count <> 0 Then
+            Dim NombreCliente As String = DTGLastPDF.CurrentRow.Cells(0).Value
+            Dim Fecha As String = CalendarLastPDF.SelectionStart
+            Dim Hora As String = DTGLastPDF.CurrentRow.Cells(1).Value
+            Dim FechaCompleta As String = Fecha & " " & Hora
+            NewRegistroDta.GetLastPDF(NombreCliente, FechaCompleta, SaveLastPDF)
+        Else
+            MsgBox("No existen registros en esta fecha.", MsgBoxStyle.Exclamation, "ERROR | Corporativo LUIN")
+        End If
     End Sub
     Private Sub BtnLastPDFClose_Click(sender As Object, e As EventArgs) Handles BtnLastPDFClose.Click
         LLastPDF.Text = ""
@@ -333,23 +366,11 @@ Public Class WinRegistros
         WinPrincipal.Opacity = 1
     End Sub
 
-    Private Sub TimerGlobalRegistros_Tick(sender As Object, e As EventArgs) Handles TimerGlobalRegistros.Tick
-        If LLastPDF.Text = "ConsultarPDF" Then
-            Me.Size = New Size(345, 322)
-            NewRegistroDta.ShowDatePDF(CalendarLastPDF)
-            CalendarLastPDF.SelectionStart = DateValue("10/12/2001")
-            CalendarLastPDF.SelectionStart = Date.Now
-            LLastPDF.Text = ""
-            PLastPDF.Location = New Point(0, 0)
-        End If
-    End Sub
-
-    Private Sub CalendarLastPDF_DateChanged(sender As Object, e As DateRangeEventArgs) Handles CalendarLastPDF.DateChanged
-
-    End Sub
-
     Private Sub CalendarLastPDF_DateSelected(sender As Object, e As DateRangeEventArgs) Handles CalendarLastPDF.DateSelected
-        NewRegistroDta.ShowHoursPDF(CalendarLastPDF, LLastHoras)
+        Dim DTCalendar As DataTable = NewRegistroDta.ShowHoursPDF(CalendarLastPDF)
+        DTGLastPDF.Columns.Clear()
+        DTGLastPDF.DataSource = Nothing
+        DTGLastPDF.DataSource = DTCalendar
     End Sub
 #End Region
 End Class

@@ -197,15 +197,15 @@ Partial Class WinRegistros
         Me.Panel35 = New System.Windows.Forms.Panel()
         Me.Label63 = New System.Windows.Forms.Label()
         Me.Panel34 = New System.Windows.Forms.Panel()
-        Me.LLastHoras = New System.Windows.Forms.ListBox()
+        Me.DTGLastPDF = New System.Windows.Forms.DataGridView()
+        Me.CalendarLastPDF = New System.Windows.Forms.MonthCalendar()
+        Me.Label50 = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.LHorarioConsulta = New System.Windows.Forms.Label()
         Me.LLastPDF = New System.Windows.Forms.Label()
         Me.LFechaConsulta = New System.Windows.Forms.Label()
         Me.SaveLastPDF = New System.Windows.Forms.SaveFileDialog()
         Me.TimerGlobalRegistros = New System.Windows.Forms.Timer(Me.components)
-        Me.CalendarLastPDF = New System.Windows.Forms.MonthCalendar()
-        Me.Label50 = New System.Windows.Forms.Label()
         Me.P_NewCliente.SuspendLayout()
         Me.P_OptionsC.SuspendLayout()
         Me.P_Button.SuspendLayout()
@@ -265,6 +265,7 @@ Partial Class WinRegistros
         Me.Panel33.SuspendLayout()
         Me.Panel35.SuspendLayout()
         Me.Panel34.SuspendLayout()
+        CType(Me.DTGLastPDF, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -297,7 +298,7 @@ Partial Class WinRegistros
         Me.BtnClienteClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnClienteClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnClienteClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnClienteClose.Location = New System.Drawing.Point(214, 3)
+        Me.BtnClienteClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnClienteClose.Name = "BtnClienteClose"
         Me.BtnClienteClose.Size = New System.Drawing.Size(15, 15)
         Me.BtnClienteClose.TabIndex = 1
@@ -314,17 +315,22 @@ Partial Class WinRegistros
         '
         'BtnNewCliente
         '
+        Me.BtnNewCliente.BackColor = System.Drawing.SystemColors.Control
         Me.BtnNewCliente.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnNewCliente.FlatAppearance.BorderSize = 0
+        Me.BtnNewCliente.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewCliente.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewCliente.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNewCliente.Location = New System.Drawing.Point(0, 0)
         Me.BtnNewCliente.Name = "BtnNewCliente"
         Me.BtnNewCliente.Size = New System.Drawing.Size(241, 36)
-        Me.BtnNewCliente.TabIndex = 0
+        Me.BtnNewCliente.TabIndex = 3
         Me.BtnNewCliente.Text = "REGISTRAR"
-        Me.BtnNewCliente.UseVisualStyleBackColor = True
+        Me.BtnNewCliente.UseVisualStyleBackColor = False
         '
         'P_ContentC
         '
+        Me.P_ContentC.BackColor = System.Drawing.Color.White
         Me.P_ContentC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.P_ContentC.Controls.Add(Me.TxTDomicilioC)
         Me.P_ContentC.Controls.Add(Me.Label2)
@@ -337,11 +343,14 @@ Partial Class WinRegistros
         '
         'TxTDomicilioC
         '
-        Me.TxTDomicilioC.Location = New System.Drawing.Point(18, 141)
+        Me.TxTDomicilioC.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTDomicilioC.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTDomicilioC.Location = New System.Drawing.Point(18, 146)
         Me.TxTDomicilioC.MaxLength = 87
         Me.TxTDomicilioC.Name = "TxTDomicilioC"
-        Me.TxTDomicilioC.Size = New System.Drawing.Size(205, 20)
-        Me.TxTDomicilioC.TabIndex = 3
+        Me.TxTDomicilioC.Size = New System.Drawing.Size(205, 13)
+        Me.TxTDomicilioC.TabIndex = 2
+        Me.TxTDomicilioC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label2
         '
@@ -355,10 +364,13 @@ Partial Class WinRegistros
         '
         'TxTNombreC
         '
-        Me.TxTNombreC.Location = New System.Drawing.Point(15, 61)
+        Me.TxTNombreC.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTNombreC.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTNombreC.Location = New System.Drawing.Point(15, 66)
         Me.TxTNombreC.Name = "TxTNombreC"
-        Me.TxTNombreC.Size = New System.Drawing.Size(208, 20)
+        Me.TxTNombreC.Size = New System.Drawing.Size(208, 13)
         Me.TxTNombreC.TabIndex = 1
+        Me.TxTNombreC.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label1
         '
@@ -420,7 +432,7 @@ Partial Class WinRegistros
         Me.BtnChoferClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnChoferClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnChoferClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnChoferClose.Location = New System.Drawing.Point(214, 3)
+        Me.BtnChoferClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnChoferClose.Name = "BtnChoferClose"
         Me.BtnChoferClose.Size = New System.Drawing.Size(15, 15)
         Me.BtnChoferClose.TabIndex = 2
@@ -437,17 +449,22 @@ Partial Class WinRegistros
         '
         'BtnNewChofer
         '
+        Me.BtnNewChofer.BackColor = System.Drawing.SystemColors.Control
         Me.BtnNewChofer.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnNewChofer.FlatAppearance.BorderSize = 0
+        Me.BtnNewChofer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewChofer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewChofer.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNewChofer.Location = New System.Drawing.Point(0, 0)
         Me.BtnNewChofer.Name = "BtnNewChofer"
         Me.BtnNewChofer.Size = New System.Drawing.Size(241, 36)
-        Me.BtnNewChofer.TabIndex = 0
+        Me.BtnNewChofer.TabIndex = 3
         Me.BtnNewChofer.Text = "REGISTRAR"
-        Me.BtnNewChofer.UseVisualStyleBackColor = True
+        Me.BtnNewChofer.UseVisualStyleBackColor = False
         '
         'P_ContentCH
         '
+        Me.P_ContentCH.BackColor = System.Drawing.Color.White
         Me.P_ContentCH.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.P_ContentCH.Controls.Add(Me.TxTTelefonoCH)
         Me.P_ContentCH.Controls.Add(Me.Label3)
@@ -460,11 +477,13 @@ Partial Class WinRegistros
         '
         'TxTTelefonoCH
         '
-        Me.TxTTelefonoCH.Location = New System.Drawing.Point(15, 141)
+        Me.TxTTelefonoCH.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTTelefonoCH.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTTelefonoCH.Location = New System.Drawing.Point(15, 146)
         Me.TxTTelefonoCH.Mask = "## ## ## ## ##"
         Me.TxTTelefonoCH.Name = "TxTTelefonoCH"
-        Me.TxTTelefonoCH.Size = New System.Drawing.Size(208, 20)
-        Me.TxTTelefonoCH.TabIndex = 4
+        Me.TxTTelefonoCH.Size = New System.Drawing.Size(208, 13)
+        Me.TxTTelefonoCH.TabIndex = 2
         Me.TxTTelefonoCH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label3
@@ -479,10 +498,13 @@ Partial Class WinRegistros
         '
         'TxTNombreCH
         '
-        Me.TxTNombreCH.Location = New System.Drawing.Point(15, 61)
+        Me.TxTNombreCH.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTNombreCH.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTNombreCH.Location = New System.Drawing.Point(15, 66)
         Me.TxTNombreCH.Name = "TxTNombreCH"
-        Me.TxTNombreCH.Size = New System.Drawing.Size(208, 20)
+        Me.TxTNombreCH.Size = New System.Drawing.Size(208, 13)
         Me.TxTNombreCH.TabIndex = 1
+        Me.TxTNombreCH.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label4
         '
@@ -555,7 +577,7 @@ Partial Class WinRegistros
         Me.BtnUnidadClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnUnidadClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnUnidadClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnUnidadClose.Location = New System.Drawing.Point(214, 3)
+        Me.BtnUnidadClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnUnidadClose.Name = "BtnUnidadClose"
         Me.BtnUnidadClose.Size = New System.Drawing.Size(15, 15)
         Me.BtnUnidadClose.TabIndex = 1
@@ -572,17 +594,22 @@ Partial Class WinRegistros
         '
         'BtnNewUnidad
         '
+        Me.BtnNewUnidad.BackColor = System.Drawing.SystemColors.Control
         Me.BtnNewUnidad.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnNewUnidad.FlatAppearance.BorderSize = 0
+        Me.BtnNewUnidad.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewUnidad.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewUnidad.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNewUnidad.Location = New System.Drawing.Point(0, 0)
         Me.BtnNewUnidad.Name = "BtnNewUnidad"
         Me.BtnNewUnidad.Size = New System.Drawing.Size(241, 36)
-        Me.BtnNewUnidad.TabIndex = 0
+        Me.BtnNewUnidad.TabIndex = 4
         Me.BtnNewUnidad.Text = "REGISTRAR"
-        Me.BtnNewUnidad.UseVisualStyleBackColor = True
+        Me.BtnNewUnidad.UseVisualStyleBackColor = False
         '
         'P_ContentU
         '
+        Me.P_ContentU.BackColor = System.Drawing.Color.White
         Me.P_ContentU.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.P_ContentU.Controls.Add(Me.CmbDescripcionU)
         Me.P_ContentU.Controls.Add(Me.Label9)
@@ -597,13 +624,15 @@ Partial Class WinRegistros
         '
         'CmbDescripcionU
         '
+        Me.CmbDescripcionU.BackColor = System.Drawing.SystemColors.Control
         Me.CmbDescripcionU.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbDescripcionU.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbDescripcionU.FormattingEnabled = True
         Me.CmbDescripcionU.Items.AddRange(New Object() {"Motocicleta", "Automovil", "Autobús 2 - Ejes", "Autobús 3 - Ejes", "Autobús 4 - Ejes", "Camión 2 - Ejes", "Camión 3 - Ejes", "Camión 4 - Ejes", "Camión 5 - Ejes", "Camión 6 - Ejes", "Camión 7, 8 y 9 - Ejes", "Eje Exc. Auto", "Eje Exc. Carga"})
-        Me.CmbDescripcionU.Location = New System.Drawing.Point(15, 155)
+        Me.CmbDescripcionU.Location = New System.Drawing.Point(15, 160)
         Me.CmbDescripcionU.Name = "CmbDescripcionU"
         Me.CmbDescripcionU.Size = New System.Drawing.Size(205, 21)
-        Me.CmbDescripcionU.TabIndex = 5
+        Me.CmbDescripcionU.TabIndex = 3
         '
         'Label9
         '
@@ -617,10 +646,13 @@ Partial Class WinRegistros
         '
         'TxTPlacasU
         '
-        Me.TxTPlacasU.Location = New System.Drawing.Point(15, 99)
+        Me.TxTPlacasU.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTPlacasU.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTPlacasU.Location = New System.Drawing.Point(15, 104)
         Me.TxTPlacasU.Name = "TxTPlacasU"
-        Me.TxTPlacasU.Size = New System.Drawing.Size(205, 20)
-        Me.TxTPlacasU.TabIndex = 3
+        Me.TxTPlacasU.Size = New System.Drawing.Size(205, 13)
+        Me.TxTPlacasU.TabIndex = 2
+        Me.TxTPlacasU.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label6
         '
@@ -634,10 +666,13 @@ Partial Class WinRegistros
         '
         'TxTVehiculoU
         '
-        Me.TxTVehiculoU.Location = New System.Drawing.Point(15, 43)
+        Me.TxTVehiculoU.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTVehiculoU.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTVehiculoU.Location = New System.Drawing.Point(15, 48)
         Me.TxTVehiculoU.Name = "TxTVehiculoU"
-        Me.TxTVehiculoU.Size = New System.Drawing.Size(208, 20)
+        Me.TxTVehiculoU.Size = New System.Drawing.Size(208, 13)
         Me.TxTVehiculoU.TabIndex = 1
+        Me.TxTVehiculoU.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label7
         '
@@ -699,7 +734,7 @@ Partial Class WinRegistros
         Me.BtnCasetaClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCasetaClose.Location = New System.Drawing.Point(214, 3)
+        Me.BtnCasetaClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnCasetaClose.Name = "BtnCasetaClose"
         Me.BtnCasetaClose.Size = New System.Drawing.Size(15, 15)
         Me.BtnCasetaClose.TabIndex = 1
@@ -716,17 +751,22 @@ Partial Class WinRegistros
         '
         'BtnNewCaseta
         '
+        Me.BtnNewCaseta.BackColor = System.Drawing.SystemColors.Control
         Me.BtnNewCaseta.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnNewCaseta.FlatAppearance.BorderSize = 0
+        Me.BtnNewCaseta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewCaseta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewCaseta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNewCaseta.Location = New System.Drawing.Point(0, 0)
         Me.BtnNewCaseta.Name = "BtnNewCaseta"
         Me.BtnNewCaseta.Size = New System.Drawing.Size(241, 36)
-        Me.BtnNewCaseta.TabIndex = 0
+        Me.BtnNewCaseta.TabIndex = 2
         Me.BtnNewCaseta.Text = "REGISTRAR"
-        Me.BtnNewCaseta.UseVisualStyleBackColor = True
+        Me.BtnNewCaseta.UseVisualStyleBackColor = False
         '
         'P_ContentCas
         '
+        Me.P_ContentCas.BackColor = System.Drawing.Color.White
         Me.P_ContentCas.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.P_ContentCas.Controls.Add(Me.TxTCaseta)
         Me.P_ContentCas.Controls.Add(Me.Label10)
@@ -737,10 +777,13 @@ Partial Class WinRegistros
         '
         'TxTCaseta
         '
-        Me.TxTCaseta.Location = New System.Drawing.Point(15, 103)
+        Me.TxTCaseta.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTCaseta.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTCaseta.Location = New System.Drawing.Point(15, 108)
         Me.TxTCaseta.Name = "TxTCaseta"
-        Me.TxTCaseta.Size = New System.Drawing.Size(208, 20)
+        Me.TxTCaseta.Size = New System.Drawing.Size(208, 13)
         Me.TxTCaseta.TabIndex = 1
+        Me.TxTCaseta.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label10
         '
@@ -802,7 +845,7 @@ Partial Class WinRegistros
         Me.BtnCCloseUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCCloseUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCCloseUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCCloseUp.Location = New System.Drawing.Point(214, 3)
+        Me.BtnCCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnCCloseUp.Name = "BtnCCloseUp"
         Me.BtnCCloseUp.Size = New System.Drawing.Size(15, 15)
         Me.BtnCCloseUp.TabIndex = 1
@@ -819,17 +862,22 @@ Partial Class WinRegistros
         '
         'BtnActualizarC
         '
+        Me.BtnActualizarC.BackColor = System.Drawing.SystemColors.Control
         Me.BtnActualizarC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnActualizarC.FlatAppearance.BorderSize = 0
+        Me.BtnActualizarC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnActualizarC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnActualizarC.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnActualizarC.Location = New System.Drawing.Point(0, 0)
         Me.BtnActualizarC.Name = "BtnActualizarC"
         Me.BtnActualizarC.Size = New System.Drawing.Size(241, 36)
-        Me.BtnActualizarC.TabIndex = 0
+        Me.BtnActualizarC.TabIndex = 4
         Me.BtnActualizarC.Text = "ACTUALIZAR"
-        Me.BtnActualizarC.UseVisualStyleBackColor = True
+        Me.BtnActualizarC.UseVisualStyleBackColor = False
         '
         'Panel9
         '
+        Me.Panel9.BackColor = System.Drawing.Color.White
         Me.Panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel9.Controls.Add(Me.CBoxStatusCUp)
         Me.Panel9.Controls.Add(Me.Label15)
@@ -849,7 +897,7 @@ Partial Class WinRegistros
         Me.CBoxStatusCUp.Location = New System.Drawing.Point(18, 168)
         Me.CBoxStatusCUp.Name = "CBoxStatusCUp"
         Me.CBoxStatusCUp.Size = New System.Drawing.Size(161, 19)
-        Me.CBoxStatusCUp.TabIndex = 6
+        Me.CBoxStatusCUp.TabIndex = 3
         Me.CBoxStatusCUp.Text = "Activado/Desactivado"
         Me.CBoxStatusCUp.UseVisualStyleBackColor = True
         '
@@ -865,11 +913,14 @@ Partial Class WinRegistros
         '
         'TxTDomicilioCUp
         '
-        Me.TxTDomicilioCUp.Location = New System.Drawing.Point(15, 106)
+        Me.TxTDomicilioCUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTDomicilioCUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTDomicilioCUp.Location = New System.Drawing.Point(15, 111)
         Me.TxTDomicilioCUp.MaxLength = 87
         Me.TxTDomicilioCUp.Name = "TxTDomicilioCUp"
-        Me.TxTDomicilioCUp.Size = New System.Drawing.Size(208, 20)
-        Me.TxTDomicilioCUp.TabIndex = 3
+        Me.TxTDomicilioCUp.Size = New System.Drawing.Size(208, 13)
+        Me.TxTDomicilioCUp.TabIndex = 2
+        Me.TxTDomicilioCUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label12
         '
@@ -883,10 +934,13 @@ Partial Class WinRegistros
         '
         'TxTNombreCUp
         '
-        Me.TxTNombreCUp.Location = New System.Drawing.Point(15, 42)
+        Me.TxTNombreCUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTNombreCUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTNombreCUp.Location = New System.Drawing.Point(15, 47)
         Me.TxTNombreCUp.Name = "TxTNombreCUp"
-        Me.TxTNombreCUp.Size = New System.Drawing.Size(208, 20)
+        Me.TxTNombreCUp.Size = New System.Drawing.Size(208, 13)
         Me.TxTNombreCUp.TabIndex = 1
+        Me.TxTNombreCUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label13
         '
@@ -970,7 +1024,7 @@ Partial Class WinRegistros
         Me.BtnCHCloseUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCHCloseUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCHCloseUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCHCloseUp.Location = New System.Drawing.Point(214, 3)
+        Me.BtnCHCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnCHCloseUp.Name = "BtnCHCloseUp"
         Me.BtnCHCloseUp.Size = New System.Drawing.Size(15, 15)
         Me.BtnCHCloseUp.TabIndex = 1
@@ -987,17 +1041,22 @@ Partial Class WinRegistros
         '
         'BtnActualizarCH
         '
+        Me.BtnActualizarCH.BackColor = System.Drawing.SystemColors.Control
         Me.BtnActualizarCH.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnActualizarCH.FlatAppearance.BorderSize = 0
+        Me.BtnActualizarCH.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnActualizarCH.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnActualizarCH.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnActualizarCH.Location = New System.Drawing.Point(0, 0)
         Me.BtnActualizarCH.Name = "BtnActualizarCH"
         Me.BtnActualizarCH.Size = New System.Drawing.Size(241, 36)
-        Me.BtnActualizarCH.TabIndex = 0
+        Me.BtnActualizarCH.TabIndex = 4
         Me.BtnActualizarCH.Text = "ACTUALIZAR"
-        Me.BtnActualizarCH.UseVisualStyleBackColor = True
+        Me.BtnActualizarCH.UseVisualStyleBackColor = False
         '
         'Panel14
         '
+        Me.Panel14.BackColor = System.Drawing.Color.White
         Me.Panel14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel14.Controls.Add(Me.TxTTelefonoCHUp)
         Me.Panel14.Controls.Add(Me.CBoxStatusCHUp)
@@ -1012,11 +1071,13 @@ Partial Class WinRegistros
         '
         'TxTTelefonoCHUp
         '
-        Me.TxTTelefonoCHUp.Location = New System.Drawing.Point(15, 106)
+        Me.TxTTelefonoCHUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTTelefonoCHUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTTelefonoCHUp.Location = New System.Drawing.Point(15, 113)
         Me.TxTTelefonoCHUp.Mask = "## ## ## ## ##"
         Me.TxTTelefonoCHUp.Name = "TxTTelefonoCHUp"
-        Me.TxTTelefonoCHUp.Size = New System.Drawing.Size(208, 20)
-        Me.TxTTelefonoCHUp.TabIndex = 7
+        Me.TxTTelefonoCHUp.Size = New System.Drawing.Size(208, 13)
+        Me.TxTTelefonoCHUp.TabIndex = 2
         Me.TxTTelefonoCHUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'CBoxStatusCHUp
@@ -1026,7 +1087,7 @@ Partial Class WinRegistros
         Me.CBoxStatusCHUp.Location = New System.Drawing.Point(18, 168)
         Me.CBoxStatusCHUp.Name = "CBoxStatusCHUp"
         Me.CBoxStatusCHUp.Size = New System.Drawing.Size(161, 19)
-        Me.CBoxStatusCHUp.TabIndex = 6
+        Me.CBoxStatusCHUp.TabIndex = 3
         Me.CBoxStatusCHUp.Text = "Activado/Desactivado"
         Me.CBoxStatusCHUp.UseVisualStyleBackColor = True
         '
@@ -1052,10 +1113,13 @@ Partial Class WinRegistros
         '
         'TxTNombreCHUp
         '
-        Me.TxTNombreCHUp.Location = New System.Drawing.Point(15, 42)
+        Me.TxTNombreCHUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTNombreCHUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTNombreCHUp.Location = New System.Drawing.Point(15, 49)
         Me.TxTNombreCHUp.Name = "TxTNombreCHUp"
-        Me.TxTNombreCHUp.Size = New System.Drawing.Size(208, 20)
+        Me.TxTNombreCHUp.Size = New System.Drawing.Size(208, 13)
         Me.TxTNombreCHUp.TabIndex = 1
+        Me.TxTNombreCHUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label18
         '
@@ -1117,7 +1181,7 @@ Partial Class WinRegistros
         Me.BtnUCloseUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnUCloseUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnUCloseUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnUCloseUp.Location = New System.Drawing.Point(214, 3)
+        Me.BtnUCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnUCloseUp.Name = "BtnUCloseUp"
         Me.BtnUCloseUp.Size = New System.Drawing.Size(15, 15)
         Me.BtnUCloseUp.TabIndex = 1
@@ -1134,17 +1198,22 @@ Partial Class WinRegistros
         '
         'BtnActualizarU
         '
+        Me.BtnActualizarU.BackColor = System.Drawing.SystemColors.Control
         Me.BtnActualizarU.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnActualizarU.FlatAppearance.BorderSize = 0
+        Me.BtnActualizarU.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnActualizarU.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnActualizarU.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnActualizarU.Location = New System.Drawing.Point(0, 0)
         Me.BtnActualizarU.Name = "BtnActualizarU"
         Me.BtnActualizarU.Size = New System.Drawing.Size(241, 36)
-        Me.BtnActualizarU.TabIndex = 0
+        Me.BtnActualizarU.TabIndex = 4
         Me.BtnActualizarU.Text = "ACTUALIZAR"
-        Me.BtnActualizarU.UseVisualStyleBackColor = True
+        Me.BtnActualizarU.UseVisualStyleBackColor = False
         '
         'Panel19
         '
+        Me.Panel19.BackColor = System.Drawing.Color.White
         Me.Panel19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel19.Controls.Add(Me.CmbDescripcionUUp)
         Me.Panel19.Controls.Add(Me.Label20)
@@ -1159,13 +1228,15 @@ Partial Class WinRegistros
         '
         'CmbDescripcionUUp
         '
+        Me.CmbDescripcionUUp.BackColor = System.Drawing.SystemColors.Control
         Me.CmbDescripcionUUp.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbDescripcionUUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbDescripcionUUp.FormattingEnabled = True
         Me.CmbDescripcionUUp.Items.AddRange(New Object() {"Motocicleta", "Automovil", "Autobús 2 - Ejes", "Autobús 3 - Ejes", "Autobús 4 - Ejes", "Camión 2 - Ejes", "Camión 3 - Ejes", "Camión 4 - Ejes", "Camión 5 - Ejes", "Camión 6 - Ejes", "Camión 7, 8 y 9 - Ejes", "Eje Exc. Auto", "Eje Exc. Carga"})
         Me.CmbDescripcionUUp.Location = New System.Drawing.Point(19, 161)
         Me.CmbDescripcionUUp.Name = "CmbDescripcionUUp"
         Me.CmbDescripcionUUp.Size = New System.Drawing.Size(205, 21)
-        Me.CmbDescripcionUUp.TabIndex = 11
+        Me.CmbDescripcionUUp.TabIndex = 3
         '
         'Label20
         '
@@ -1179,10 +1250,13 @@ Partial Class WinRegistros
         '
         'TxTPlacasUUp
         '
-        Me.TxTPlacasUUp.Location = New System.Drawing.Point(19, 105)
+        Me.TxTPlacasUUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTPlacasUUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTPlacasUUp.Location = New System.Drawing.Point(19, 110)
         Me.TxTPlacasUUp.Name = "TxTPlacasUUp"
-        Me.TxTPlacasUUp.Size = New System.Drawing.Size(205, 20)
-        Me.TxTPlacasUUp.TabIndex = 9
+        Me.TxTPlacasUUp.Size = New System.Drawing.Size(205, 13)
+        Me.TxTPlacasUUp.TabIndex = 2
+        Me.TxTPlacasUUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label21
         '
@@ -1196,10 +1270,13 @@ Partial Class WinRegistros
         '
         'TxTVehiculoUUp
         '
-        Me.TxTVehiculoUUp.Location = New System.Drawing.Point(19, 49)
+        Me.TxTVehiculoUUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTVehiculoUUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTVehiculoUUp.Location = New System.Drawing.Point(19, 54)
         Me.TxTVehiculoUUp.Name = "TxTVehiculoUUp"
-        Me.TxTVehiculoUUp.Size = New System.Drawing.Size(208, 20)
-        Me.TxTVehiculoUUp.TabIndex = 7
+        Me.TxTVehiculoUUp.Size = New System.Drawing.Size(208, 13)
+        Me.TxTVehiculoUUp.TabIndex = 1
+        Me.TxTVehiculoUUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label22
         '
@@ -1261,7 +1338,7 @@ Partial Class WinRegistros
         Me.BtnCasetaCloseUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaCloseUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaCloseUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCasetaCloseUp.Location = New System.Drawing.Point(214, 3)
+        Me.BtnCasetaCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnCasetaCloseUp.Name = "BtnCasetaCloseUp"
         Me.BtnCasetaCloseUp.Size = New System.Drawing.Size(15, 15)
         Me.BtnCasetaCloseUp.TabIndex = 1
@@ -1278,17 +1355,22 @@ Partial Class WinRegistros
         '
         'BtnActualizarCaseta
         '
+        Me.BtnActualizarCaseta.BackColor = System.Drawing.SystemColors.Control
         Me.BtnActualizarCaseta.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnActualizarCaseta.FlatAppearance.BorderSize = 0
+        Me.BtnActualizarCaseta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnActualizarCaseta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnActualizarCaseta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnActualizarCaseta.Location = New System.Drawing.Point(0, 0)
         Me.BtnActualizarCaseta.Name = "BtnActualizarCaseta"
         Me.BtnActualizarCaseta.Size = New System.Drawing.Size(241, 36)
-        Me.BtnActualizarCaseta.TabIndex = 0
+        Me.BtnActualizarCaseta.TabIndex = 2
         Me.BtnActualizarCaseta.Text = "ACTUALIZAR"
-        Me.BtnActualizarCaseta.UseVisualStyleBackColor = True
+        Me.BtnActualizarCaseta.UseVisualStyleBackColor = False
         '
         'Panel24
         '
+        Me.Panel24.BackColor = System.Drawing.Color.White
         Me.Panel24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel24.Controls.Add(Me.TxTCasetaUp)
         Me.Panel24.Controls.Add(Me.Label24)
@@ -1299,10 +1381,13 @@ Partial Class WinRegistros
         '
         'TxTCasetaUp
         '
-        Me.TxTCasetaUp.Location = New System.Drawing.Point(17, 105)
+        Me.TxTCasetaUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTCasetaUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTCasetaUp.Location = New System.Drawing.Point(17, 110)
         Me.TxTCasetaUp.Name = "TxTCasetaUp"
-        Me.TxTCasetaUp.Size = New System.Drawing.Size(208, 20)
-        Me.TxTCasetaUp.TabIndex = 3
+        Me.TxTCasetaUp.Size = New System.Drawing.Size(208, 13)
+        Me.TxTCasetaUp.TabIndex = 1
+        Me.TxTCasetaUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label24
         '
@@ -1378,7 +1463,7 @@ Partial Class WinRegistros
         Me.BtnRutaNClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnRutaNClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnRutaNClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnRutaNClose.Location = New System.Drawing.Point(214, 3)
+        Me.BtnRutaNClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnRutaNClose.Name = "BtnRutaNClose"
         Me.BtnRutaNClose.Size = New System.Drawing.Size(15, 15)
         Me.BtnRutaNClose.TabIndex = 1
@@ -1395,17 +1480,22 @@ Partial Class WinRegistros
         '
         'BtnNewRuta
         '
+        Me.BtnNewRuta.BackColor = System.Drawing.SystemColors.Control
         Me.BtnNewRuta.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnNewRuta.FlatAppearance.BorderSize = 0
+        Me.BtnNewRuta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnNewRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnNewRuta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnNewRuta.Location = New System.Drawing.Point(0, 0)
         Me.BtnNewRuta.Name = "BtnNewRuta"
         Me.BtnNewRuta.Size = New System.Drawing.Size(241, 36)
         Me.BtnNewRuta.TabIndex = 7
         Me.BtnNewRuta.Text = "REGISTRAR"
-        Me.BtnNewRuta.UseVisualStyleBackColor = True
+        Me.BtnNewRuta.UseVisualStyleBackColor = False
         '
         'Panel26
         '
+        Me.Panel26.BackColor = System.Drawing.Color.White
         Me.Panel26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel26.Controls.Add(Me.PBoxFegali)
         Me.Panel26.Controls.Add(Me.PBoxToka)
@@ -1463,26 +1553,32 @@ Partial Class WinRegistros
         '
         'TxtKilometros
         '
-        Me.TxtKilometros.Location = New System.Drawing.Point(15, 85)
+        Me.TxtKilometros.BackColor = System.Drawing.SystemColors.Control
+        Me.TxtKilometros.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxtKilometros.Location = New System.Drawing.Point(15, 89)
         Me.TxtKilometros.Name = "TxtKilometros"
-        Me.TxtKilometros.Size = New System.Drawing.Size(70, 20)
-        Me.TxtKilometros.TabIndex = 27
+        Me.TxtKilometros.Size = New System.Drawing.Size(70, 13)
+        Me.TxtKilometros.TabIndex = 3
         Me.TxtKilometros.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TxtFegali
         '
-        Me.TxtFegali.Location = New System.Drawing.Point(123, 135)
+        Me.TxtFegali.BackColor = System.Drawing.SystemColors.Control
+        Me.TxtFegali.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxtFegali.Location = New System.Drawing.Point(123, 139)
         Me.TxtFegali.Name = "TxtFegali"
-        Me.TxtFegali.Size = New System.Drawing.Size(70, 20)
-        Me.TxtFegali.TabIndex = 26
+        Me.TxtFegali.Size = New System.Drawing.Size(70, 13)
+        Me.TxtFegali.TabIndex = 6
         Me.TxtFegali.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TxtToka
         '
-        Me.TxtToka.Location = New System.Drawing.Point(15, 135)
+        Me.TxtToka.BackColor = System.Drawing.SystemColors.Control
+        Me.TxtToka.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxtToka.Location = New System.Drawing.Point(15, 139)
         Me.TxtToka.Name = "TxtToka"
-        Me.TxtToka.Size = New System.Drawing.Size(70, 20)
-        Me.TxtToka.TabIndex = 25
+        Me.TxtToka.Size = New System.Drawing.Size(70, 13)
+        Me.TxtToka.TabIndex = 5
         Me.TxtToka.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label43
@@ -1505,10 +1601,12 @@ Partial Class WinRegistros
         '
         'TxtTTrayecto
         '
-        Me.TxtTTrayecto.Location = New System.Drawing.Point(123, 85)
+        Me.TxtTTrayecto.BackColor = System.Drawing.SystemColors.Control
+        Me.TxtTTrayecto.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxtTTrayecto.Location = New System.Drawing.Point(123, 89)
         Me.TxtTTrayecto.Mask = "## h ##min"
         Me.TxtTTrayecto.Name = "TxtTTrayecto"
-        Me.TxtTTrayecto.Size = New System.Drawing.Size(100, 20)
+        Me.TxtTTrayecto.Size = New System.Drawing.Size(100, 13)
         Me.TxtTTrayecto.TabIndex = 4
         Me.TxtTTrayecto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -1553,7 +1651,9 @@ Partial Class WinRegistros
         '
         'CmbDestino
         '
+        Me.CmbDestino.BackColor = System.Drawing.SystemColors.Control
         Me.CmbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbDestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbDestino.FormattingEnabled = True
         Me.CmbDestino.Location = New System.Drawing.Point(15, 43)
         Me.CmbDestino.Name = "CmbDestino"
@@ -1562,12 +1662,12 @@ Partial Class WinRegistros
         '
         'TxTOrigen
         '
-        Me.TxTOrigen.BackColor = System.Drawing.SystemColors.Window
+        Me.TxTOrigen.BackColor = System.Drawing.SystemColors.Control
         Me.TxTOrigen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxTOrigen.Location = New System.Drawing.Point(67, 9)
         Me.TxTOrigen.Multiline = True
         Me.TxTOrigen.Name = "TxTOrigen"
-        Me.TxTOrigen.Size = New System.Drawing.Size(156, 15)
+        Me.TxTOrigen.Size = New System.Drawing.Size(160, 15)
         Me.TxTOrigen.TabIndex = 1
         Me.TxTOrigen.Text = "Corporativo LUIN"
         '
@@ -1674,7 +1774,7 @@ Partial Class WinRegistros
         Me.BtnRutaCloseUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnRutaCloseUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnRutaCloseUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnRutaCloseUp.Location = New System.Drawing.Point(214, 3)
+        Me.BtnRutaCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnRutaCloseUp.Name = "BtnRutaCloseUp"
         Me.BtnRutaCloseUp.Size = New System.Drawing.Size(15, 15)
         Me.BtnRutaCloseUp.TabIndex = 1
@@ -1691,17 +1791,22 @@ Partial Class WinRegistros
         '
         'BtnActualizarRuta
         '
+        Me.BtnActualizarRuta.BackColor = System.Drawing.SystemColors.Control
         Me.BtnActualizarRuta.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnActualizarRuta.FlatAppearance.BorderSize = 0
+        Me.BtnActualizarRuta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
+        Me.BtnActualizarRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnActualizarRuta.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnActualizarRuta.Location = New System.Drawing.Point(0, 0)
         Me.BtnActualizarRuta.Name = "BtnActualizarRuta"
         Me.BtnActualizarRuta.Size = New System.Drawing.Size(241, 36)
-        Me.BtnActualizarRuta.TabIndex = 0
+        Me.BtnActualizarRuta.TabIndex = 6
         Me.BtnActualizarRuta.Text = "ACTUALIZAR"
-        Me.BtnActualizarRuta.UseVisualStyleBackColor = True
+        Me.BtnActualizarRuta.UseVisualStyleBackColor = False
         '
         'Panel31
         '
+        Me.Panel31.BackColor = System.Drawing.Color.White
         Me.Panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel31.Controls.Add(Me.TxTTTrayectoUp)
         Me.Panel31.Controls.Add(Me.Label49)
@@ -1728,11 +1833,13 @@ Partial Class WinRegistros
         '
         'TxTTTrayectoUp
         '
-        Me.TxTTTrayectoUp.Location = New System.Drawing.Point(123, 79)
+        Me.TxTTTrayectoUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTTTrayectoUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTTTrayectoUp.Location = New System.Drawing.Point(123, 83)
         Me.TxTTTrayectoUp.Mask = "## h ##min"
         Me.TxTTTrayectoUp.Name = "TxTTTrayectoUp"
-        Me.TxTTTrayectoUp.Size = New System.Drawing.Size(100, 20)
-        Me.TxTTTrayectoUp.TabIndex = 30
+        Me.TxTTTrayectoUp.Size = New System.Drawing.Size(100, 13)
+        Me.TxTTTrayectoUp.TabIndex = 3
         Me.TxTTTrayectoUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label49
@@ -1802,10 +1909,12 @@ Partial Class WinRegistros
         '
         'TxTFegaliUp
         '
-        Me.TxTFegaliUp.Location = New System.Drawing.Point(123, 131)
+        Me.TxTFegaliUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTFegaliUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTFegaliUp.Location = New System.Drawing.Point(123, 135)
         Me.TxTFegaliUp.Name = "TxTFegaliUp"
-        Me.TxTFegaliUp.Size = New System.Drawing.Size(70, 20)
-        Me.TxTFegaliUp.TabIndex = 21
+        Me.TxTFegaliUp.Size = New System.Drawing.Size(70, 13)
+        Me.TxTFegaliUp.TabIndex = 5
         Me.TxTFegaliUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label35
@@ -1820,10 +1929,12 @@ Partial Class WinRegistros
         '
         'TxTTOKAUp
         '
-        Me.TxTTOKAUp.Location = New System.Drawing.Point(15, 131)
+        Me.TxTTOKAUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTTOKAUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTTOKAUp.Location = New System.Drawing.Point(15, 135)
         Me.TxTTOKAUp.Name = "TxTTOKAUp"
-        Me.TxTTOKAUp.Size = New System.Drawing.Size(70, 20)
-        Me.TxTTOKAUp.TabIndex = 19
+        Me.TxTTOKAUp.Size = New System.Drawing.Size(70, 13)
+        Me.TxTTOKAUp.TabIndex = 4
         Me.TxTTOKAUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label41
@@ -1838,13 +1949,13 @@ Partial Class WinRegistros
         '
         'TxTOrigenUp
         '
-        Me.TxTOrigenUp.BackColor = System.Drawing.SystemColors.Window
+        Me.TxTOrigenUp.BackColor = System.Drawing.SystemColors.Control
         Me.TxTOrigenUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxTOrigenUp.Location = New System.Drawing.Point(77, 8)
+        Me.TxTOrigenUp.Location = New System.Drawing.Point(66, 8)
         Me.TxTOrigenUp.Multiline = True
         Me.TxTOrigenUp.Name = "TxTOrigenUp"
-        Me.TxTOrigenUp.Size = New System.Drawing.Size(153, 15)
-        Me.TxTOrigenUp.TabIndex = 16
+        Me.TxTOrigenUp.Size = New System.Drawing.Size(160, 15)
+        Me.TxTOrigenUp.TabIndex = 1
         Me.TxTOrigenUp.Text = "Corporativo LUIN"
         '
         'Label34
@@ -1870,10 +1981,12 @@ Partial Class WinRegistros
         '
         'TxTKilometrosUp
         '
-        Me.TxTKilometrosUp.Location = New System.Drawing.Point(15, 79)
+        Me.TxTKilometrosUp.BackColor = System.Drawing.SystemColors.Control
+        Me.TxTKilometrosUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TxTKilometrosUp.Location = New System.Drawing.Point(15, 83)
         Me.TxTKilometrosUp.Name = "TxTKilometrosUp"
-        Me.TxTKilometrosUp.Size = New System.Drawing.Size(70, 20)
-        Me.TxTKilometrosUp.TabIndex = 3
+        Me.TxTKilometrosUp.Size = New System.Drawing.Size(70, 13)
+        Me.TxTKilometrosUp.TabIndex = 2
         Me.TxTKilometrosUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label38
@@ -2008,7 +2121,7 @@ Partial Class WinRegistros
         Me.PLastPDF.Controls.Add(Me.Panel34)
         Me.PLastPDF.Location = New System.Drawing.Point(774, 681)
         Me.PLastPDF.Name = "PLastPDF"
-        Me.PLastPDF.Size = New System.Drawing.Size(345, 322)
+        Me.PLastPDF.Size = New System.Drawing.Size(501, 322)
         Me.PLastPDF.TabIndex = 11
         '
         'Panel28
@@ -2018,7 +2131,7 @@ Partial Class WinRegistros
         Me.Panel28.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel28.Location = New System.Drawing.Point(0, 0)
         Me.Panel28.Name = "Panel28"
-        Me.Panel28.Size = New System.Drawing.Size(345, 22)
+        Me.Panel28.Size = New System.Drawing.Size(501, 22)
         Me.Panel28.TabIndex = 6
         '
         'BtnLastPDFClose
@@ -2031,7 +2144,7 @@ Partial Class WinRegistros
         Me.BtnLastPDFClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnLastPDFClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnLastPDFClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnLastPDFClose.Location = New System.Drawing.Point(313, 3)
+        Me.BtnLastPDFClose.Location = New System.Drawing.Point(473, 3)
         Me.BtnLastPDFClose.Name = "BtnLastPDFClose"
         Me.BtnLastPDFClose.Size = New System.Drawing.Size(15, 15)
         Me.BtnLastPDFClose.TabIndex = 1
@@ -2043,19 +2156,23 @@ Partial Class WinRegistros
         Me.Panel33.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel33.Location = New System.Drawing.Point(0, 286)
         Me.Panel33.Name = "Panel33"
-        Me.Panel33.Size = New System.Drawing.Size(345, 36)
+        Me.Panel33.Size = New System.Drawing.Size(501, 36)
         Me.Panel33.TabIndex = 5
         '
         'BtnGenerarHPDF
         '
+        Me.BtnGenerarHPDF.BackColor = System.Drawing.SystemColors.Control
         Me.BtnGenerarHPDF.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnGenerarHPDF.FlatAppearance.BorderSize = 0
+        Me.BtnGenerarHPDF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
+        Me.BtnGenerarHPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtnGenerarHPDF.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnGenerarHPDF.Location = New System.Drawing.Point(0, 0)
         Me.BtnGenerarHPDF.Name = "BtnGenerarHPDF"
-        Me.BtnGenerarHPDF.Size = New System.Drawing.Size(345, 36)
-        Me.BtnGenerarHPDF.TabIndex = 0
+        Me.BtnGenerarHPDF.Size = New System.Drawing.Size(501, 36)
+        Me.BtnGenerarHPDF.TabIndex = 3
         Me.BtnGenerarHPDF.Text = "GENERAR PDF"
-        Me.BtnGenerarHPDF.UseVisualStyleBackColor = True
+        Me.BtnGenerarHPDF.UseVisualStyleBackColor = False
         '
         'Panel35
         '
@@ -2065,7 +2182,7 @@ Partial Class WinRegistros
         Me.Panel35.Controls.Add(Me.Label63)
         Me.Panel35.Location = New System.Drawing.Point(-1, 22)
         Me.Panel35.Name = "Panel35"
-        Me.Panel35.Size = New System.Drawing.Size(346, 54)
+        Me.Panel35.Size = New System.Drawing.Size(502, 54)
         Me.Panel35.TabIndex = 3
         '
         'Label63
@@ -2075,31 +2192,61 @@ Partial Class WinRegistros
         Me.Label63.ForeColor = System.Drawing.Color.White
         Me.Label63.Location = New System.Drawing.Point(0, 0)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(346, 54)
+        Me.Label63.Size = New System.Drawing.Size(502, 54)
         Me.Label63.TabIndex = 0
         Me.Label63.Text = "HISTORIAL DE RUTAS"
         Me.Label63.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Panel34
         '
+        Me.Panel34.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Panel34.BackColor = System.Drawing.Color.White
         Me.Panel34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel34.Controls.Add(Me.DTGLastPDF)
         Me.Panel34.Controls.Add(Me.CalendarLastPDF)
         Me.Panel34.Controls.Add(Me.Label50)
-        Me.Panel34.Controls.Add(Me.LLastHoras)
         Me.Panel34.Location = New System.Drawing.Point(0, 75)
         Me.Panel34.Name = "Panel34"
-        Me.Panel34.Size = New System.Drawing.Size(345, 211)
+        Me.Panel34.Size = New System.Drawing.Size(501, 211)
         Me.Panel34.TabIndex = 4
         '
-        'LLastHoras
+        'DTGLastPDF
         '
-        Me.LLastHoras.BackColor = System.Drawing.SystemColors.Control
-        Me.LLastHoras.FormattingEnabled = True
-        Me.LLastHoras.Items.AddRange(New Object() {"00:00 a.m.", "00:00 a.m.", "00:00 a.m.", ""})
-        Me.LLastHoras.Location = New System.Drawing.Point(261, 45)
-        Me.LLastHoras.Name = "LLastHoras"
-        Me.LLastHoras.Size = New System.Drawing.Size(76, 160)
-        Me.LLastHoras.TabIndex = 2
+        Me.DTGLastPDF.AllowUserToAddRows = False
+        Me.DTGLastPDF.AllowUserToDeleteRows = False
+        Me.DTGLastPDF.AllowUserToResizeColumns = False
+        Me.DTGLastPDF.AllowUserToResizeRows = False
+        Me.DTGLastPDF.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.DTGLastPDF.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.DTGLastPDF.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.DTGLastPDF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DTGLastPDF.ColumnHeadersVisible = False
+        Me.DTGLastPDF.Location = New System.Drawing.Point(261, 43)
+        Me.DTGLastPDF.Name = "DTGLastPDF"
+        Me.DTGLastPDF.RowHeadersVisible = False
+        Me.DTGLastPDF.Size = New System.Drawing.Size(230, 161)
+        Me.DTGLastPDF.TabIndex = 2
+        '
+        'CalendarLastPDF
+        '
+        Me.CalendarLastPDF.BackColor = System.Drawing.Color.White
+        Me.CalendarLastPDF.FirstDayOfWeek = System.Windows.Forms.Day.Monday
+        Me.CalendarLastPDF.Location = New System.Drawing.Point(6, 43)
+        Me.CalendarLastPDF.Name = "CalendarLastPDF"
+        Me.CalendarLastPDF.ShowTodayCircle = False
+        Me.CalendarLastPDF.TabIndex = 1
+        '
+        'Label50
+        '
+        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label50.ForeColor = System.Drawing.SystemColors.ControlDark
+        Me.Label50.Location = New System.Drawing.Point(-2, 0)
+        Me.Label50.Name = "Label50"
+        Me.Label50.Size = New System.Drawing.Size(502, 46)
+        Me.Label50.TabIndex = 4
+        Me.Label50.Text = "Las fechas en negritas indican un registro."
+        Me.Label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox3
         '
@@ -2148,32 +2295,16 @@ Partial Class WinRegistros
         Me.LFechaConsulta.TabIndex = 5
         Me.LFechaConsulta.Text = "LFechaConsulta"
         '
-        'TimerGlobalRegistros
+        'SaveLastPDF
         '
-        '
-        'CalendarLastPDF
-        '
-        Me.CalendarLastPDF.FirstDayOfWeek = System.Windows.Forms.Day.Monday
-        Me.CalendarLastPDF.Location = New System.Drawing.Point(6, 43)
-        Me.CalendarLastPDF.Name = "CalendarLastPDF"
-        Me.CalendarLastPDF.ShowTodayCircle = False
-        Me.CalendarLastPDF.TabIndex = 3
-        '
-        'Label50
-        '
-        Me.Label50.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label50.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.Label50.Location = New System.Drawing.Point(-2, 0)
-        Me.Label50.Name = "Label50"
-        Me.Label50.Size = New System.Drawing.Size(346, 46)
-        Me.Label50.TabIndex = 4
-        Me.Label50.Text = "Las fechas en negritas indican un registro."
-        Me.Label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.SaveLastPDF.DefaultExt = "Archivos PDF (*.pdf)|*.pdf"
+        Me.SaveLastPDF.Filter = "Archivos PDF (*.pdf)|*.pdf"
         '
         'WinRegistros
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.LightGray
         Me.ClientSize = New System.Drawing.Size(1315, 1018)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.PLastPDF)
@@ -2195,8 +2326,9 @@ Partial Class WinRegistros
         Me.Name = "WinRegistros"
         Me.ShowIcon = False
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "FormActionsConfig"
+        Me.TransparencyKey = System.Drawing.Color.LightGray
         Me.P_NewCliente.ResumeLayout(False)
         Me.P_OptionsC.ResumeLayout(False)
         Me.P_Button.ResumeLayout(False)
@@ -2268,6 +2400,7 @@ Partial Class WinRegistros
         Me.Panel33.ResumeLayout(False)
         Me.Panel35.ResumeLayout(False)
         Me.Panel34.ResumeLayout(False)
+        CType(Me.DTGLastPDF, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
         Me.ResumeLayout(False)
@@ -2450,10 +2583,10 @@ Partial Class WinRegistros
     Friend WithEvents GroupBox3 As GroupBox
     Friend WithEvents LLastPDF As Label
     Friend WithEvents LFechaConsulta As Label
-    Friend WithEvents LLastHoras As ListBox
     Friend WithEvents LHorarioConsulta As Label
     Friend WithEvents SaveLastPDF As SaveFileDialog
     Friend WithEvents TimerGlobalRegistros As Timer
     Friend WithEvents CalendarLastPDF As MonthCalendar
     Friend WithEvents Label50 As Label
+    Friend WithEvents DTGLastPDF As DataGridView
 End Class

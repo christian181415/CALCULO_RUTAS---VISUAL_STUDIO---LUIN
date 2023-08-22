@@ -1,5 +1,6 @@
 ﻿Imports System.Configuration
 Imports System.Data.OleDb
+Imports System.IO
 
 Public Class ClassRegistrosData
 #Region "---------------------------------------------------------------CONEXION A DB----------------------------------------------------------------"
@@ -325,8 +326,8 @@ Public Class ClassRegistrosData
     Public Function ShowDatePDF(Componente As Object)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
-            Dim consulta As String = "SELECT  FORMAT(Fecha_Registro, 'dd/MM/yyyy') FROM Bitacoras" &
-                                    " GROUP BY FORMAT(Fecha_Registro, 'dd/MM/yyyy');"
+            Dim consulta As String = "SELECT  FORMAT(FechaRegistro, 'dd/MM/yyyy') FROM Bitacoras" &
+                                    " GROUP BY FORMAT(FechaRegistro, 'dd/MM/yyyy');"
             Dim comando As OleDbCommand = New OleDbCommand(consulta)
             comando.Connection = conexionDB
             conexionDB.Open()
@@ -335,42 +336,57 @@ Public Class ClassRegistrosData
                 Componente.AddBoldedDate(reader.GetString(0))
             End While
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDClienteUp")
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ShowDatePDF")
         End Try
     End Function
-    Public Function ShowHoursPDF(Componente As Object, ListHoras As ListBox)
+    Public Function ShowHoursPDF(Componente As Object)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
-            Dim consulta As String = "SELECT  FORMAT(Fecha_Registro, 'hh:nn:ss am/pm') FROM Bitacoras" &
-                                    " WHERE FORMAT(Fecha_Registro, 'dd/MM/yyyy') = '" & Componente.SelectionStart & "'" &
-                                    " GROUP BY FORMAT(Fecha_Registro, 'hh:nn:ss am/pm');"
-            Dim comando As OleDbCommand = New OleDbCommand(consulta)
-            comando.Connection = conexionDB
+            Dim consulta As String = "SELECT Cliente, FORMAT(FechaRegistro, 'hh:nn:ss am/pm') FROM Bitacoras" &
+                                    " WHERE FORMAT(FechaRegistro, 'dd/MM/yyyy') = '" & Componente.SelectionStart & "'" &
+                                    " GROUP BY Cliente, FORMAT(FechaRegistro, 'hh:nn:ss am/pm');"
             conexionDB.Open()
-            Dim reader As OleDbDataReader = comando.ExecuteReader
-            ListHoras.Items.Clear()
-            ListHoras.DataSource = Nothing
-            While reader.Read
-                ListHoras.Items.Add(reader.GetString(0))
-            End While
+            Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
+            Dim dsDatos As DataTable = New DataTable()
+            adap.Fill(dsDatos)
+            Return dsDatos
+            conexionDB.Close()
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDClienteUp")
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ShowHoursPDF")
         End Try
     End Function
-    Public Function GetLastPDF(Componente As MonthCalendar, ListHoras As ListBox)
-        Dim conexionDB As New OleDbConnection(CadenaConexion)
+    Public Function ConvertToPDFStream(BinaryStr As Stream) As Byte()
+        Dim Bytes(BinaryStr.Length) As Byte
+        BinaryStr.Read(Bytes, 0, BinaryStr.Length) 'Leo el archivo y lo convierto a binario
+        Return Bytes
+        BinaryStr.Close() 'Cierro el FileStream
+        BinaryStr.Dispose()
+    End Function
+    Public Function GetLastPDF(NombreCliente As String, FechaRegistro As String, SFDRutaPDF As SaveFileDialog)
         Try
-            Dim consulta As String = "SELECT * FROM Bitacoras" &
-                                    " WHERE (((Bitacoras.[Fecha_Registro])=DateValue('" & Componente.SelectionStart & "')+TimeValue('" & ListHoras.SelectedItem & "')));"
-            Dim comando As OleDbCommand = New OleDbCommand(consulta)
-            comando.Connection = conexionDB
-            conexionDB.Open()
-            Dim reader As OleDbDataReader = comando.ExecuteReader
-            While reader.Read
-                MsgBox(reader.GetString(5))
-            End While
+            Dim Nombre As String = Nothing
+            Dim PDF As Byte() = Nothing
+
+            Dim ConexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
+            Dim Consulta As String = "SELECT Nombre, PDF FROM Bitacoras " &
+                                    "WHERE Cliente = @Cliente " &
+                                    "AND FechaRegistro = @FechaRegistro"
+            Dim Comando As OleDbCommand = New OleDbCommand(Consulta, ConexionDB)
+            Comando.Parameters.AddWithValue("@Cliente", OleDbType.VarChar).Value = NombreCliente
+            Comando.Parameters.AddWithValue("@FechaRegistro", OleDbType.VarChar).Value = FechaRegistro
+            ConexionDB.Open()
+            Dim Reader As OleDbDataReader = Comando.ExecuteReader
+            If Reader.Read Then
+                Nombre = Reader.GetString(0)
+                PDF = ConvertToPDFStream(Reader.GetStream(1))
+            End If
+            SFDRutaPDF.FileName = "COPY_" & NombreCliente & "_" & Format(Date.Today, "ddMMyy")
+            If SFDRutaPDF.ShowDialog = DialogResult.OK Then
+                Dim RutaArchivo As String = SFDRutaPDF.FileName
+                File.WriteAllBytes(RutaArchivo, PDF)
+            End If
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDClienteUp")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN | OBTENER")
         End Try
     End Function
 #End Region

@@ -97,6 +97,7 @@ Partial Class WinCasetas
         '
         'P_CasetaRuta
         '
+        Me.P_CasetaRuta.BackColor = System.Drawing.Color.White
         Me.P_CasetaRuta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.P_CasetaRuta.Controls.Add(Me.PBoxWeb)
         Me.P_CasetaRuta.Controls.Add(Me.PBoxInfoCasetas)
@@ -275,11 +276,13 @@ Partial Class WinCasetas
         '
         'CmbCRVehiculo
         '
+        Me.CmbCRVehiculo.BackColor = System.Drawing.SystemColors.Control
         Me.CmbCRVehiculo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbCRVehiculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbCRVehiculo.FormattingEnabled = True
-        Me.CmbCRVehiculo.Location = New System.Drawing.Point(460, 79)
+        Me.CmbCRVehiculo.Location = New System.Drawing.Point(363, 79)
         Me.CmbCRVehiculo.Name = "CmbCRVehiculo"
-        Me.CmbCRVehiculo.Size = New System.Drawing.Size(229, 21)
+        Me.CmbCRVehiculo.Size = New System.Drawing.Size(326, 21)
         Me.CmbCRVehiculo.TabIndex = 4
         '
         'Label3
@@ -295,11 +298,13 @@ Partial Class WinCasetas
         '
         'CmbCRDestino
         '
+        Me.CmbCRDestino.BackColor = System.Drawing.SystemColors.Control
         Me.CmbCRDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CmbCRDestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbCRDestino.FormattingEnabled = True
         Me.CmbCRDestino.Location = New System.Drawing.Point(19, 78)
         Me.CmbCRDestino.Name = "CmbCRDestino"
-        Me.CmbCRDestino.Size = New System.Drawing.Size(229, 21)
+        Me.CmbCRDestino.Size = New System.Drawing.Size(326, 21)
         Me.CmbCRDestino.TabIndex = 2
         '
         'Label2
@@ -332,7 +337,7 @@ Partial Class WinCasetas
         Me.BtnCasetaRutaClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaRutaClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaRutaClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCasetaRutaClose.Location = New System.Drawing.Point(681, 6)
+        Me.BtnCasetaRutaClose.Location = New System.Drawing.Point(677, 6)
         Me.BtnCasetaRutaClose.Name = "BtnCasetaRutaClose"
         Me.BtnCasetaRutaClose.Size = New System.Drawing.Size(15, 15)
         Me.BtnCasetaRutaClose.TabIndex = 3
@@ -479,6 +484,7 @@ Partial Class WinCasetas
         '
         'P_UpCasetaRuta
         '
+        Me.P_UpCasetaRuta.BackColor = System.Drawing.Color.White
         Me.P_UpCasetaRuta.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.P_UpCasetaRuta.Controls.Add(Me.PBoxWebUp)
         Me.P_UpCasetaRuta.Controls.Add(Me.PBoxInfoCasetasUp)
@@ -702,7 +708,7 @@ Partial Class WinCasetas
         Me.BtnCasetaRutaCloseUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaRutaCloseUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.BtnCasetaRutaCloseUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnCasetaRutaCloseUp.Location = New System.Drawing.Point(681, 6)
+        Me.BtnCasetaRutaCloseUp.Location = New System.Drawing.Point(677, 6)
         Me.BtnCasetaRutaCloseUp.Name = "BtnCasetaRutaCloseUp"
         Me.BtnCasetaRutaCloseUp.Size = New System.Drawing.Size(15, 15)
         Me.BtnCasetaRutaCloseUp.TabIndex = 3
@@ -723,6 +729,7 @@ Partial Class WinCasetas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.LightGray
         Me.ClientSize = New System.Drawing.Size(1481, 926)
         Me.Controls.Add(Me.P_UpCasetaRuta)
         Me.Controls.Add(Me.GroupBox2)
@@ -735,6 +742,7 @@ Partial Class WinCasetas
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormCasetasConfig"
+        Me.TransparencyKey = System.Drawing.Color.LightGray
         Me.P_CasetaRuta.ResumeLayout(False)
         Me.P_CasetaRuta.PerformLayout()
         CType(Me.PBoxWeb, System.ComponentModel.ISupportInitialize).EndInit()

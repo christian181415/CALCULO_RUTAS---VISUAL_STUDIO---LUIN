@@ -177,7 +177,7 @@
 #Region "--------------------------------------------------------PANEL PRINCIPAL (PICTURE_BOX - CONFIGURACION)----------------------------------------------------------"
     'AL DAR CLICK ABRE EL PANEL DE CONFIGURACION
     Private Sub PBoxConfiguracion_Click(sender As Object, e As EventArgs) Handles PBoxConfiguracion.Click
-        Me.Size = New Size(751, 599)
+        Me.Size = New Size(746, 597)
         P_Chofer.Enabled = False
         P_Destino.Enabled = False
         P_GastosDestino.Enabled = False
@@ -217,15 +217,12 @@
     Private Sub PBoxPDF_Click(sender As Object, e As EventArgs) Handles PBoxPDF.Click
         Try
             If CMB_Cliente.Text <> String.Empty And CMB_Chofer.Text <> String.Empty And CMB_Vehiculo.Text <> String.Empty And L_Ruta_Destino.Text <> "Corporativo LUIN" Then
-                NewConsultaP.ObtenerIDsBitcaora(L_Ruta_Destino, LRutaIDBit, LOrigenBit, LLitroCombustibleBit, CMB_Chofer, LChoferIDBit)
-                If LRutaIDBit.Text <> "LRutaIDBit" And LChoferIDBit.Text <> "LChoferIDBit" And LOrigenBit.Text <> "LOrigenBit" And L_Ruta_Destino.Text <> "Corporativo LUIN" And LKilometrosPDF.Text <> "LKilometrosPDF" And LTiempoTrayectoPDF.Text <> "LTiempoTrayectoPDF" And TxTViaticos.Text <> String.Empty And LLitroCombustibleBit.Text <> "LLitroCombustibleBit" And TxTCostoCombustible.Text <> String.Empty And Total_Casetas.Text <> String.Empty And E_Alimentos.Text <> String.Empty Then
-                    Dim NuevoPDF As PDF = New PDF()
-                    NewConsultaP.RegistrarBitacora(DTP_Fecha.Text, LRutaIDBit, LChoferIDBit, LOrigenBit, L_Ruta_Destino, LKilometrosPDF, LTiempoTrayectoPDF, TxTViaticos, LLitroCombustibleBit, TxTCostoCombustible, Total_Casetas, TXT_Notas, E_Alimentos, CMB_Chofer)
-                    NuevoPDF.GenerarPDF(SFDialogPDF, DTP_Fecha.Text, CMB_Cliente.Text, CMB_Vehiculo.Text, L_Ruta_Destino.Text, TXT_Notas.Text, Total_Combustible.Text, LEfectivoTotal.Text, Total_Casetas.Text, L_Desgloce_Casetas, LKilometrosPDF.Text, LTiempoTrayectoPDF.Text)
-                    NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, Total_Combustible, CBox_Alimentos)
-                Else
-                    MsgBox("Error al generar PDF.", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | Generar PDF")
-                End If
+                Dim NuevoPDF As PDF = New PDF()
+                NuevoPDF.GenerarPDF(SFDialogPDF, DTP_Fecha.Text, CMB_Cliente.Text, CMB_Vehiculo.Text, L_Ruta_Destino.Text, TXT_Notas.Text, Total_Combustible.Text, LEfectivoTotal.Text, Total_Casetas.Text, L_Desgloce_Casetas, LKilometrosPDF.Text, LTiempoTrayectoPDF.Text)
+                Dim RutaArchivo As String = SFDialogPDF.FileName
+                NewConsultaP.RegistrarBitacora(RutaArchivo, CMB_Cliente.Text)
+                NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, Total_Combustible, CBox_Alimentos)
+                SFDialogPDF.Dispose()
             Else
                 MsgBox("Faltan campos por rellenar.", MsgBoxStyle.Information, "Información | Corporativo LUIN | Generar PDF")
             End If
@@ -339,7 +336,23 @@
 #Region "Eliminar Catalogo"
     Private Sub BtnEliminarCatalogo_Click(sender As Object, e As EventArgs) Handles BtnEliminarCatalogo.Click
         If CMB_Directorio.Text <> String.Empty And Lista_Catalago.SelectedIndex <> -1 Then
-            NewConsultaC.EliminarCatalogo(CMB_Directorio, Lista_Catalago)
+            If CMB_Directorio.Text = "Clientes" Then
+                If MsgBox("¿Desea eliminar el cliente seleccionado?", MsgBoxStyle.Exclamation Or vbYesNo, "Corporativo LUIN") = MsgBoxResult.Yes Then
+                    NewConsultaC.EliminarCatalogo(CMB_Directorio, Lista_Catalago)
+                End If
+            ElseIf CMB_Directorio.Text = "Choferes" Then
+                If MsgBox("¿Desea eliminar el chofer seleccionado?", MsgBoxStyle.Exclamation Or vbYesNo, "Corporativo LUIN") = MsgBoxResult.Yes Then
+                    NewConsultaC.EliminarCatalogo(CMB_Directorio, Lista_Catalago)
+                End If
+            ElseIf CMB_Directorio.Text = "Unidades" Then
+                If MsgBox("¿Desea eliminar la unidad seleccionada?", MsgBoxStyle.Exclamation Or vbYesNo, "Corporativo LUIN") = MsgBoxResult.Yes Then
+                    NewConsultaC.EliminarCatalogo(CMB_Directorio, Lista_Catalago)
+                End If
+            ElseIf CMB_Directorio.Text = "Casetas" Then
+                If MsgBox("¿Desea eliminar la caseta seleccionada?", MsgBoxStyle.Exclamation Or vbYesNo, "Corporativo LUIN") = MsgBoxResult.Yes Then
+                    NewConsultaC.EliminarCatalogo(CMB_Directorio, Lista_Catalago)
+                End If
+            End If
             NewConsultaC.MostrarActualizarCatalogo(L_Directorio, CMB_Directorio, Lista_Catalago)
         End If
     End Sub
@@ -378,11 +391,13 @@
         End If
     End Sub
     Private Sub BtnEliminarRuta_Click(sender As Object, e As EventArgs) Handles BtnEliminarRuta.Click
-        NewConsultaC.EliminarCasetasRuta(LIDRuta)
-        NewConsultaC.EliminarRuta(LIDRuta)
-        Dim dtRutasC As DataTable = NewConsultaC.MostrarRutas()
-        CMB_Rutas.DataSource = dtRutasC
-        CMB_Rutas.DisplayMember = "Nombre"
+        If MsgBox("¿Desea eliminar la ruta creada?", MsgBoxStyle.Exclamation Or vbYesNo, "Corporativo LUIN") = MsgBoxResult.Yes Then
+            NewConsultaC.EliminarCasetasRuta(LIDRuta)
+            NewConsultaC.EliminarRuta(LIDRuta)
+            Dim dtRutasC As DataTable = NewConsultaC.MostrarRutas()
+            CMB_Rutas.DataSource = dtRutasC
+            CMB_Rutas.DisplayMember = "Nombre"
+        End If
     End Sub
 #End Region
 
@@ -453,7 +468,7 @@
         End If
     End Sub
     Private Sub BtnEliminarCasetaRuta_Click(sender As Object, e As EventArgs) Handles BtnEliminarCasetaRuta.Click
-        If LRutaID.Text <> String.Empty And LVehiculoID.Text <> String.Empty Then
+        If MsgBox("¿Desea eliminar las casetas asignadas?", MsgBoxStyle.Exclamation Or vbYesNo, "Corporativo LUIN") = MsgBoxResult.Yes And LRutaID.Text <> String.Empty And LVehiculoID.Text <> String.Empty Then
             NewConsultaC.EliminarCasetaRuta(LRutaID, LVehiculoID)
             Dim dtRutas As DataTable = NewConsultaC.MostrarRutasPCasetas()
             CmbRutaImporte.DataSource = dtRutas
@@ -475,14 +490,13 @@
     Private Sub PBoxLastPDF_MouseHover(sender As Object, e As EventArgs) Handles PBoxLastPDF.MouseHover
         Dim Tip As ToolTip = New ToolTip
         Tip.SetToolTip(PBoxLastPDF, "¿Deseas obtener una ruta anterior?" & Chr(10) & "Da clic a continuación.")
-        Dim ImgActive As System.Drawing.Bitmap = Bitmap.FromFile(System.AppDomain.CurrentDomain.BaseDirectory() + "\Assets\IMG\LastPDF_Active.png")
+        Dim ImgActive As System.Drawing.Bitmap = Bitmap.FromFile(System.AppDomain.CurrentDomain.BaseDirectory() + "\Assets\IMG\BtnCalendarActive.png")
         PBoxLastPDF.BackgroundImage = ImgActive
     End Sub
     Private Sub PBoxLastPDF_MouseLeave(sender As Object, e As EventArgs) Handles PBoxLastPDF.MouseLeave
-        Dim ImgDisable As System.Drawing.Bitmap = Bitmap.FromFile(System.AppDomain.CurrentDomain.BaseDirectory() + "\Assets\IMG\LastPDF_Disable.png")
+        Dim ImgDisable As System.Drawing.Bitmap = Bitmap.FromFile(System.AppDomain.CurrentDomain.BaseDirectory() + "\Assets\IMG\BtnCalendarDisable.png")
         PBoxLastPDF.BackgroundImage = ImgDisable
     End Sub
-
 #End Region
 #End Region
 End Class
