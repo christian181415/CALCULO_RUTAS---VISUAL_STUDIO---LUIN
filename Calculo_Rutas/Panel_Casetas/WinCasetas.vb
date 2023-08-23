@@ -88,6 +88,7 @@ Public Class WinCasetas
         NewConfig.RegistrarCasetaCR(CmbCRDestino, CmbCRVehiculo, DTGCasetaSelect, Me, LImporte, LIDRutaC, LIDCaseta, LIDVehiculo, P_CasetaRuta)
         Activador = 0
         LNewCaseta.Text = ""
+        WinPrincipal.Opacity = 1
     End Sub
     'BOTON PARA CERRAR EL FORMULARIO ACTUAL
     Private Sub BtnCasetaRutaClose_Click(sender As Object, e As EventArgs) Handles BtnCasetaRutaClose.Click

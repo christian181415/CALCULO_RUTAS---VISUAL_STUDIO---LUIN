@@ -17,12 +17,13 @@ Public Class ClassCasetasData
             Dim consulta As String = "SELECT * FROM Clientes " '&
             '"INNER JOIN Rutas ON Rutas.Cliente_ID = Clientes.IdCliente " &
             '"WHERE IdRuta NOT IN (SELECT Ruta_ID FROM InfoRutas);"
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarDestinosCR")
         End Try
@@ -37,12 +38,13 @@ Public Class ClassCasetasData
                                     " INNER JOIN Rutas AS R ON R.IdRuta = IR.Ruta_ID" &
                                     " WHERE IR.Unidad_ID = U.IdUnidad" &
                                     " AND IR.Ruta_ID = " & LIDRutaC.Text & ")"
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarVehiculosCR")
         End Try
@@ -51,12 +53,13 @@ Public Class ClassCasetasData
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
             Dim consulta As String = "SELECT Caseta FROM Casetas"
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarCasetasCR")
         End Try
@@ -73,6 +76,8 @@ Public Class ClassCasetasData
             While reader.Read
                 LIDDestino.Text = reader.GetInt32(0)
             End While
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDCliente")
         End Try
@@ -88,6 +93,8 @@ Public Class ClassCasetasData
             While reader.Read
                 LIDVehiculo.Text = reader.GetInt32(0)
             End While
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDCliente")
         End Try
@@ -107,6 +114,7 @@ Public Class ClassCasetasData
                         LImporte.Text = DTGCasetaSelect.Rows(Fila).Cells(1).Value
                     End While
                     conexionDB.Close()
+                    conexionDB.Dispose()
                 Else
                     If DTGCasetaSelect.Rows(Fila).Cells(1).Value Is Nothing Then
                         MsgBox("Complete el importe de la celda: " & Fila, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -122,12 +130,13 @@ Public Class ClassCasetasData
                     Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
                     comando.ExecuteNonQuery()
                     conexionDB.Close()
+                    conexionDB.Dispose()
                     Window.Close()
+                    Window.Dispose()
                     P_CasetaRuta.Location = New Point(726, 0)
                     MsgBox("Casetas asignadas", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 End If
             Next
-            Window.Opacity = 1
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarRuta")
         End Try
@@ -152,6 +161,8 @@ Public Class ClassCasetasData
                 LNombreDestino.Text = reader.GetString(0)
                 LNombreVehiculo.Text = reader.GetString(1)
             End While
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerDestino")
         End Try
@@ -170,6 +181,7 @@ Public Class ClassCasetasData
             DTAdapter.Fill(table)
             Return table
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarCasetasCR")
         End Try
@@ -184,6 +196,7 @@ Public Class ClassCasetasData
                 conexionDB.Open()
                 Dim reader As OleDbDataReader = comando.ExecuteReader
                 conexionDB.Close()
+                conexionDB.Dispose()
             End If
 
             For Fila As Integer = 0 To DTGCasetaSelectUp.Rows.Count - 1
@@ -199,6 +212,7 @@ Public Class ClassCasetasData
                         LImporteUp.Text = DTGCasetaSelectUp.Rows(Fila).Cells(1).Value
                     End While
                     conexionDB.Close()
+                    conexionDB.Dispose()
                 End If
 
                 If LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> "LIDVehiculoUp" And LIDRutaUp.Text <> String.Empty And LIDVehiculoUp.Text <> String.Empty And LImporteUp.Text <> "LImporteUp" And LIDCasetaUp.Text <> "LIDCasetaUp" Then
@@ -208,7 +222,9 @@ Public Class ClassCasetasData
                     Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
                     comando.ExecuteNonQuery()
                     conexionDB.Close()
+                    conexionDB.Dispose()
                     Window.Close()
+                    Window.Dispose()
                 Else
                     MsgBox("Asigne las casetas correspondientes a la ruta para poder continuar", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
                 End If

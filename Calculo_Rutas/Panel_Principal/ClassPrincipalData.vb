@@ -17,6 +17,7 @@ Public Class ClassPrincipalData
                 AlertaIcon.Visible = False
                 TimerErrorAlert.Stop()
                 conexionDB.Close()
+                conexionDB.Dispose()
             End If
         Catch ex As Exception
             TimerErrorAlert.Start()
@@ -45,6 +46,7 @@ Public Class ClassPrincipalData
             adap.Fill(dsDatos)
             Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             LCliente.Enabled = False
             CMB_Cliente.Enabled = False
@@ -60,6 +62,7 @@ Public Class ClassPrincipalData
             adap.Fill(dsDatos)
             Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             LChofer.Enabled = False
             CMB_Chofer.Enabled = False
@@ -78,6 +81,7 @@ Public Class ClassPrincipalData
             adap.Fill(dsDatos)
             Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             LUnidad.Enabled = False
             CMB_Vehiculo.Enabled = False
@@ -103,6 +107,7 @@ Public Class ClassPrincipalData
             End If
             reader.Close()
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             LRuta.Enabled = False
             L_Ruta_Destino.Enabled = False
@@ -126,6 +131,7 @@ Public Class ClassPrincipalData
             adap.Fill(dsDatos)
             Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -151,6 +157,7 @@ Public Class ClassPrincipalData
             End If
             reader.Close()
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             'MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarTotalCasetas")
         End Try
@@ -179,6 +186,7 @@ Public Class ClassPrincipalData
             End If
             reader.Close()
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarCombustible")
         End Try
@@ -205,6 +213,7 @@ Public Class ClassPrincipalData
             End If
             reader.Close()
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

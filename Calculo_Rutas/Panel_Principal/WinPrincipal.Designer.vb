@@ -28,7 +28,6 @@ Partial Class WinPrincipal
         Me.DTP_Fecha = New System.Windows.Forms.DateTimePicker()
         Me.LFecha = New System.Windows.Forms.Label()
         Me.PBoxAlertIcon = New System.Windows.Forms.PictureBox()
-        Me.BTN_Salir = New System.Windows.Forms.Button()
         Me.Panel_Destino = New System.Windows.Forms.Panel()
         Me.PBoxLastPDF = New System.Windows.Forms.PictureBox()
         Me.PBoxConfiguracion = New System.Windows.Forms.PictureBox()
@@ -55,6 +54,7 @@ Partial Class WinPrincipal
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Total_Combustible = New System.Windows.Forms.Label()
+        Me.BTN_Salir = New System.Windows.Forms.Button()
         Me.P_Destino = New System.Windows.Forms.Panel()
         Me.LOrigenBit = New System.Windows.Forms.Label()
         Me.LChoferIDBit = New System.Windows.Forms.Label()
@@ -91,8 +91,6 @@ Partial Class WinPrincipal
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PBoxLogo = New System.Windows.Forms.PictureBox()
         Me.P_Cofiguracion = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label17 = New System.Windows.Forms.Label()
         Me.Configura = New System.Windows.Forms.TabControl()
         Me.Consultas = New System.Windows.Forms.TabPage()
         Me.BtnEliminarCatalogo = New System.Windows.Forms.Button()
@@ -137,6 +135,8 @@ Partial Class WinPrincipal
         Me.Label9 = New System.Windows.Forms.Label()
         Me.CmbRutaImporte = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.BTN_Cerrar = New System.Windows.Forms.Button()
         Me.SFDialogPDF = New System.Windows.Forms.SaveFileDialog()
         Me.TimerAcciones = New System.Windows.Forms.Timer(Me.components)
@@ -162,11 +162,11 @@ Partial Class WinPrincipal
         Me.Panel_Titulo.SuspendLayout()
         CType(Me.PBoxLogo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_Cofiguracion.SuspendLayout()
-        Me.Panel1.SuspendLayout()
         Me.Configura.SuspendLayout()
         Me.Consultas.SuspendLayout()
         Me.Rutas.SuspendLayout()
         Me.ImporteCasetas.SuspendLayout()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel_Trabajo
@@ -212,19 +212,6 @@ Partial Class WinPrincipal
         Me.PBoxAlertIcon.Size = New System.Drawing.Size(64, 64)
         Me.PBoxAlertIcon.TabIndex = 16
         Me.PBoxAlertIcon.TabStop = False
-        '
-        'BTN_Salir
-        '
-        Me.BTN_Salir.BackColor = System.Drawing.SystemColors.Control
-        Me.BTN_Salir.FlatAppearance.BorderSize = 0
-        Me.BTN_Salir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
-        Me.BTN_Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BTN_Salir.Location = New System.Drawing.Point(448, 307)
-        Me.BTN_Salir.Name = "BTN_Salir"
-        Me.BTN_Salir.Size = New System.Drawing.Size(75, 23)
-        Me.BTN_Salir.TabIndex = 1
-        Me.BTN_Salir.Text = "Salir"
-        Me.BTN_Salir.UseVisualStyleBackColor = False
         '
         'Panel_Destino
         '
@@ -363,9 +350,9 @@ Partial Class WinPrincipal
         Me.LKilometrosPDF.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.LKilometrosPDF.Location = New System.Drawing.Point(172, 167)
         Me.LKilometrosPDF.Name = "LKilometrosPDF"
-        Me.LKilometrosPDF.Size = New System.Drawing.Size(13, 13)
+        Me.LKilometrosPDF.Size = New System.Drawing.Size(82, 13)
         Me.LKilometrosPDF.TabIndex = 47
-        Me.LKilometrosPDF.Text = "1"
+        Me.LKilometrosPDF.Text = "LKilometrosPDF"
         Me.LKilometrosPDF.Visible = False
         '
         'LTiempoTrayectoPDF
@@ -374,9 +361,9 @@ Partial Class WinPrincipal
         Me.LTiempoTrayectoPDF.ForeColor = System.Drawing.SystemColors.ControlDark
         Me.LTiempoTrayectoPDF.Location = New System.Drawing.Point(17, 167)
         Me.LTiempoTrayectoPDF.Name = "LTiempoTrayectoPDF"
-        Me.LTiempoTrayectoPDF.Size = New System.Drawing.Size(13, 13)
+        Me.LTiempoTrayectoPDF.Size = New System.Drawing.Size(111, 13)
         Me.LTiempoTrayectoPDF.TabIndex = 48
-        Me.LTiempoTrayectoPDF.Text = "1"
+        Me.LTiempoTrayectoPDF.Text = "LTiempoTrayectoPDF"
         Me.LTiempoTrayectoPDF.Visible = False
         '
         'Label24
@@ -519,6 +506,19 @@ Partial Class WinPrincipal
         Me.Total_Combustible.Size = New System.Drawing.Size(28, 13)
         Me.Total_Combustible.TabIndex = 24
         Me.Total_Combustible.Text = "0.00"
+        '
+        'BTN_Salir
+        '
+        Me.BTN_Salir.BackColor = System.Drawing.SystemColors.Control
+        Me.BTN_Salir.FlatAppearance.BorderSize = 0
+        Me.BTN_Salir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
+        Me.BTN_Salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BTN_Salir.Location = New System.Drawing.Point(448, 307)
+        Me.BTN_Salir.Name = "BTN_Salir"
+        Me.BTN_Salir.Size = New System.Drawing.Size(75, 23)
+        Me.BTN_Salir.TabIndex = 1
+        Me.BTN_Salir.Text = "Salir"
+        Me.BTN_Salir.UseVisualStyleBackColor = False
         '
         'P_Destino
         '
@@ -922,27 +922,6 @@ Partial Class WinPrincipal
         Me.P_Cofiguracion.Size = New System.Drawing.Size(185, 596)
         Me.P_Cofiguracion.TabIndex = 1
         '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.Color.Maroon
-        Me.Panel1.Controls.Add(Me.Label17)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(185, 54)
-        Me.Panel1.TabIndex = 2
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.White
-        Me.Label17.Location = New System.Drawing.Point(13, 17)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(158, 20)
-        Me.Label17.TabIndex = 1
-        Me.Label17.Text = "CONFIGURACION"
-        '
         'Configura
         '
         Me.Configura.Controls.Add(Me.Consultas)
@@ -1343,7 +1322,6 @@ Partial Class WinPrincipal
         Me.LVehiculoID.TabIndex = 51
         Me.LVehiculoID.Text = "VehiculoID"
         Me.LVehiculoID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.LVehiculoID.Visible = False
         '
         'LRutaID
         '
@@ -1357,7 +1335,6 @@ Partial Class WinPrincipal
         Me.LRutaID.TabIndex = 50
         Me.LRutaID.Text = "RutaID"
         Me.LRutaID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.LRutaID.Visible = False
         '
         'BtnEliminarCasetaRuta
         '
@@ -1464,6 +1441,27 @@ Partial Class WinPrincipal
         Me.Label2.TabIndex = 14
         Me.Label2.Text = "Ruta"
         '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.Maroon
+        Me.Panel1.Controls.Add(Me.Label17)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(185, 54)
+        Me.Panel1.TabIndex = 2
+        '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label17.ForeColor = System.Drawing.Color.White
+        Me.Label17.Location = New System.Drawing.Point(13, 17)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(158, 20)
+        Me.Label17.TabIndex = 1
+        Me.Label17.Text = "CONFIGURACION"
+        '
         'BTN_Cerrar
         '
         Me.BTN_Cerrar.BackColor = System.Drawing.SystemColors.Control
@@ -1540,8 +1538,6 @@ Partial Class WinPrincipal
         Me.Panel_Titulo.PerformLayout()
         CType(Me.PBoxLogo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.P_Cofiguracion.ResumeLayout(False)
-        Me.Panel1.ResumeLayout(False)
-        Me.Panel1.PerformLayout()
         Me.Configura.ResumeLayout(False)
         Me.Consultas.ResumeLayout(False)
         Me.Consultas.PerformLayout()
@@ -1549,6 +1545,8 @@ Partial Class WinPrincipal
         Me.Rutas.PerformLayout()
         Me.ImporteCasetas.ResumeLayout(False)
         Me.ImporteCasetas.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

@@ -32,12 +32,13 @@ Public Class ClassPrincipalConfig
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
             Dim consulta As String = "SELECT * FROM " + CMB_Directorio.Text
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
 
         End Try
@@ -110,6 +111,7 @@ Public Class ClassPrincipalConfig
             FormAC.LUpTabla.Text = CMB_Directorio.Text
             FormAC.ShowDialog()
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -156,6 +158,7 @@ Public Class ClassPrincipalConfig
                 comando03.ExecuteReader()
                 MsgBox("Cliente eliminado", MsgBoxStyle.Information, "Información | Corporativo LUIN")
                 conexionDB.Close()
+                conexionDB.Dispose()
 
             ElseIf CMB_Directorio.Text = "Choferes" Then
                 Dim consulta01 As String = "DELETE * FROM Choferes WHERE Nombre = '" & CatalogoSelect(1) & "';"
@@ -165,6 +168,7 @@ Public Class ClassPrincipalConfig
                 comando01.ExecuteReader()
                 MsgBox("Chofer eliminado", MsgBoxStyle.Information, "Información | Corporativo LUIN")
                 conexionDB.Close()
+                conexionDB.Dispose()
 
             ElseIf CMB_Directorio.Text = "Unidades" Then
                 Dim ID_Unidad As Integer
@@ -190,6 +194,7 @@ Public Class ClassPrincipalConfig
                 '---------------------------------------------
                 MsgBox("Unidad eliminada", MsgBoxStyle.Information, "Información | Corporativo LUIN")
                 conexionDB.Close()
+                conexionDB.Dispose()
 
             ElseIf CMB_Directorio.Text = "Casetas" Then
                 Dim ID_Caseta As Integer
@@ -215,6 +220,7 @@ Public Class ClassPrincipalConfig
                 '---------------------------------------------
                 MsgBox("Caseta eliminada", MsgBoxStyle.Information, "Información | Corporativo LUIN")
                 conexionDB.Close()
+                conexionDB.Dispose()
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | EliminarCatalogo")
@@ -232,12 +238,13 @@ Public Class ClassPrincipalConfig
                                     "FROM Clientes INNER JOIN Rutas ON Clientes.IdCliente = Rutas.Cliente_ID " &
                                     "WHERE Status = True " &
                                     "GROUP BY Nombre;"
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
             'MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarRutas")
         End Try
@@ -263,6 +270,8 @@ Public Class ClassPrincipalConfig
                     LCombustible.Text = reader.GetDouble(6) & " LTS"
                     LIDRuta.Text = reader.GetInt32(7)
                 End While
+                conexionDB.Close()
+                conexionDB.Dispose()
             Catch ex As Exception
                 MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarDatosRuta")
             End Try
@@ -302,6 +311,7 @@ Public Class ClassPrincipalConfig
             FormAC.LUpRuta.Text = "ActualizarRuta"
             FormAC.ShowDialog()
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerInfoRuta")
         End Try
@@ -314,6 +324,8 @@ Public Class ClassPrincipalConfig
             comando.Connection = conexionDB
             conexionDB.Open()
             Dim reader As OleDbDataReader = comando.ExecuteReader
+            conexionDB.Close()
+            conexionDB.Dispose()
             MsgBox("Ruta eliminada", MsgBoxStyle.Information, "Información | Corporativo LUIN")
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -327,6 +339,8 @@ Public Class ClassPrincipalConfig
             comando.Connection = conexionDB
             conexionDB.Open()
             Dim reader As OleDbDataReader = comando.ExecuteReader
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | EliminarCasetaRuta")
         End Try
@@ -343,26 +357,28 @@ Public Class ClassPrincipalConfig
                                     "INNER JOIN Rutas ON Clientes.IdCliente = Rutas.Cliente_ID) INNER JOIN InfoRutas ON Rutas.IdRuta = InfoRutas.Ruta_ID " &
                                     "WHERE Status = True " &
                                     "GROUP BY Nombre;"
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
             Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
-            'MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarRutas")
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarRutas")
         End Try
     End Function
     Public Function MostrarRutasC()
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
             Dim consulta As String = "SELECT Nombre FROM Clientes WHERE Status = True "
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarRutasC")
         End Try
@@ -381,6 +397,7 @@ Public Class ClassPrincipalConfig
                 End If
                 reader.Close()
                 conexionDB.Close()
+                conexionDB.Dispose()
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
@@ -399,6 +416,7 @@ Public Class ClassPrincipalConfig
                 End If
                 reader.Close()
                 conexionDB.Close()
+                conexionDB.Dispose()
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
@@ -408,12 +426,13 @@ Public Class ClassPrincipalConfig
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
             Dim consulta As String = "SELECT Vehiculo FROM Clientes INNER JOIN (Rutas INNER JOIN (Unidades INNER Join InfoRutas ON Unidades.IdUnidad = InfoRutas.Unidad_ID) ON Rutas.IdRuta = InfoRutas.Ruta_ID) On Clientes.IdCliente = Rutas.Cliente_ID WHERE IdRuta = " & LRutaID.Text & " GROUP BY Vehiculo;"
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | Mostrar UnidadesC")
         End Try
@@ -429,12 +448,13 @@ Public Class ClassPrincipalConfig
                                      "ON Casetas.IdCaseta = InfoRutas.Caseta_ID " &
                                      "WHERE Clientes.Nombre = '" & CmbRutaImporte.Text & "' " &
                                      "AND Unidades.Vehiculo = '" & CmbVehiculoImporte.Text & "' AND Status = True ;"
-            conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
+            conexionDB.Open()
             adap.Fill(dsDatos)
-            Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
+            Return dsDatos
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -479,6 +499,8 @@ Public Class ClassPrincipalConfig
             comando.Connection = conexionDB
             conexionDB.Open()
             Dim reader As OleDbDataReader = comando.ExecuteReader
+            conexionDB.Close()
+            conexionDB.Dispose()
             MsgBox("Casetas eliminadas de la ruta", MsgBoxStyle.Information, "Información | Corporativo LUIN")
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | EliminarCasetaRuta")

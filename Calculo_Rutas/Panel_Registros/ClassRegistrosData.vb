@@ -22,6 +22,7 @@ Public Class ClassRegistrosData
                 TxTNombreC.Text = ""
                 TxTDomicilioC.Text = ""
                 Window.Close()
+                Window.Dispose()
                 P_NewCliente.Location = New Point(260, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -47,6 +48,7 @@ Public Class ClassRegistrosData
                 TxTNombreCH.Text = ""
                 TxTTelefonoCH.Text = ""
                 Window.Close()
+                Window.Dispose()
                 P_NewChofer.Location = New Point(517, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -73,6 +75,7 @@ Public Class ClassRegistrosData
                 TxTPlacasU.Text = ""
                 CmbDescripcionU.SelectedIndex = -1
                 Window.Close()
+                Window.Dispose()
                 P_NewUnidad.Location = New Point(774, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -97,6 +100,7 @@ Public Class ClassRegistrosData
                 MsgBox("Caseta Registrada", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 TxTCaseta.Text = ""
                 Window.Close()
+                Window.Dispose()
                 P_NewCaseta.Location = New Point(1034, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -123,6 +127,7 @@ Public Class ClassRegistrosData
                 TxTNombreCUp.Text = ""
                 TxTDomicilioCUp.Text = ""
                 Window.Close()
+                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
             End If
@@ -146,6 +151,7 @@ Public Class ClassRegistrosData
                 TxTNombreCHUp.Text = ""
                 TxTTelefonoCHUp.Text = ""
                 Window.Close()
+                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
             End If
@@ -171,6 +177,7 @@ Public Class ClassRegistrosData
                 CmbDescripcionUUp.SelectedIndex = -1
                 CmbDescripcionUUp.Text = ""
                 Window.Close()
+                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error01 | Corporativo LUIN")
             End If
@@ -193,6 +200,7 @@ Public Class ClassRegistrosData
                 MsgBox("Caseta Actualizada", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 TxTCasetaUp.Text = ""
                 Window.Close()
+                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error01 | Corporativo LUIN")
             End If
