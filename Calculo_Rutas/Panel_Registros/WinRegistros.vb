@@ -247,7 +247,7 @@ Public Class WinRegistros
         End If
     End Sub
     Private Sub BtnNewRuta_Click(sender As Object, e As EventArgs) Handles BtnNewRuta.Click
-        NewRegistroDta.RegistrarRuta(TxTOrigen, CmbDestino, TxtKilometros, TxtTTrayecto, TxtToka, TxtFegali, LCombustible, LIDRuta, Me, P_NewRuta)
+        NewRegistroDta.RegistrarRuta(TxTOrigen, CmbDestino, TxtKilometros, NDHoras, NDMinutos, TxtToka, TxtFegali, LIDRuta, Me, P_NewRuta)
         LNewRuta.Text = ""
         WinPrincipal.Opacity = 1
     End Sub
@@ -256,16 +256,6 @@ Public Class WinRegistros
         P_NewRuta.Location = New Point(260, 681)
         Me.Close()
         WinPrincipal.Opacity = 1
-    End Sub
-    Private Sub TxtToka_TextChanged(sender As Object, e As EventArgs) Handles TxtToka.TextChanged
-        If TxtToka.Text <> String.Empty And TxtFegali.Text <> String.Empty Then
-            LCombustible.Text = Convert.ToDouble(TxtToka.Text) + Convert.ToDouble(TxtFegali.Text)
-        End If
-    End Sub
-    Private Sub TxtFegali_TextChanged(sender As Object, e As EventArgs) Handles TxtFegali.TextChanged
-        If TxtToka.Text <> String.Empty And TxtFegali.Text <> String.Empty Then
-            LCombustible.Text = Convert.ToDouble(TxtToka.Text) + Convert.ToDouble(TxtFegali.Text)
-        End If
     End Sub
     Private Sub TxtToka_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtToka.KeyPress
         If Not (Char.IsControl(e.KeyChar) OrElse Char.IsDigit(e.KeyChar)) _
@@ -285,9 +275,8 @@ Public Class WinRegistros
     Private Sub BtnActualizarRuta_Click(sender As Object, e As EventArgs) Handles BtnActualizarRuta.Click
         If LDestinoUp.Text <> String.Empty Then
             NewRegistroDta.ObtenerIDClienteUp(LIDClienteUp, LDestinoUp)
-            NewRegistroDta.ActualizarRuta(TxTOrigenUp, LDestinoUp, TxTKilometrosUp, TxTTTrayectoUp, TxTTOKAUp, TxTFegaliUp, LCombustibleUp, LIDClienteUp, Me, LUpIDRuta)
+            NewRegistroDta.ActualizarRuta(TxTOrigenUp, LDestinoUp, TxTKilometrosUp, NDHorasUp, NDMinutosUp, TxTTOKAUp, TxTFegaliUp, LIDClienteUp, Me, LUpIDRuta, P_UpRuta)
             LNewRuta.Text = ""
-            P_NewRuta.Location = New Point(260, 681)
             WinPrincipal.Opacity = 1
         End If
     End Sub
@@ -301,16 +290,6 @@ Public Class WinRegistros
         If Not (Char.IsControl(e.KeyChar) OrElse Char.IsDigit(e.KeyChar)) _
             AndAlso (Not e.KeyChar = "." Or TxTKilometrosUp.Text.Contains(".")) Then
             e.Handled = True
-        End If
-    End Sub
-    Private Sub TxTTOKAUp_TextChanged(sender As Object, e As EventArgs) Handles TxTTOKAUp.TextChanged
-        If TxTTOKAUp.Text <> String.Empty And TxTFegaliUp.Text <> String.Empty Then
-            LCombustibleUp.Text = Convert.ToDouble(TxTTOKAUp.Text) + Convert.ToDouble(TxTFegaliUp.Text)
-        End If
-    End Sub
-    Private Sub TxTFegaliUp_TextChanged(sender As Object, e As EventArgs) Handles TxTFegaliUp.TextChanged
-        If TxTTOKAUp.Text <> String.Empty And TxTFegaliUp.Text <> String.Empty Then
-            LCombustibleUp.Text = Convert.ToDouble(TxTTOKAUp.Text) + Convert.ToDouble(TxTFegaliUp.Text)
         End If
     End Sub
 
@@ -329,7 +308,7 @@ Public Class WinRegistros
 
     Private Sub TxtKilometros_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxtKilometros.KeyPress
         If Not (Char.IsControl(e.KeyChar) OrElse Char.IsDigit(e.KeyChar)) _
-            AndAlso (Not e.KeyChar = "." Or TxtToka.Text.Contains(".")) Then
+            AndAlso (Not e.KeyChar = "." Or TxtKilometros.Text.Contains(".")) Then
             e.Handled = True
         End If
     End Sub

@@ -249,11 +249,11 @@ Public Class ClassPrincipalConfig
             'MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarRutas")
         End Try
     End Function
-    Public Function MostrarDatosRuta(CMB_Rutas As ComboBox, TxTOrigen As Label, TxTDestino As Label, TxTKilometros As Label, TxTTiempoTrayecto As Label, TxTTOKA As Label, TxTFegali As Label, LCombustible As Label, LIDRuta As Label)
+    Public Function MostrarDatosRuta(CMB_Rutas As ComboBox, TxTOrigen As Label, TxTDestino As Label, TxTKilometros As Label, TxTTiempoTrayecto As Label, TxTTOKA As Label, TxTFegali As Label, LIDRuta As Label)
         If CMB_Rutas.Text <> String.Empty Then
             Dim conexionDB As New OleDbConnection(CadenaConexion)
             Try
-                Dim consulta As String = "SELECT Origen, Domicilio, Kilometros, Tiempo_Trayecto, TOKA, Fegali, Litros_Combustible, IdRuta
+                Dim consulta As String = "SELECT Origen, Domicilio, Kilometros, Tiempo_Trayecto, TOKA, Fegali, IdRuta
                                          From Clientes INNER JOIN Rutas ON Clientes.IdCliente = Rutas.Cliente_ID
                                          WHERE Nombre = '" & CMB_Rutas.Text & "' AND Status = True ;"
                 Dim comando As OleDbCommand = New OleDbCommand(consulta)
@@ -267,8 +267,7 @@ Public Class ClassPrincipalConfig
                     TxTTiempoTrayecto.Text = reader.GetString(3)
                     TxTTOKA.Text = reader.GetDouble(4) & " LTS"
                     TxTFegali.Text = reader.GetDouble(5) & " LTS"
-                    LCombustible.Text = reader.GetDouble(6) & " LTS"
-                    LIDRuta.Text = reader.GetInt32(7)
+                    LIDRuta.Text = reader.GetInt32(6)
                 End While
                 conexionDB.Close()
                 conexionDB.Dispose()
@@ -291,6 +290,8 @@ Public Class ClassPrincipalConfig
     'ACTUALIZAR LA INFO DE UNA RUTA
     Public Function ObtenerInfoRuta(LIDRuta As Label, Form As Form)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
+        Dim Cadena As String
+        Dim TrayectoSplit As String()
         Try
             Form.Opacity = 0.6
             Dim consulta As String = "SELECT * FROM Rutas WHERE IdRuta = " & LIDRuta.Text & ";"
@@ -302,11 +303,13 @@ Public Class ClassPrincipalConfig
                 FormAC.LUpIDRuta.Text = reader.GetInt32(0)
                 FormAC.TxTOrigenUp.Text = reader.GetString(1)
                 FormAC.TxTKilometrosUp.Text = reader.GetDouble(2)
-                FormAC.TxTTTrayectoUp.Text = reader.GetString(3)
+                Cadena = reader.GetString(3)
+                TrayectoSplit = Cadena.Replace("H", "X").Replace("MIN", "X").Split("X")
+                FormAC.NDHorasUp.Value = TrayectoSplit(0)
+                FormAC.NDMinutosUp.Value = TrayectoSplit(1)
                 FormAC.TxTTOKAUp.Text = reader.GetDouble(4)
                 FormAC.TxTFegaliUp.Text = reader.GetDouble(5)
-                FormAC.LCombustibleUp.Text = reader.GetDouble(6)
-                FormAC.LIDCliente.Text = reader.GetInt32(7)
+                FormAC.LIDCliente.Text = reader.GetInt32(6)
             End While
             FormAC.LUpRuta.Text = "ActualizarRuta"
             FormAC.ShowDialog()

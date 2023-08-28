@@ -22,7 +22,6 @@ Public Class ClassRegistrosData
                 TxTNombreC.Text = ""
                 TxTDomicilioC.Text = ""
                 Window.Close()
-                Window.Dispose()
                 P_NewCliente.Location = New Point(260, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -48,7 +47,6 @@ Public Class ClassRegistrosData
                 TxTNombreCH.Text = ""
                 TxTTelefonoCH.Text = ""
                 Window.Close()
-                Window.Dispose()
                 P_NewChofer.Location = New Point(517, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -75,7 +73,6 @@ Public Class ClassRegistrosData
                 TxTPlacasU.Text = ""
                 CmbDescripcionU.SelectedIndex = -1
                 Window.Close()
-                Window.Dispose()
                 P_NewUnidad.Location = New Point(774, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -100,7 +97,6 @@ Public Class ClassRegistrosData
                 MsgBox("Caseta Registrada", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 TxTCaseta.Text = ""
                 Window.Close()
-                Window.Dispose()
                 P_NewCaseta.Location = New Point(1034, 2)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -127,7 +123,6 @@ Public Class ClassRegistrosData
                 TxTNombreCUp.Text = ""
                 TxTDomicilioCUp.Text = ""
                 Window.Close()
-                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
             End If
@@ -151,7 +146,6 @@ Public Class ClassRegistrosData
                 TxTNombreCHUp.Text = ""
                 TxTTelefonoCHUp.Text = ""
                 Window.Close()
-                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
             End If
@@ -177,7 +171,6 @@ Public Class ClassRegistrosData
                 CmbDescripcionUUp.SelectedIndex = -1
                 CmbDescripcionUUp.Text = ""
                 Window.Close()
-                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error01 | Corporativo LUIN")
             End If
@@ -200,7 +193,6 @@ Public Class ClassRegistrosData
                 MsgBox("Caseta Actualizada", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 TxTCasetaUp.Text = ""
                 Window.Close()
-                Window.Dispose()
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error01 | Corporativo LUIN")
             End If
@@ -226,6 +218,7 @@ Public Class ClassRegistrosData
             adap.Fill(dsDatos)
             Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarDestinos")
         End Try
@@ -241,26 +234,31 @@ Public Class ClassRegistrosData
             While reader.Read
                 LIDCliente.Text = reader.GetInt32(0)
             End While
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDCliente")
         End Try
     End Function
-    Public Function RegistrarRuta(TxTOrigen As TextBox, CmbDestino As ComboBox, TxTKilometros As TextBox, TxTTTrayecto As MaskedTextBox, TxTTOKA As TextBox, TxTFegali As TextBox, LCombustible As Label, LIDCliente As Label, Window As Form, P_NewRuta As Panel)
+    Public Function RegistrarRuta(TxTOrigen As TextBox, CmbDestino As ComboBox, TxTKilometros As TextBox, NDHoras As NumericUpDown, NDMinutos As NumericUpDown, TxTTOKA As TextBox, TxTFegali As TextBox, LIDCliente As Label, Window As Form, P_NewRuta As Panel)
         Try
-            If TxTOrigen.Text <> String.Empty And CmbDestino.Text <> String.Empty And TxTKilometros.Text <> String.Empty And TxTTTrayecto.Text <> String.Empty And LCombustible.Text <> String.Empty Then
+            If TxTOrigen.Text <> String.Empty And CmbDestino.Text <> String.Empty And TxTKilometros.Text <> String.Empty And NDHoras.Value.ToString <> String.Empty And NDMinutos.Value.ToString <> String.Empty Then
+                Dim TiempoTrayecto As String = NDHoras.Value.ToString & " H " & NDMinutos.Value.ToString & " MIN"
                 Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-                Dim consulta = "INSERT INTO Rutas(Origen, Kilometros, Tiempo_Trayecto, TOKA, Fegali, Litros_Combustible, Cliente_ID) VALUES('" & TxTOrigen.Text & "', '" & TxTKilometros.Text & "', '" & TxTTTrayecto.Text & "', '" & TxTTOKA.Text & "', '" & TxTFegali.Text & "', '" & LCombustible.Text & "', '" & LIDCliente.Text & "')"
+                Dim consulta = "INSERT INTO Rutas(Origen, Kilometros, Tiempo_Trayecto, TOKA, Fegali, Cliente_ID) VALUES('" & TxTOrigen.Text & "', '" & TxTKilometros.Text & "', '" & TiempoTrayecto & "', '" & TxTTOKA.Text & "', '" & TxTFegali.Text & "', '" & LIDCliente.Text & "')"
                 conexionDB.Open()
                 Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
                 comando.ExecuteNonQuery()
                 MsgBox("Ruta Registrada", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 TxTOrigen.Text = "Corporativo LUIN"
                 TxTKilometros.Text = ""
-                TxTTTrayecto.Text = ""
+                NDHoras.Value = 0
+                NDMinutos.Value = 0
                 TxTTOKA.Text = ""
                 TxTFegali.Text = ""
-                LCombustible.Text = ""
                 Window.Close()
+                conexionDB.Close()
+                conexionDB.Dispose()
                 P_NewRuta.Location = New Point(260, 681)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
@@ -284,6 +282,8 @@ Public Class ClassRegistrosData
             While reader.Read
                 LDestinoUp.Text = reader.GetString(0)
             End While
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDCliente")
         End Try
@@ -299,26 +299,32 @@ Public Class ClassRegistrosData
             While reader.Read
                 LIDClienteUp.Text = reader.GetInt32(0)
             End While
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDClienteUp")
         End Try
     End Function
-    Public Function ActualizarRuta(TxTOrigenUp As TextBox, LDestinoUp As Label, TxTKilometrosUp As TextBox, TxTTTrayectoUp As MaskedTextBox, TxTTOKAUp As TextBox, TxTFegaliUp As TextBox, LCombustibleUp As Label, LIDClienteUp As Label, Window As Form, LUpIDRuta As Label)
+    Public Function ActualizarRuta(TxTOrigenUp As TextBox, LDestinoUp As Label, TxTKilometrosUp As TextBox, NDHorasUp As NumericUpDown, NDMinutosUp As NumericUpDown, TxTTOKAUp As TextBox, TxTFegaliUp As TextBox, LIDClienteUp As Label, Window As Form, LUpIDRuta As Label, P_UpRuta As Panel)
         Try
-            If TxTOrigenUp.Text <> String.Empty And LDestinoUp.Text <> String.Empty And TxTKilometrosUp.Text <> String.Empty And TxTTTrayectoUp.Text <> String.Empty And LCombustibleUp.Text <> String.Empty Then
+            If TxTOrigenUp.Text <> String.Empty And LDestinoUp.Text <> String.Empty And TxTKilometrosUp.Text <> String.Empty And NDHorasUp.Value.ToString <> String.Empty And NDMinutosUp.Value.ToString <> String.Empty Then
+                Dim TiempoTrayecto As String = NDHorasUp.Value.ToString & " H " & NDMinutosUp.Value.ToString & " MIN"
                 Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-                Dim consulta = "UPDATE Rutas SET Origen='" & TxTOrigenUp.Text & "', Kilometros='" & TxTKilometrosUp.Text & "', Tiempo_Trayecto='" & TxTTTrayectoUp.Text & "', TOKA='" & TxTTOKAUp.Text & "', Fegali='" & TxTFegaliUp.Text & "', Litros_Combustible='" & LCombustibleUp.Text & "', Cliente_ID=" & LIDClienteUp.Text & " WHERE IdRuta = " & LUpIDRuta.Text
+                Dim consulta = "UPDATE Rutas SET Origen='" & TxTOrigenUp.Text & "', Kilometros='" & TxTKilometrosUp.Text & "', Tiempo_Trayecto='" & TiempoTrayecto & "', TOKA='" & TxTTOKAUp.Text & "', Fegali='" & TxTFegaliUp.Text & "', Cliente_ID=" & LIDClienteUp.Text & " WHERE IdRuta = " & LUpIDRuta.Text
                 conexionDB.Open()
                 Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
                 comando.ExecuteNonQuery()
                 MsgBox("Ruta Actualizada", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 TxTOrigenUp.Text = "Corporativo LUIN"
                 TxTKilometrosUp.Text = ""
-                TxTTTrayectoUp.Text = ""
+                NDHorasUp.Value = 0
+                NDMinutosUp.Value = 0
                 TxTTOKAUp.Text = ""
                 TxTFegaliUp.Text = ""
-                LCombustibleUp.Text = ""
                 Window.Close()
+                conexionDB.Close()
+                conexionDB.Dispose()
+                P_UpRuta.Location = New Point(260, 681)
             Else
                 MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
             End If
@@ -343,6 +349,8 @@ Public Class ClassRegistrosData
             While reader.Read
                 Componente.AddBoldedDate(reader.GetString(0))
             End While
+            conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ShowDatePDF")
         End Try
@@ -359,6 +367,7 @@ Public Class ClassRegistrosData
             adap.Fill(dsDatos)
             Return dsDatos
             conexionDB.Close()
+            conexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ShowHoursPDF")
         End Try
@@ -393,6 +402,8 @@ Public Class ClassRegistrosData
                 Dim RutaArchivo As String = SFDRutaPDF.FileName
                 File.WriteAllBytes(RutaArchivo, PDF)
             End If
+            ConexionDB.Close()
+            ConexionDB.Dispose()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN | OBTENER")
         End Try

@@ -134,6 +134,10 @@ Partial Class WinRegistros
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.BtnNewRuta = New System.Windows.Forms.Button()
         Me.Panel26 = New System.Windows.Forms.Panel()
+        Me.NDMinutos = New System.Windows.Forms.NumericUpDown()
+        Me.Label52 = New System.Windows.Forms.Label()
+        Me.Label51 = New System.Windows.Forms.Label()
+        Me.NDHoras = New System.Windows.Forms.NumericUpDown()
         Me.PBoxFegali = New System.Windows.Forms.PictureBox()
         Me.PBoxToka = New System.Windows.Forms.PictureBox()
         Me.Label48 = New System.Windows.Forms.Label()
@@ -142,15 +146,11 @@ Partial Class WinRegistros
         Me.TxtToka = New System.Windows.Forms.TextBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
-        Me.TxtTTrayecto = New System.Windows.Forms.MaskedTextBox()
-        Me.LCombustible = New System.Windows.Forms.Label()
-        Me.Label42 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.CmbDestino = New System.Windows.Forms.ComboBox()
         Me.TxTOrigen = New System.Windows.Forms.TextBox()
         Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label25 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Label28 = New System.Windows.Forms.Label()
@@ -162,14 +162,14 @@ Partial Class WinRegistros
         Me.Panel30 = New System.Windows.Forms.Panel()
         Me.BtnActualizarRuta = New System.Windows.Forms.Button()
         Me.Panel31 = New System.Windows.Forms.Panel()
-        Me.TxTTTrayectoUp = New System.Windows.Forms.MaskedTextBox()
+        Me.NDMinutosUp = New System.Windows.Forms.NumericUpDown()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.NDHorasUp = New System.Windows.Forms.NumericUpDown()
         Me.Label49 = New System.Windows.Forms.Label()
         Me.Label47 = New System.Windows.Forms.Label()
         Me.Label46 = New System.Windows.Forms.Label()
         Me.LDestinoUp = New System.Windows.Forms.Label()
-        Me.LCombustibleUp = New System.Windows.Forms.Label()
-        Me.Label44 = New System.Windows.Forms.Label()
-        Me.Label45 = New System.Windows.Forms.Label()
         Me.TxTFegaliUp = New System.Windows.Forms.TextBox()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.TxTTOKAUp = New System.Windows.Forms.TextBox()
@@ -251,6 +251,8 @@ Partial Class WinRegistros
         Me.Panel16.SuspendLayout()
         Me.Panel21.SuspendLayout()
         Me.Panel26.SuspendLayout()
+        CType(Me.NDMinutos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NDHoras, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxFegali, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxToka, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel27.SuspendLayout()
@@ -258,6 +260,8 @@ Partial Class WinRegistros
         Me.Panel29.SuspendLayout()
         Me.Panel30.SuspendLayout()
         Me.Panel31.SuspendLayout()
+        CType(Me.NDMinutosUp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NDHorasUp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel32.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.PLastPDF.SuspendLayout()
@@ -301,7 +305,7 @@ Partial Class WinRegistros
         Me.BtnClienteClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnClienteClose.Name = "BtnClienteClose"
         Me.BtnClienteClose.Size = New System.Drawing.Size(15, 15)
-        Me.BtnClienteClose.TabIndex = 1
+        Me.BtnClienteClose.TabIndex = 4
         Me.BtnClienteClose.UseVisualStyleBackColor = True
         '
         'P_Button
@@ -435,7 +439,7 @@ Partial Class WinRegistros
         Me.BtnChoferClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnChoferClose.Name = "BtnChoferClose"
         Me.BtnChoferClose.Size = New System.Drawing.Size(15, 15)
-        Me.BtnChoferClose.TabIndex = 2
+        Me.BtnChoferClose.TabIndex = 4
         Me.BtnChoferClose.UseVisualStyleBackColor = True
         '
         'P_ButtonCH
@@ -580,7 +584,7 @@ Partial Class WinRegistros
         Me.BtnUnidadClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnUnidadClose.Name = "BtnUnidadClose"
         Me.BtnUnidadClose.Size = New System.Drawing.Size(15, 15)
-        Me.BtnUnidadClose.TabIndex = 1
+        Me.BtnUnidadClose.TabIndex = 5
         Me.BtnUnidadClose.UseVisualStyleBackColor = True
         '
         'Panel3
@@ -737,7 +741,7 @@ Partial Class WinRegistros
         Me.BtnCasetaClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnCasetaClose.Name = "BtnCasetaClose"
         Me.BtnCasetaClose.Size = New System.Drawing.Size(15, 15)
-        Me.BtnCasetaClose.TabIndex = 1
+        Me.BtnCasetaClose.TabIndex = 3
         Me.BtnCasetaClose.UseVisualStyleBackColor = True
         '
         'Panel8
@@ -848,7 +852,7 @@ Partial Class WinRegistros
         Me.BtnCCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnCCloseUp.Name = "BtnCCloseUp"
         Me.BtnCCloseUp.Size = New System.Drawing.Size(15, 15)
-        Me.BtnCCloseUp.TabIndex = 1
+        Me.BtnCCloseUp.TabIndex = 5
         Me.BtnCCloseUp.UseVisualStyleBackColor = True
         '
         'Panel6
@@ -1027,7 +1031,7 @@ Partial Class WinRegistros
         Me.BtnCHCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnCHCloseUp.Name = "BtnCHCloseUp"
         Me.BtnCHCloseUp.Size = New System.Drawing.Size(15, 15)
-        Me.BtnCHCloseUp.TabIndex = 1
+        Me.BtnCHCloseUp.TabIndex = 5
         Me.BtnCHCloseUp.UseVisualStyleBackColor = True
         '
         'Panel13
@@ -1184,7 +1188,7 @@ Partial Class WinRegistros
         Me.BtnUCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnUCloseUp.Name = "BtnUCloseUp"
         Me.BtnUCloseUp.Size = New System.Drawing.Size(15, 15)
-        Me.BtnUCloseUp.TabIndex = 1
+        Me.BtnUCloseUp.TabIndex = 5
         Me.BtnUCloseUp.UseVisualStyleBackColor = True
         '
         'Panel18
@@ -1341,7 +1345,7 @@ Partial Class WinRegistros
         Me.BtnCasetaCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnCasetaCloseUp.Name = "BtnCasetaCloseUp"
         Me.BtnCasetaCloseUp.Size = New System.Drawing.Size(15, 15)
-        Me.BtnCasetaCloseUp.TabIndex = 1
+        Me.BtnCasetaCloseUp.TabIndex = 3
         Me.BtnCasetaCloseUp.UseVisualStyleBackColor = True
         '
         'Panel23
@@ -1466,7 +1470,7 @@ Partial Class WinRegistros
         Me.BtnRutaNClose.Location = New System.Drawing.Point(213, 3)
         Me.BtnRutaNClose.Name = "BtnRutaNClose"
         Me.BtnRutaNClose.Size = New System.Drawing.Size(15, 15)
-        Me.BtnRutaNClose.TabIndex = 1
+        Me.BtnRutaNClose.TabIndex = 9
         Me.BtnRutaNClose.UseVisualStyleBackColor = True
         '
         'Panel21
@@ -1489,7 +1493,7 @@ Partial Class WinRegistros
         Me.BtnNewRuta.Location = New System.Drawing.Point(0, 0)
         Me.BtnNewRuta.Name = "BtnNewRuta"
         Me.BtnNewRuta.Size = New System.Drawing.Size(241, 36)
-        Me.BtnNewRuta.TabIndex = 7
+        Me.BtnNewRuta.TabIndex = 8
         Me.BtnNewRuta.Text = "REGISTRAR"
         Me.BtnNewRuta.UseVisualStyleBackColor = False
         '
@@ -1497,6 +1501,10 @@ Partial Class WinRegistros
         '
         Me.Panel26.BackColor = System.Drawing.Color.White
         Me.Panel26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel26.Controls.Add(Me.NDMinutos)
+        Me.Panel26.Controls.Add(Me.Label52)
+        Me.Panel26.Controls.Add(Me.Label51)
+        Me.Panel26.Controls.Add(Me.NDHoras)
         Me.Panel26.Controls.Add(Me.PBoxFegali)
         Me.Panel26.Controls.Add(Me.PBoxToka)
         Me.Panel26.Controls.Add(Me.Label48)
@@ -1505,15 +1513,11 @@ Partial Class WinRegistros
         Me.Panel26.Controls.Add(Me.TxtToka)
         Me.Panel26.Controls.Add(Me.Label43)
         Me.Panel26.Controls.Add(Me.Label36)
-        Me.Panel26.Controls.Add(Me.TxtTTrayecto)
-        Me.Panel26.Controls.Add(Me.LCombustible)
-        Me.Panel26.Controls.Add(Me.Label42)
         Me.Panel26.Controls.Add(Me.Label31)
         Me.Panel26.Controls.Add(Me.Label33)
         Me.Panel26.Controls.Add(Me.CmbDestino)
         Me.Panel26.Controls.Add(Me.TxTOrigen)
         Me.Panel26.Controls.Add(Me.Label32)
-        Me.Panel26.Controls.Add(Me.Label25)
         Me.Panel26.Controls.Add(Me.Label30)
         Me.Panel26.Controls.Add(Me.Label26)
         Me.Panel26.Controls.Add(Me.Label28)
@@ -1522,11 +1526,51 @@ Partial Class WinRegistros
         Me.Panel26.Size = New System.Drawing.Size(241, 213)
         Me.Panel26.TabIndex = 4
         '
+        'NDMinutos
+        '
+        Me.NDMinutos.BackColor = System.Drawing.SystemColors.Control
+        Me.NDMinutos.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.NDMinutos.Location = New System.Drawing.Point(173, 105)
+        Me.NDMinutos.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.NDMinutos.Name = "NDMinutos"
+        Me.NDMinutos.Size = New System.Drawing.Size(36, 16)
+        Me.NDMinutos.TabIndex = 5
+        Me.NDMinutos.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label52
+        '
+        Me.Label52.AutoSize = True
+        Me.Label52.Location = New System.Drawing.Point(206, 105)
+        Me.Label52.Name = "Label52"
+        Me.Label52.Size = New System.Drawing.Size(27, 13)
+        Me.Label52.TabIndex = 42
+        Me.Label52.Text = "MIN"
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.Location = New System.Drawing.Point(145, 105)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(30, 13)
+        Me.Label51.TabIndex = 41
+        Me.Label51.Text = "HRS"
+        '
+        'NDHoras
+        '
+        Me.NDHoras.BackColor = System.Drawing.SystemColors.Control
+        Me.NDHoras.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.NDHoras.Location = New System.Drawing.Point(112, 105)
+        Me.NDHoras.Maximum = New Decimal(New Integer() {24, 0, 0, 0})
+        Me.NDHoras.Name = "NDHoras"
+        Me.NDHoras.Size = New System.Drawing.Size(36, 16)
+        Me.NDHoras.TabIndex = 4
+        Me.NDHoras.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
         'PBoxFegali
         '
         Me.PBoxFegali.BackgroundImage = CType(resources.GetObject("PBoxFegali.BackgroundImage"), System.Drawing.Image)
         Me.PBoxFegali.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PBoxFegali.Location = New System.Drawing.Point(208, 117)
+        Me.PBoxFegali.Location = New System.Drawing.Point(208, 144)
         Me.PBoxFegali.Name = "PBoxFegali"
         Me.PBoxFegali.Size = New System.Drawing.Size(15, 15)
         Me.PBoxFegali.TabIndex = 39
@@ -1536,7 +1580,7 @@ Partial Class WinRegistros
         '
         Me.PBoxToka.BackgroundImage = CType(resources.GetObject("PBoxToka.BackgroundImage"), System.Drawing.Image)
         Me.PBoxToka.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PBoxToka.Location = New System.Drawing.Point(15, 117)
+        Me.PBoxToka.Location = New System.Drawing.Point(15, 144)
         Me.PBoxToka.Name = "PBoxToka"
         Me.PBoxToka.Size = New System.Drawing.Size(15, 15)
         Me.PBoxToka.TabIndex = 38
@@ -1545,7 +1589,7 @@ Partial Class WinRegistros
         'Label48
         '
         Me.Label48.AutoSize = True
-        Me.Label48.Location = New System.Drawing.Point(85, 88)
+        Me.Label48.Location = New System.Drawing.Point(85, 106)
         Me.Label48.Name = "Label48"
         Me.Label48.Size = New System.Drawing.Size(23, 13)
         Me.Label48.TabIndex = 28
@@ -1555,7 +1599,7 @@ Partial Class WinRegistros
         '
         Me.TxtKilometros.BackColor = System.Drawing.SystemColors.Control
         Me.TxtKilometros.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxtKilometros.Location = New System.Drawing.Point(15, 89)
+        Me.TxtKilometros.Location = New System.Drawing.Point(15, 107)
         Me.TxtKilometros.Name = "TxtKilometros"
         Me.TxtKilometros.Size = New System.Drawing.Size(70, 13)
         Me.TxtKilometros.TabIndex = 3
@@ -1565,26 +1609,26 @@ Partial Class WinRegistros
         '
         Me.TxtFegali.BackColor = System.Drawing.SystemColors.Control
         Me.TxtFegali.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxtFegali.Location = New System.Drawing.Point(123, 139)
+        Me.TxtFegali.Location = New System.Drawing.Point(123, 166)
         Me.TxtFegali.Name = "TxtFegali"
         Me.TxtFegali.Size = New System.Drawing.Size(70, 13)
-        Me.TxtFegali.TabIndex = 6
+        Me.TxtFegali.TabIndex = 7
         Me.TxtFegali.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'TxtToka
         '
         Me.TxtToka.BackColor = System.Drawing.SystemColors.Control
         Me.TxtToka.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxtToka.Location = New System.Drawing.Point(15, 139)
+        Me.TxtToka.Location = New System.Drawing.Point(15, 166)
         Me.TxtToka.Name = "TxtToka"
         Me.TxtToka.Size = New System.Drawing.Size(70, 13)
-        Me.TxtToka.TabIndex = 5
+        Me.TxtToka.TabIndex = 6
         Me.TxtToka.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label43
         '
         Me.Label43.AutoSize = True
-        Me.Label43.Location = New System.Drawing.Point(193, 138)
+        Me.Label43.Location = New System.Drawing.Point(193, 165)
         Me.Label43.Name = "Label43"
         Me.Label43.Size = New System.Drawing.Size(27, 13)
         Me.Label43.TabIndex = 24
@@ -1593,45 +1637,16 @@ Partial Class WinRegistros
         'Label36
         '
         Me.Label36.AutoSize = True
-        Me.Label36.Location = New System.Drawing.Point(85, 139)
+        Me.Label36.Location = New System.Drawing.Point(85, 166)
         Me.Label36.Name = "Label36"
         Me.Label36.Size = New System.Drawing.Size(27, 13)
         Me.Label36.TabIndex = 23
         Me.Label36.Text = "LTS"
         '
-        'TxtTTrayecto
-        '
-        Me.TxtTTrayecto.BackColor = System.Drawing.SystemColors.Control
-        Me.TxtTTrayecto.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxtTTrayecto.Location = New System.Drawing.Point(123, 89)
-        Me.TxtTTrayecto.Mask = "## h ##min"
-        Me.TxtTTrayecto.Name = "TxtTTrayecto"
-        Me.TxtTTrayecto.Size = New System.Drawing.Size(100, 13)
-        Me.TxtTTrayecto.TabIndex = 4
-        Me.TxtTTrayecto.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'LCombustible
-        '
-        Me.LCombustible.AutoSize = True
-        Me.LCombustible.Location = New System.Drawing.Point(15, 184)
-        Me.LCombustible.Name = "LCombustible"
-        Me.LCombustible.Size = New System.Drawing.Size(28, 13)
-        Me.LCombustible.TabIndex = 22
-        Me.LCombustible.Text = "0.00"
-        '
-        'Label42
-        '
-        Me.Label42.AutoSize = True
-        Me.Label42.Location = New System.Drawing.Point(42, 184)
-        Me.Label42.Name = "Label42"
-        Me.Label42.Size = New System.Drawing.Size(27, 13)
-        Me.Label42.TabIndex = 21
-        Me.Label42.Text = "LTS"
-        '
         'Label31
         '
         Me.Label31.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.Location = New System.Drawing.Point(158, 116)
+        Me.Label31.Location = New System.Drawing.Point(158, 143)
         Me.Label31.Name = "Label31"
         Me.Label31.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Label31.Size = New System.Drawing.Size(50, 15)
@@ -1643,7 +1658,7 @@ Partial Class WinRegistros
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(30, 117)
+        Me.Label33.Location = New System.Drawing.Point(30, 144)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(38, 15)
         Me.Label33.TabIndex = 17
@@ -1655,7 +1670,7 @@ Partial Class WinRegistros
         Me.CmbDestino.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbDestino.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbDestino.FormattingEnabled = True
-        Me.CmbDestino.Location = New System.Drawing.Point(15, 43)
+        Me.CmbDestino.Location = New System.Drawing.Point(15, 50)
         Me.CmbDestino.Name = "CmbDestino"
         Me.CmbDestino.Size = New System.Drawing.Size(208, 21)
         Me.CmbDestino.TabIndex = 2
@@ -1681,22 +1696,11 @@ Partial Class WinRegistros
         Me.Label32.TabIndex = 13
         Me.Label32.Text = "Origen:"
         '
-        'Label25
-        '
-        Me.Label25.AutoSize = True
-        Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(12, 166)
-        Me.Label25.Name = "Label25"
-        Me.Label25.Size = New System.Drawing.Size(123, 15)
-        Me.Label25.TabIndex = 9
-        Me.Label25.Text = "Total Combustible"
-        Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'Label30
         '
         Me.Label30.AutoSize = True
         Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(118, 67)
+        Me.Label30.Location = New System.Drawing.Point(118, 85)
         Me.Label30.Name = "Label30"
         Me.Label30.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Label30.Size = New System.Drawing.Size(109, 15)
@@ -1708,7 +1712,7 @@ Partial Class WinRegistros
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(12, 68)
+        Me.Label26.Location = New System.Drawing.Point(12, 86)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(76, 15)
         Me.Label26.TabIndex = 2
@@ -1718,7 +1722,7 @@ Partial Class WinRegistros
         '
         Me.Label28.AutoSize = True
         Me.Label28.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label28.Location = New System.Drawing.Point(12, 25)
+        Me.Label28.Location = New System.Drawing.Point(12, 32)
         Me.Label28.Name = "Label28"
         Me.Label28.Size = New System.Drawing.Size(56, 15)
         Me.Label28.TabIndex = 0
@@ -1777,7 +1781,7 @@ Partial Class WinRegistros
         Me.BtnRutaCloseUp.Location = New System.Drawing.Point(213, 3)
         Me.BtnRutaCloseUp.Name = "BtnRutaCloseUp"
         Me.BtnRutaCloseUp.Size = New System.Drawing.Size(15, 15)
-        Me.BtnRutaCloseUp.TabIndex = 1
+        Me.BtnRutaCloseUp.TabIndex = 8
         Me.BtnRutaCloseUp.UseVisualStyleBackColor = True
         '
         'Panel30
@@ -1800,7 +1804,7 @@ Partial Class WinRegistros
         Me.BtnActualizarRuta.Location = New System.Drawing.Point(0, 0)
         Me.BtnActualizarRuta.Name = "BtnActualizarRuta"
         Me.BtnActualizarRuta.Size = New System.Drawing.Size(241, 36)
-        Me.BtnActualizarRuta.TabIndex = 6
+        Me.BtnActualizarRuta.TabIndex = 7
         Me.BtnActualizarRuta.Text = "ACTUALIZAR"
         Me.BtnActualizarRuta.UseVisualStyleBackColor = False
         '
@@ -1808,14 +1812,14 @@ Partial Class WinRegistros
         '
         Me.Panel31.BackColor = System.Drawing.Color.White
         Me.Panel31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel31.Controls.Add(Me.TxTTTrayectoUp)
+        Me.Panel31.Controls.Add(Me.NDMinutosUp)
+        Me.Panel31.Controls.Add(Me.Label25)
+        Me.Panel31.Controls.Add(Me.Label42)
+        Me.Panel31.Controls.Add(Me.NDHorasUp)
         Me.Panel31.Controls.Add(Me.Label49)
         Me.Panel31.Controls.Add(Me.Label47)
         Me.Panel31.Controls.Add(Me.Label46)
         Me.Panel31.Controls.Add(Me.LDestinoUp)
-        Me.Panel31.Controls.Add(Me.LCombustibleUp)
-        Me.Panel31.Controls.Add(Me.Label44)
-        Me.Panel31.Controls.Add(Me.Label45)
         Me.Panel31.Controls.Add(Me.TxTFegaliUp)
         Me.Panel31.Controls.Add(Me.Label35)
         Me.Panel31.Controls.Add(Me.TxTTOKAUp)
@@ -1831,21 +1835,50 @@ Partial Class WinRegistros
         Me.Panel31.Size = New System.Drawing.Size(241, 213)
         Me.Panel31.TabIndex = 4
         '
-        'TxTTTrayectoUp
+        'NDMinutosUp
         '
-        Me.TxTTTrayectoUp.BackColor = System.Drawing.SystemColors.Control
-        Me.TxTTTrayectoUp.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxTTTrayectoUp.Location = New System.Drawing.Point(123, 83)
-        Me.TxTTTrayectoUp.Mask = "## h ##min"
-        Me.TxTTTrayectoUp.Name = "TxTTTrayectoUp"
-        Me.TxTTTrayectoUp.Size = New System.Drawing.Size(100, 13)
-        Me.TxTTTrayectoUp.TabIndex = 3
-        Me.TxTTTrayectoUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.NDMinutosUp.BackColor = System.Drawing.SystemColors.Control
+        Me.NDMinutosUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.NDMinutosUp.Location = New System.Drawing.Point(166, 100)
+        Me.NDMinutosUp.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.NDMinutosUp.Name = "NDMinutosUp"
+        Me.NDMinutosUp.Size = New System.Drawing.Size(36, 16)
+        Me.NDMinutosUp.TabIndex = 4
+        Me.NDMinutosUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Location = New System.Drawing.Point(199, 100)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(27, 13)
+        Me.Label25.TabIndex = 46
+        Me.Label25.Text = "MIN"
+        '
+        'Label42
+        '
+        Me.Label42.AutoSize = True
+        Me.Label42.Location = New System.Drawing.Point(149, 100)
+        Me.Label42.Name = "Label42"
+        Me.Label42.Size = New System.Drawing.Size(15, 13)
+        Me.Label42.TabIndex = 45
+        Me.Label42.Text = "H"
+        '
+        'NDHorasUp
+        '
+        Me.NDHorasUp.BackColor = System.Drawing.SystemColors.Control
+        Me.NDHorasUp.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.NDHorasUp.Location = New System.Drawing.Point(116, 100)
+        Me.NDHorasUp.Maximum = New Decimal(New Integer() {24, 0, 0, 0})
+        Me.NDHorasUp.Name = "NDHorasUp"
+        Me.NDHorasUp.Size = New System.Drawing.Size(36, 16)
+        Me.NDHorasUp.TabIndex = 3
+        Me.NDHorasUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label49
         '
         Me.Label49.AutoSize = True
-        Me.Label49.Location = New System.Drawing.Point(85, 83)
+        Me.Label49.Location = New System.Drawing.Point(85, 100)
         Me.Label49.Name = "Label49"
         Me.Label49.Size = New System.Drawing.Size(23, 13)
         Me.Label49.TabIndex = 29
@@ -1854,7 +1887,7 @@ Partial Class WinRegistros
         'Label47
         '
         Me.Label47.AutoSize = True
-        Me.Label47.Location = New System.Drawing.Point(193, 135)
+        Me.Label47.Location = New System.Drawing.Point(193, 165)
         Me.Label47.Name = "Label47"
         Me.Label47.Size = New System.Drawing.Size(27, 13)
         Me.Label47.TabIndex = 28
@@ -1863,7 +1896,7 @@ Partial Class WinRegistros
         'Label46
         '
         Me.Label46.AutoSize = True
-        Me.Label46.Location = New System.Drawing.Point(85, 135)
+        Me.Label46.Location = New System.Drawing.Point(85, 166)
         Me.Label46.Name = "Label46"
         Me.Label46.Size = New System.Drawing.Size(27, 13)
         Me.Label46.TabIndex = 27
@@ -1872,55 +1905,26 @@ Partial Class WinRegistros
         'LDestinoUp
         '
         Me.LDestinoUp.AutoSize = True
-        Me.LDestinoUp.Location = New System.Drawing.Point(74, 34)
+        Me.LDestinoUp.Location = New System.Drawing.Point(74, 43)
         Me.LDestinoUp.Name = "LDestinoUp"
         Me.LDestinoUp.Size = New System.Drawing.Size(89, 13)
         Me.LDestinoUp.TabIndex = 26
         Me.LDestinoUp.Text = "Corporativo LUIN"
         '
-        'LCombustibleUp
-        '
-        Me.LCombustibleUp.AutoSize = True
-        Me.LCombustibleUp.Location = New System.Drawing.Point(15, 184)
-        Me.LCombustibleUp.Name = "LCombustibleUp"
-        Me.LCombustibleUp.Size = New System.Drawing.Size(28, 13)
-        Me.LCombustibleUp.TabIndex = 25
-        Me.LCombustibleUp.Text = "0.00"
-        '
-        'Label44
-        '
-        Me.Label44.AutoSize = True
-        Me.Label44.Location = New System.Drawing.Point(42, 184)
-        Me.Label44.Name = "Label44"
-        Me.Label44.Size = New System.Drawing.Size(27, 13)
-        Me.Label44.TabIndex = 24
-        Me.Label44.Text = "LTS"
-        '
-        'Label45
-        '
-        Me.Label45.AutoSize = True
-        Me.Label45.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label45.Location = New System.Drawing.Point(15, 166)
-        Me.Label45.Name = "Label45"
-        Me.Label45.Size = New System.Drawing.Size(123, 15)
-        Me.Label45.TabIndex = 23
-        Me.Label45.Text = "Total Combustible"
-        Me.Label45.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'TxTFegaliUp
         '
         Me.TxTFegaliUp.BackColor = System.Drawing.SystemColors.Control
         Me.TxTFegaliUp.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxTFegaliUp.Location = New System.Drawing.Point(123, 135)
+        Me.TxTFegaliUp.Location = New System.Drawing.Point(123, 166)
         Me.TxTFegaliUp.Name = "TxTFegaliUp"
         Me.TxTFegaliUp.Size = New System.Drawing.Size(70, 13)
-        Me.TxTFegaliUp.TabIndex = 5
+        Me.TxTFegaliUp.TabIndex = 6
         Me.TxTFegaliUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label35
         '
         Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label35.Location = New System.Drawing.Point(114, 113)
+        Me.Label35.Location = New System.Drawing.Point(114, 144)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(109, 15)
         Me.Label35.TabIndex = 20
@@ -1931,17 +1935,17 @@ Partial Class WinRegistros
         '
         Me.TxTTOKAUp.BackColor = System.Drawing.SystemColors.Control
         Me.TxTTOKAUp.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxTTOKAUp.Location = New System.Drawing.Point(15, 135)
+        Me.TxTTOKAUp.Location = New System.Drawing.Point(15, 166)
         Me.TxTTOKAUp.Name = "TxTTOKAUp"
         Me.TxTTOKAUp.Size = New System.Drawing.Size(70, 13)
-        Me.TxTTOKAUp.TabIndex = 4
+        Me.TxTTOKAUp.TabIndex = 5
         Me.TxTTOKAUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Label41
         '
         Me.Label41.AutoSize = True
         Me.Label41.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label41.Location = New System.Drawing.Point(12, 113)
+        Me.Label41.Location = New System.Drawing.Point(12, 144)
         Me.Label41.Name = "Label41"
         Me.Label41.Size = New System.Drawing.Size(38, 15)
         Me.Label41.TabIndex = 18
@@ -1971,7 +1975,7 @@ Partial Class WinRegistros
         'Label37
         '
         Me.Label37.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.Location = New System.Drawing.Point(115, 61)
+        Me.Label37.Location = New System.Drawing.Point(115, 78)
         Me.Label37.Name = "Label37"
         Me.Label37.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.Label37.Size = New System.Drawing.Size(114, 15)
@@ -1983,7 +1987,7 @@ Partial Class WinRegistros
         '
         Me.TxTKilometrosUp.BackColor = System.Drawing.SystemColors.Control
         Me.TxTKilometrosUp.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TxTKilometrosUp.Location = New System.Drawing.Point(15, 83)
+        Me.TxTKilometrosUp.Location = New System.Drawing.Point(15, 100)
         Me.TxTKilometrosUp.Name = "TxTKilometrosUp"
         Me.TxTKilometrosUp.Size = New System.Drawing.Size(70, 13)
         Me.TxTKilometrosUp.TabIndex = 2
@@ -1993,7 +1997,7 @@ Partial Class WinRegistros
         '
         Me.Label38.AutoSize = True
         Me.Label38.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label38.Location = New System.Drawing.Point(12, 61)
+        Me.Label38.Location = New System.Drawing.Point(12, 78)
         Me.Label38.Name = "Label38"
         Me.Label38.Size = New System.Drawing.Size(76, 15)
         Me.Label38.TabIndex = 2
@@ -2003,7 +2007,7 @@ Partial Class WinRegistros
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(12, 32)
+        Me.Label39.Location = New System.Drawing.Point(12, 41)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(60, 15)
         Me.Label39.TabIndex = 0
@@ -2147,7 +2151,7 @@ Partial Class WinRegistros
         Me.BtnLastPDFClose.Location = New System.Drawing.Point(473, 3)
         Me.BtnLastPDFClose.Name = "BtnLastPDFClose"
         Me.BtnLastPDFClose.Size = New System.Drawing.Size(15, 15)
-        Me.BtnLastPDFClose.TabIndex = 1
+        Me.BtnLastPDFClose.TabIndex = 4
         Me.BtnLastPDFClose.UseVisualStyleBackColor = True
         '
         'Panel33
@@ -2384,6 +2388,8 @@ Partial Class WinRegistros
         Me.Panel21.ResumeLayout(False)
         Me.Panel26.ResumeLayout(False)
         Me.Panel26.PerformLayout()
+        CType(Me.NDMinutos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NDHoras, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBoxFegali, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBoxToka, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel27.ResumeLayout(False)
@@ -2392,6 +2398,8 @@ Partial Class WinRegistros
         Me.Panel30.ResumeLayout(False)
         Me.Panel31.ResumeLayout(False)
         Me.Panel31.PerformLayout()
+        CType(Me.NDMinutosUp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NDHorasUp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel32.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
@@ -2515,7 +2523,6 @@ Partial Class WinRegistros
     Friend WithEvents Panel21 As Panel
     Friend WithEvents BtnNewRuta As Button
     Friend WithEvents Panel26 As Panel
-    Friend WithEvents Label25 As Label
     Friend WithEvents Label30 As Label
     Friend WithEvents Label26 As Label
     Friend WithEvents Label28 As Label
@@ -2545,19 +2552,13 @@ Partial Class WinRegistros
     Friend WithEvents LIDCliente As Label
     Friend WithEvents LUpRuta As Label
     Friend WithEvents LIDClienteUp As Label
-    Friend WithEvents LCombustible As Label
-    Friend WithEvents Label42 As Label
     Friend WithEvents Label31 As Label
     Friend WithEvents Label33 As Label
-    Friend WithEvents LCombustibleUp As Label
-    Friend WithEvents Label44 As Label
-    Friend WithEvents Label45 As Label
     Friend WithEvents TxTFegaliUp As TextBox
     Friend WithEvents Label35 As Label
     Friend WithEvents TxTTOKAUp As TextBox
     Friend WithEvents Label41 As Label
     Friend WithEvents LDestinoUp As Label
-    Friend WithEvents TxtTTrayecto As MaskedTextBox
     Friend WithEvents TxTTelefonoCH As MaskedTextBox
     Friend WithEvents TxTTelefonoCHUp As MaskedTextBox
     Friend WithEvents Label43 As Label
@@ -2568,7 +2569,6 @@ Partial Class WinRegistros
     Friend WithEvents Label46 As Label
     Friend WithEvents TxtKilometros As TextBox
     Friend WithEvents Label48 As Label
-    Friend WithEvents TxTTTrayectoUp As MaskedTextBox
     Friend WithEvents Label49 As Label
     Friend WithEvents PBoxFegali As PictureBox
     Friend WithEvents PBoxToka As PictureBox
@@ -2589,4 +2589,12 @@ Partial Class WinRegistros
     Friend WithEvents CalendarLastPDF As MonthCalendar
     Friend WithEvents Label50 As Label
     Friend WithEvents DTGLastPDF As DataGridView
+    Friend WithEvents NDHoras As NumericUpDown
+    Friend WithEvents Label52 As Label
+    Friend WithEvents Label51 As Label
+    Friend WithEvents NDMinutos As NumericUpDown
+    Friend WithEvents NDMinutosUp As NumericUpDown
+    Friend WithEvents Label25 As Label
+    Friend WithEvents Label42 As Label
+    Friend WithEvents NDHorasUp As NumericUpDown
 End Class

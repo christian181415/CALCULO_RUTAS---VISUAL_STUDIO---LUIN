@@ -132,7 +132,6 @@ Public Class ClassCasetasData
                     conexionDB.Close()
                     conexionDB.Dispose()
                     Window.Close()
-                    Window.Dispose()
                     P_CasetaRuta.Location = New Point(726, 0)
                     MsgBox("Casetas asignadas", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
                 End If
@@ -224,7 +223,6 @@ Public Class ClassCasetasData
                     conexionDB.Close()
                     conexionDB.Dispose()
                     Window.Close()
-                    Window.Dispose()
                 Else
                     MsgBox("Asigne las casetas correspondientes a la ruta para poder continuar", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
                 End If

@@ -56,7 +56,7 @@ Public Class PDF
                     cb.ShowTextAligned(Element.ALIGN_LEFT, "Destino: ", 50, 595, 0)
                     cb.ShowTextAligned(Element.ALIGN_CENTER, L_Ruta_Destino, 350, 596, 0)
                     cb.ShowTextAligned(Element.ALIGN_LEFT, "Kilometros: ", 50, 575, 0)
-                    cb.ShowTextAligned(Element.ALIGN_CENTER, LKilometrosPDF & " Km", 215, 576, 0)
+                    cb.ShowTextAligned(Element.ALIGN_CENTER, LKilometrosPDF & " KM", 215, 576, 0)
                     cb.ShowTextAligned(Element.ALIGN_LEFT, "Tiempo trayecto: ", 50, 555, 0)
                     cb.ShowTextAligned(Element.ALIGN_CENTER, LTiempoTrayectoPDF, 215, 556, 0)
                     cb.ShowTextAligned(Element.ALIGN_LEFT, "Kilometraje inicial: ", 50, 535, 0)
@@ -68,7 +68,7 @@ Public Class PDF
 
                     cb.ShowTextAligned(Element.ALIGN_LEFT, "Efectivo total: ", 310, 575, 0)
                     cb.ShowTextAligned(Element.ALIGN_CENTER, "$ " & LEfectivoTotal, 510, 576, 0)
-                    cb.ShowTextAligned(Element.ALIGN_LEFT, "Combustible Proyectado: ", 310, 555, 0)
+                    cb.ShowTextAligned(Element.ALIGN_LEFT, "Combustible TOKA Proyectado: ", 310, 555, 0)
                     cb.ShowTextAligned(Element.ALIGN_CENTER, "$ " & Total_Combustible, 510, 556, 0)
                     cb.ShowTextAligned(Element.ALIGN_LEFT, "Costo Casetas: ", 310, 535, 0)
                     cb.ShowTextAligned(Element.ALIGN_CENTER, "$ " & Total_Casetas, 510, 536, 0)

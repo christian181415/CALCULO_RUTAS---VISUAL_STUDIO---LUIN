@@ -162,27 +162,24 @@ Public Class ClassPrincipalData
             'MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarTotalCasetas")
         End Try
     End Function
-    Public Function MostrarCombustible(CMB_Vehiculo As ComboBox, L_Ruta_Destino As Label, Total_Combustible As Label, TxTCostoCombustible As TextBox)
+    Public Function MostrarCombustible(CMB_Vehiculo As ComboBox, L_Ruta_Destino As Label, TxTCostoCombustible As TextBox, LToka As Label, LFegali As Label)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Dim command As OleDbCommand
         Try
-            Dim consulta As String = "SELECT Litros_Combustible FROM Casetas " &
-                                     "INNER JOIN (((Clientes " &
-                                        "INNER JOIN Rutas ON Clientes.IdCliente = Rutas.Cliente_ID) " &
-                                        "INNER JOIN InfoRutas ON Rutas.IdRuta = InfoRutas.Ruta_ID) " &
-                                        "INNER JOIN Unidades ON InfoRutas.Unidad_ID = Unidades.IdUnidad) " &
-                                     "ON Casetas.IdCaseta = InfoRutas.Caseta_ID " &
-                                     "WHERE Clientes.Domicilio = '" & L_Ruta_Destino.Text & "' " &
-                                     "AND Unidades.Vehiculo = '" & CMB_Vehiculo.Text & "' AND Status = True " &
-                                     "GROUP BY Litros_Combustible;"
+            Dim consulta As String = "SELECT TOKA, FEGALI FROM (Clientes " &
+                                    "INNER JOIN Rutas ON Clientes.IdCliente = Rutas.Cliente_ID) " &
+                                    "INNER JOIN (Unidades " &
+                                    "INNER JOIN InfoRutas ON Unidades.IdUnidad = InfoRutas.Unidad_ID) " &
+                                    "ON Rutas.IdRuta = InfoRutas.Ruta_ID " &
+                                    "WHERE Clientes.Domicilio = '" & L_Ruta_Destino.Text & "' " &
+                                    " And Unidades.Vehiculo = '" & CMB_Vehiculo.Text & "' AND Status = true " &
+                                    "GROUP BY TOKA, FEGALI;"
             command = New OleDbCommand(consulta, conexionDB)
             conexionDB.Open()
             Dim reader As OleDbDataReader = command.ExecuteReader()
             If reader.Read() Then
-                Dim Combustible, PrecioCombustible As Double
-                Combustible = reader.GetDouble(0)
-                PrecioCombustible = TruncateDecimal((Combustible * TxTCostoCombustible.Text) * 2, 2)
-                Total_Combustible.Text = PrecioCombustible
+                LToka.Text = reader.GetDouble(0) * TxTCostoCombustible.Text
+                LFegali.Text = reader.GetDouble(1) * TxTCostoCombustible.Text
             End If
             reader.Close()
             conexionDB.Close()
@@ -218,9 +215,8 @@ Public Class ClassPrincipalData
             MsgBox(ex.Message)
         End Try
     End Function
-    Public Function MostrarDatosBusqueda(Total_Casetas As Label, Total_Combustible As Label, L_Ruta_Destino As Label, CMB_Vehiculo As ComboBox, L_Desgloce_Casetas As ListBox, TxTCostoCombustible As TextBox, LKilometrosPDF As Label, LTiempoTrayectoPDF As Label)
+    Public Function MostrarDatosBusqueda(Total_Casetas As Label, L_Ruta_Destino As Label, CMB_Vehiculo As ComboBox, L_Desgloce_Casetas As ListBox, TxTCostoCombustible As TextBox, LKilometrosPDF As Label, LTiempoTrayectoPDF As Label, LToka As Label, LFegali As Label)
         Total_Casetas.Text = "0.00"
-        Total_Combustible.Text = "0.00"
 
         If L_Ruta_Destino.Text <> "Corporativo LUIN" And CMB_Vehiculo.Text <> String.Empty Then
             Dim dtCasetas As DataTable = MostrarCasetas(CMB_Vehiculo, L_Ruta_Destino)
@@ -230,11 +226,10 @@ Public Class ClassPrincipalData
 
         If L_Ruta_Destino.Text <> "Corporativo LUIN" And CMB_Vehiculo.Text <> String.Empty And TxTCostoCombustible.Text <> String.Empty Then
             MostrarTotalCasetas(CMB_Vehiculo, L_Ruta_Destino, Total_Casetas)
-            MostrarCombustible(CMB_Vehiculo, L_Ruta_Destino, Total_Combustible, TxTCostoCombustible)
+            MostrarCombustible(CMB_Vehiculo, L_Ruta_Destino, TxTCostoCombustible, LToka, LFegali)
             MostrarKlmTimeT(CMB_Vehiculo, L_Ruta_Destino, LKilometrosPDF, LTiempoTrayectoPDF)
         Else
             Total_Casetas.Text = "0.00"
-            Total_Combustible.Text = "0.00"
         End If
     End Function
 #End Region

@@ -94,6 +94,7 @@ Public Class WinCasetas
     Private Sub BtnCasetaRutaClose_Click(sender As Object, e As EventArgs) Handles BtnCasetaRutaClose.Click
         Activador = 0
         Me.Close()
+        Me.Dispose()
         WinPrincipal.Opacity = 1
     End Sub
     Private Sub PBoxWeb_Click(sender As Object, e As EventArgs) Handles PBoxWeb.Click
@@ -144,6 +145,7 @@ Public Class WinCasetas
     Private Sub BtnCasetaRutaCloseUp_Click(sender As Object, e As EventArgs) Handles BtnCasetaRutaCloseUp.Click
         Activador = 0
         Me.Close()
+        Me.Dispose()
         WinPrincipal.Opacity = 1
     End Sub
 
@@ -164,6 +166,13 @@ Public Class WinCasetas
     Private Sub PBoxInfoCasetasUp_Click(sender As Object, e As EventArgs) Handles PBoxInfoCasetasUp.Click
         Dim Texto As String = "• Selecciona el destino y el chofer para poder asignar casetas." & Chr(10) & "• Para seleccionar una caseta da doble clic en el nombre de la caseta a elegir." & Chr(10) & "• Para descartar una caseta da doble clic en el nombre de la caseta elegida"
         ClassToolTip.Show("5", "SeleccionCaseta.png", Texto, 250, 250)
+    End Sub
+
+    Private Sub DTGCasetaSelect_KeyPress(sender As Object, e As KeyPressEventArgs) Handles DTGCasetaSelect.KeyPress
+        MsgBox(DTGCasetaSelect.CurrentCell.ColumnIndex)
+        If Not (Char.IsControl(e.KeyChar) OrElse Char.IsDigit(e.KeyChar)) AndAlso (Not e.KeyChar = ".") Then
+            e.Handled = True
+        End If
     End Sub
 
 

@@ -29,7 +29,7 @@
         TimerAcciones.Start()
         TimerInfoDB.Start()
         'LIMPIA LOS COMPONENTES PARA INICIAR EN BLANCO
-        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, Total_Combustible, CBox_Alimentos)
+        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, CBox_Alimentos)
     End Sub
 
     Private Sub PBoxAlertIcon_MouseHover_1(sender As Object, e As EventArgs) Handles PBoxAlertIcon.MouseHover
@@ -131,7 +131,7 @@
             CMB_Vehiculo.DisplayMember = "Vehiculo"
 
             NewConsultaP.MostrarRutas(LRuta, L_Ruta_Destino, CMB_Cliente)
-            NewConsultaP.MostrarDatosBusqueda(Total_Casetas, Total_Combustible, L_Ruta_Destino, CMB_Vehiculo, L_Desgloce_Casetas, TxTCostoCombustible, LKilometrosPDF, LTiempoTrayectoPDF)
+            NewConsultaP.MostrarDatosBusqueda(Total_Casetas, L_Ruta_Destino, CMB_Vehiculo, L_Desgloce_Casetas, TxTCostoCombustible, LKilometrosPDF, LTiempoTrayectoPDF, LToka, LFegali)
         End If
     End Sub
     Private Sub CMB_Chofer_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMB_Chofer.SelectedIndexChanged
@@ -141,16 +141,16 @@
             CMB_Vehiculo.DisplayMember = "Vehiculo"
 
             NewConsultaP.MostrarRutas(LRuta, L_Ruta_Destino, CMB_Cliente)
-            NewConsultaP.MostrarDatosBusqueda(Total_Casetas, Total_Combustible, L_Ruta_Destino, CMB_Vehiculo, L_Desgloce_Casetas, TxTCostoCombustible, LKilometrosPDF, LTiempoTrayectoPDF)
+            NewConsultaP.MostrarDatosBusqueda(Total_Casetas, L_Ruta_Destino, CMB_Vehiculo, L_Desgloce_Casetas, TxTCostoCombustible, LKilometrosPDF, LTiempoTrayectoPDF, LToka, LFegali)
         End If
     End Sub
     Private Sub CMB_Vehiculo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMB_Vehiculo.SelectedIndexChanged
-        NewConsultaP.MostrarDatosBusqueda(Total_Casetas, Total_Combustible, L_Ruta_Destino, CMB_Vehiculo, L_Desgloce_Casetas, TxTCostoCombustible, LKilometrosPDF, LTiempoTrayectoPDF)
+        NewConsultaP.MostrarDatosBusqueda(Total_Casetas, L_Ruta_Destino, CMB_Vehiculo, L_Desgloce_Casetas, TxTCostoCombustible, LKilometrosPDF, LTiempoTrayectoPDF, LToka, LFegali)
     End Sub
     'FUNCION DEL COMBUSTIBLE
     Private Sub TxTCostoCombustible_TextChanged(sender As Object, e As EventArgs) Handles TxTCostoCombustible.TextChanged
         If L_Ruta_Destino.Text <> String.Empty And CMB_Vehiculo.Text <> String.Empty And TxTCostoCombustible.Text <> String.Empty Then
-            NewConsultaP.MostrarCombustible(CMB_Vehiculo, L_Ruta_Destino, Total_Combustible, TxTCostoCombustible)
+            NewConsultaP.MostrarCombustible(CMB_Vehiculo, L_Ruta_Destino, TxTCostoCombustible, LToka, LFegali)
         End If
     End Sub
     Private Sub TxTCostoCombustible_MouseClick(sender As Object, e As MouseEventArgs) Handles TxTCostoCombustible.MouseClick
@@ -158,14 +158,14 @@
     End Sub
     Private Sub TxTCostoCombustible_Leave(sender As Object, e As EventArgs) Handles TxTCostoCombustible.Leave
         If TxTCostoCombustible.Text = String.Empty Then
-            Total_Combustible.Text = "$ 0.00"
+            LToka.Text = "$ 0.00"
             TxTCostoCombustible.Text = My.Settings.CostoCombustible
             My.Settings.Save()
         End If
     End Sub
     Private Sub TxTCostoCombustible_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TxTCostoCombustible.KeyPress
         If Not (Char.IsControl(e.KeyChar) OrElse Char.IsDigit(e.KeyChar)) _
-            AndAlso (Not e.KeyChar = "." Or TxTTOKA.Text.Contains(".")) Then
+            AndAlso (Not e.KeyChar = "." Or TxTCostoCombustible.Text.Contains(".")) Then
             e.Handled = True
         End If
     End Sub
@@ -206,22 +206,24 @@
 #Region "-------------------------------------------------------PANEL PRINCIPAL (OPCIONES EXTRA)-----------------------------------------------------"
     'BOTON PARA LIMPIAR LOS COMPONENTES 
     Private Sub BTN_Limpiar_Click(sender As Object, e As EventArgs) Handles BTN_Limpiar.Click
-        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, Total_Combustible, CBox_Alimentos)
+        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, CBox_Alimentos)
     End Sub
     'BOTON PARA SALIR DEL SISTEMA
     Private Sub BTN_Salir_Click(sender As Object, e As EventArgs) Handles BTN_Salir.Click
-        Application.Exit()
-        My.Settings.CostoCombustible = TxTCostoCombustible.Text
+        If MsgBox("¿Desea salir del sistema?", MsgBoxStyle.Question Or vbYesNo, "Corporativo LUIN") = MsgBoxResult.Yes Then
+            Application.Exit()
+            My.Settings.CostoCombustible = TxTCostoCombustible.Text
+        End If
     End Sub
     'BOTON PARA GENERAR UN PDF
     Private Sub PBoxPDF_Click(sender As Object, e As EventArgs) Handles PBoxPDF.Click
         Try
             If CMB_Cliente.Text <> String.Empty And CMB_Chofer.Text <> String.Empty And CMB_Vehiculo.Text <> String.Empty And L_Ruta_Destino.Text <> "Corporativo LUIN" Then
                 Dim NuevoPDF As PDF = New PDF()
-                NuevoPDF.GenerarPDF(SFDialogPDF, DTP_Fecha.Text, CMB_Cliente.Text, CMB_Vehiculo.Text, L_Ruta_Destino.Text, TXT_Notas.Text, Total_Combustible.Text, LEfectivoTotal.Text, Total_Casetas.Text, L_Desgloce_Casetas, LKilometrosPDF.Text, LTiempoTrayectoPDF.Text)
+                NuevoPDF.GenerarPDF(SFDialogPDF, DTP_Fecha.Text, CMB_Cliente.Text, CMB_Vehiculo.Text, L_Ruta_Destino.Text, TXT_Notas.Text, LToka.Text, LEfectivoTotal.Text, Total_Casetas.Text, L_Desgloce_Casetas, LKilometrosPDF.Text, LTiempoTrayectoPDF.Text)
                 Dim RutaArchivo As String = SFDialogPDF.FileName
                 NewConsultaP.RegistrarBitacora(RutaArchivo, CMB_Cliente.Text)
-                NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, Total_Combustible, CBox_Alimentos)
+                NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, CBox_Alimentos)
                 SFDialogPDF.Dispose()
             Else
                 MsgBox("Faltan campos por rellenar.", MsgBoxStyle.Information, "Información | Corporativo LUIN | Generar PDF")
@@ -363,7 +365,7 @@
 #Region "-------------------------------------------------------FUNCIONES PARA CREAR, ACTUALIZAR Y ELIMINAR LAS RUTAS-----------------------------------------------------"
     Private Sub CMB_Rutas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CMB_Rutas.SelectedIndexChanged
         If CMB_Rutas.Text <> String.Empty Then
-            NewConsultaC.MostrarDatosRuta(CMB_Rutas, TxTOrigen, TxTDestino, TxTKilometros, TxTTiempoTrayecto, TxTTOKA, TxTFegali, TxTCombustible, LIDRuta)
+            NewConsultaC.MostrarDatosRuta(CMB_Rutas, TxTOrigen, TxTDestino, TxTKilometros, TxTTiempoTrayecto, TxTTOKA, TxTFegali, LIDRuta)
         End If
     End Sub
     Private Sub CMB_Rutas_MouseClick(sender As Object, e As MouseEventArgs) Handles CMB_Rutas.MouseClick

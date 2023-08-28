@@ -32,6 +32,10 @@ Partial Class WinPrincipal
         Me.PBoxLastPDF = New System.Windows.Forms.PictureBox()
         Me.PBoxConfiguracion = New System.Windows.Forms.PictureBox()
         Me.P_InfoDestino = New System.Windows.Forms.Panel()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.LFegali = New System.Windows.Forms.Label()
         Me.LEfectivoTotal = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
@@ -53,7 +57,7 @@ Partial Class WinPrincipal
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label25 = New System.Windows.Forms.Label()
-        Me.Total_Combustible = New System.Windows.Forms.Label()
+        Me.LToka = New System.Windows.Forms.Label()
         Me.BTN_Salir = New System.Windows.Forms.Button()
         Me.P_Destino = New System.Windows.Forms.Panel()
         Me.LOrigenBit = New System.Windows.Forms.Label()
@@ -103,8 +107,6 @@ Partial Class WinPrincipal
         Me.Rutas = New System.Windows.Forms.TabPage()
         Me.TxTDestino = New System.Windows.Forms.Label()
         Me.Label39 = New System.Windows.Forms.Label()
-        Me.TxTCombustible = New System.Windows.Forms.Label()
-        Me.Label37 = New System.Windows.Forms.Label()
         Me.TxTFegali = New System.Windows.Forms.Label()
         Me.Label35 = New System.Windows.Forms.Label()
         Me.BtnEliminarRuta = New System.Windows.Forms.Button()
@@ -149,6 +151,7 @@ Partial Class WinPrincipal
         CType(Me.PBoxLastPDF, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxConfiguracion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_InfoDestino.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxEfectivo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxPrecioCombustible, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBoxCombustible, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -257,6 +260,10 @@ Partial Class WinPrincipal
         '
         'P_InfoDestino
         '
+        Me.P_InfoDestino.Controls.Add(Me.Label34)
+        Me.P_InfoDestino.Controls.Add(Me.PictureBox1)
+        Me.P_InfoDestino.Controls.Add(Me.Label36)
+        Me.P_InfoDestino.Controls.Add(Me.LFegali)
         Me.P_InfoDestino.Controls.Add(Me.LEfectivoTotal)
         Me.P_InfoDestino.Controls.Add(Me.Label33)
         Me.P_InfoDestino.Controls.Add(Me.Label29)
@@ -278,17 +285,57 @@ Partial Class WinPrincipal
         Me.P_InfoDestino.Controls.Add(Me.Label14)
         Me.P_InfoDestino.Controls.Add(Me.Label11)
         Me.P_InfoDestino.Controls.Add(Me.Label25)
-        Me.P_InfoDestino.Controls.Add(Me.Total_Combustible)
+        Me.P_InfoDestino.Controls.Add(Me.LToka)
         Me.P_InfoDestino.Location = New System.Drawing.Point(261, 26)
         Me.P_InfoDestino.Name = "P_InfoDestino"
         Me.P_InfoDestino.Size = New System.Drawing.Size(270, 270)
         Me.P_InfoDestino.TabIndex = 32
         '
+        'Label34
+        '
+        Me.Label34.AutoSize = True
+        Me.Label34.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(191, 227)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(13, 13)
+        Me.Label34.TabIndex = 61
+        Me.Label34.Text = "$"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.BackgroundImage = CType(resources.GetObject("PictureBox1.BackgroundImage"), System.Drawing.Image)
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox1.Location = New System.Drawing.Point(20, 225)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(15, 15)
+        Me.PictureBox1.TabIndex = 60
+        Me.PictureBox1.TabStop = False
+        '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label36.Location = New System.Drawing.Point(34, 227)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(121, 13)
+        Me.Label36.TabIndex = 58
+        Me.Label36.Text = "Proyección FEGALI:"
+        '
+        'LFegali
+        '
+        Me.LFegali.AutoSize = True
+        Me.LFegali.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LFegali.Location = New System.Drawing.Point(201, 227)
+        Me.LFegali.Name = "LFegali"
+        Me.LFegali.Size = New System.Drawing.Size(28, 13)
+        Me.LFegali.TabIndex = 59
+        Me.LFegali.Text = "0.00"
+        '
         'LEfectivoTotal
         '
         Me.LEfectivoTotal.AutoSize = True
         Me.LEfectivoTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LEfectivoTotal.Location = New System.Drawing.Point(201, 204)
+        Me.LEfectivoTotal.Location = New System.Drawing.Point(201, 184)
         Me.LEfectivoTotal.Name = "LEfectivoTotal"
         Me.LEfectivoTotal.Size = New System.Drawing.Size(28, 13)
         Me.LEfectivoTotal.TabIndex = 57
@@ -298,7 +345,7 @@ Partial Class WinPrincipal
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(34, 204)
+        Me.Label33.Location = New System.Drawing.Point(34, 184)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(87, 13)
         Me.Label33.TabIndex = 56
@@ -308,7 +355,7 @@ Partial Class WinPrincipal
         '
         Me.Label29.AutoSize = True
         Me.Label29.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label29.Location = New System.Drawing.Point(191, 204)
+        Me.Label29.Location = New System.Drawing.Point(191, 184)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(13, 13)
         Me.Label29.TabIndex = 55
@@ -318,7 +365,7 @@ Partial Class WinPrincipal
         '
         Me.PBoxEfectivo.BackgroundImage = CType(resources.GetObject("PBoxEfectivo.BackgroundImage"), System.Drawing.Image)
         Me.PBoxEfectivo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PBoxEfectivo.Location = New System.Drawing.Point(20, 202)
+        Me.PBoxEfectivo.Location = New System.Drawing.Point(20, 182)
         Me.PBoxEfectivo.Name = "PBoxEfectivo"
         Me.PBoxEfectivo.Size = New System.Drawing.Size(15, 15)
         Me.PBoxEfectivo.TabIndex = 54
@@ -328,7 +375,7 @@ Partial Class WinPrincipal
         '
         Me.Label30.AutoSize = True
         Me.Label30.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.Location = New System.Drawing.Point(191, 182)
+        Me.Label30.Location = New System.Drawing.Point(191, 162)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(13, 13)
         Me.Label30.TabIndex = 52
@@ -338,7 +385,7 @@ Partial Class WinPrincipal
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(191, 226)
+        Me.Label23.Location = New System.Drawing.Point(191, 206)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(13, 13)
         Me.Label23.TabIndex = 51
@@ -348,7 +395,7 @@ Partial Class WinPrincipal
         '
         Me.LKilometrosPDF.AutoSize = True
         Me.LKilometrosPDF.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.LKilometrosPDF.Location = New System.Drawing.Point(172, 167)
+        Me.LKilometrosPDF.Location = New System.Drawing.Point(172, 147)
         Me.LKilometrosPDF.Name = "LKilometrosPDF"
         Me.LKilometrosPDF.Size = New System.Drawing.Size(82, 13)
         Me.LKilometrosPDF.TabIndex = 47
@@ -359,7 +406,7 @@ Partial Class WinPrincipal
         '
         Me.LTiempoTrayectoPDF.AutoSize = True
         Me.LTiempoTrayectoPDF.ForeColor = System.Drawing.SystemColors.ControlDark
-        Me.LTiempoTrayectoPDF.Location = New System.Drawing.Point(17, 167)
+        Me.LTiempoTrayectoPDF.Location = New System.Drawing.Point(17, 147)
         Me.LTiempoTrayectoPDF.Name = "LTiempoTrayectoPDF"
         Me.LTiempoTrayectoPDF.Size = New System.Drawing.Size(111, 13)
         Me.LTiempoTrayectoPDF.TabIndex = 48
@@ -398,7 +445,7 @@ Partial Class WinPrincipal
         '
         Me.PBoxCombustible.BackgroundImage = CType(resources.GetObject("PBoxCombustible.BackgroundImage"), System.Drawing.Image)
         Me.PBoxCombustible.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PBoxCombustible.Location = New System.Drawing.Point(20, 224)
+        Me.PBoxCombustible.Location = New System.Drawing.Point(20, 204)
         Me.PBoxCombustible.Name = "PBoxCombustible"
         Me.PBoxCombustible.Size = New System.Drawing.Size(15, 15)
         Me.PBoxCombustible.TabIndex = 36
@@ -408,7 +455,7 @@ Partial Class WinPrincipal
         '
         Me.PBoxCasetas.BackgroundImage = CType(resources.GetObject("PBoxCasetas.BackgroundImage"), System.Drawing.Image)
         Me.PBoxCasetas.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PBoxCasetas.Location = New System.Drawing.Point(20, 180)
+        Me.PBoxCasetas.Location = New System.Drawing.Point(20, 160)
         Me.PBoxCasetas.Name = "PBoxCasetas"
         Me.PBoxCasetas.Size = New System.Drawing.Size(15, 15)
         Me.PBoxCasetas.TabIndex = 34
@@ -454,14 +501,14 @@ Partial Class WinPrincipal
         Me.L_Desgloce_Casetas.Location = New System.Drawing.Point(19, 46)
         Me.L_Desgloce_Casetas.Name = "L_Desgloce_Casetas"
         Me.L_Desgloce_Casetas.SelectionMode = System.Windows.Forms.SelectionMode.None
-        Me.L_Desgloce_Casetas.Size = New System.Drawing.Size(235, 117)
+        Me.L_Desgloce_Casetas.Size = New System.Drawing.Size(235, 104)
         Me.L_Desgloce_Casetas.TabIndex = 11
         '
         'Total_Casetas
         '
         Me.Total_Casetas.AutoSize = True
         Me.Total_Casetas.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Total_Casetas.Location = New System.Drawing.Point(201, 182)
+        Me.Total_Casetas.Location = New System.Drawing.Point(201, 162)
         Me.Total_Casetas.Name = "Total_Casetas"
         Me.Total_Casetas.Size = New System.Drawing.Size(28, 13)
         Me.Total_Casetas.TabIndex = 28
@@ -471,11 +518,11 @@ Partial Class WinPrincipal
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(34, 226)
+        Me.Label14.Location = New System.Drawing.Point(34, 206)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(145, 13)
+        Me.Label14.Size = New System.Drawing.Size(111, 13)
         Me.Label14.TabIndex = 18
-        Me.Label14.Text = "Proyección combustible:"
+        Me.Label14.Text = "Proyección TOKA:"
         '
         'Label11
         '
@@ -491,21 +538,21 @@ Partial Class WinPrincipal
         '
         Me.Label25.AutoSize = True
         Me.Label25.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label25.Location = New System.Drawing.Point(34, 182)
+        Me.Label25.Location = New System.Drawing.Point(34, 162)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(91, 13)
         Me.Label25.TabIndex = 27
         Me.Label25.Text = "Costo casetas:"
         '
-        'Total_Combustible
+        'LToka
         '
-        Me.Total_Combustible.AutoSize = True
-        Me.Total_Combustible.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Total_Combustible.Location = New System.Drawing.Point(201, 226)
-        Me.Total_Combustible.Name = "Total_Combustible"
-        Me.Total_Combustible.Size = New System.Drawing.Size(28, 13)
-        Me.Total_Combustible.TabIndex = 24
-        Me.Total_Combustible.Text = "0.00"
+        Me.LToka.AutoSize = True
+        Me.LToka.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LToka.Location = New System.Drawing.Point(201, 206)
+        Me.LToka.Name = "LToka"
+        Me.LToka.Size = New System.Drawing.Size(28, 13)
+        Me.LToka.TabIndex = 24
+        Me.LToka.Text = "0.00"
         '
         'BTN_Salir
         '
@@ -1038,8 +1085,6 @@ Partial Class WinPrincipal
         Me.Rutas.BackColor = System.Drawing.Color.White
         Me.Rutas.Controls.Add(Me.TxTDestino)
         Me.Rutas.Controls.Add(Me.Label39)
-        Me.Rutas.Controls.Add(Me.TxTCombustible)
-        Me.Rutas.Controls.Add(Me.Label37)
         Me.Rutas.Controls.Add(Me.TxTFegali)
         Me.Rutas.Controls.Add(Me.Label35)
         Me.Rutas.Controls.Add(Me.BtnEliminarRuta)
@@ -1066,7 +1111,7 @@ Partial Class WinPrincipal
         'TxTDestino
         '
         Me.TxTDestino.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTDestino.Location = New System.Drawing.Point(6, 131)
+        Me.TxTDestino.Location = New System.Drawing.Point(6, 139)
         Me.TxTDestino.Name = "TxTDestino"
         Me.TxTDestino.Size = New System.Drawing.Size(155, 19)
         Me.TxTDestino.TabIndex = 58
@@ -1076,35 +1121,16 @@ Partial Class WinPrincipal
         '
         Me.Label39.AutoSize = True
         Me.Label39.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label39.Location = New System.Drawing.Point(6, 118)
+        Me.Label39.Location = New System.Drawing.Point(6, 126)
         Me.Label39.Name = "Label39"
         Me.Label39.Size = New System.Drawing.Size(50, 13)
         Me.Label39.TabIndex = 57
         Me.Label39.Text = "Destino"
         '
-        'TxTCombustible
-        '
-        Me.TxTCombustible.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTCombustible.Location = New System.Drawing.Point(6, 352)
-        Me.TxTCombustible.Name = "TxTCombustible"
-        Me.TxTCombustible.Size = New System.Drawing.Size(155, 19)
-        Me.TxTCombustible.TabIndex = 56
-        Me.TxTCombustible.Text = "0.00 LTS"
-        '
-        'Label37
-        '
-        Me.Label37.AutoSize = True
-        Me.Label37.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label37.Location = New System.Drawing.Point(6, 339)
-        Me.Label37.Name = "Label37"
-        Me.Label37.Size = New System.Drawing.Size(108, 13)
-        Me.Label37.TabIndex = 55
-        Me.Label37.Text = "Combustible Total"
-        '
         'TxTFegali
         '
         Me.TxTFegali.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTFegali.Location = New System.Drawing.Point(6, 308)
+        Me.TxTFegali.Location = New System.Drawing.Point(6, 336)
         Me.TxTFegali.Name = "TxTFegali"
         Me.TxTFegali.Size = New System.Drawing.Size(155, 19)
         Me.TxTFegali.TabIndex = 54
@@ -1114,7 +1140,7 @@ Partial Class WinPrincipal
         '
         Me.Label35.AutoSize = True
         Me.Label35.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label35.Location = New System.Drawing.Point(6, 295)
+        Me.Label35.Location = New System.Drawing.Point(6, 323)
         Me.Label35.Name = "Label35"
         Me.Label35.Size = New System.Drawing.Size(113, 13)
         Me.Label35.TabIndex = 53
@@ -1148,7 +1174,7 @@ Partial Class WinPrincipal
         'TxTTOKA
         '
         Me.TxTTOKA.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTTOKA.Location = New System.Drawing.Point(6, 264)
+        Me.TxTTOKA.Location = New System.Drawing.Point(6, 287)
         Me.TxTTOKA.Name = "TxTTOKA"
         Me.TxTTOKA.Size = New System.Drawing.Size(155, 19)
         Me.TxTTOKA.TabIndex = 49
@@ -1157,7 +1183,7 @@ Partial Class WinPrincipal
         'TxTTiempoTrayecto
         '
         Me.TxTTiempoTrayecto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTTiempoTrayecto.Location = New System.Drawing.Point(6, 220)
+        Me.TxTTiempoTrayecto.Location = New System.Drawing.Point(6, 238)
         Me.TxTTiempoTrayecto.Name = "TxTTiempoTrayecto"
         Me.TxTTiempoTrayecto.Size = New System.Drawing.Size(155, 19)
         Me.TxTTiempoTrayecto.TabIndex = 48
@@ -1166,7 +1192,7 @@ Partial Class WinPrincipal
         'TxTKilometros
         '
         Me.TxTKilometros.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTKilometros.Location = New System.Drawing.Point(6, 174)
+        Me.TxTKilometros.Location = New System.Drawing.Point(6, 187)
         Me.TxTKilometros.Name = "TxTKilometros"
         Me.TxTKilometros.Size = New System.Drawing.Size(155, 19)
         Me.TxTKilometros.TabIndex = 47
@@ -1175,7 +1201,7 @@ Partial Class WinPrincipal
         'TxTOrigen
         '
         Me.TxTOrigen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTOrigen.Location = New System.Drawing.Point(6, 88)
+        Me.TxTOrigen.Location = New System.Drawing.Point(6, 91)
         Me.TxTOrigen.Name = "TxTOrigen"
         Me.TxTOrigen.Size = New System.Drawing.Size(155, 19)
         Me.TxTOrigen.TabIndex = 46
@@ -1185,7 +1211,7 @@ Partial Class WinPrincipal
         '
         Me.Label21.AutoSize = True
         Me.Label21.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label21.Location = New System.Drawing.Point(6, 251)
+        Me.Label21.Location = New System.Drawing.Point(6, 274)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(112, 13)
         Me.Label21.TabIndex = 44
@@ -1195,7 +1221,7 @@ Partial Class WinPrincipal
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(6, 205)
+        Me.Label19.Location = New System.Drawing.Point(6, 223)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(98, 13)
         Me.Label19.TabIndex = 42
@@ -1205,7 +1231,7 @@ Partial Class WinPrincipal
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label15.Location = New System.Drawing.Point(6, 75)
+        Me.Label15.Location = New System.Drawing.Point(6, 78)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(44, 13)
         Me.Label15.TabIndex = 40
@@ -1228,7 +1254,7 @@ Partial Class WinPrincipal
         '
         Me.Label27.AutoSize = True
         Me.Label27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(6, 161)
+        Me.Label27.Location = New System.Drawing.Point(6, 174)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(65, 13)
         Me.Label27.TabIndex = 36
@@ -1520,6 +1546,7 @@ Partial Class WinPrincipal
         CType(Me.PBoxConfiguracion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.P_InfoDestino.ResumeLayout(False)
         Me.P_InfoDestino.PerformLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBoxEfectivo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBoxPrecioCombustible, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBoxCombustible, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1575,7 +1602,7 @@ Partial Class WinPrincipal
     Friend WithEvents BTN_Limpiar As Button
     Friend WithEvents Label16 As Label
     Friend WithEvents E_Alimentos As TextBox
-    Friend WithEvents Total_Combustible As Label
+    Friend WithEvents LToka As Label
     Friend WithEvents P_Cofiguracion As Panel
     Friend WithEvents Configura As TabControl
     Friend WithEvents Consultas As TabPage
@@ -1662,12 +1689,14 @@ Partial Class WinPrincipal
     Friend WithEvents Label32 As Label
     Friend WithEvents LEfectivoTotal As Label
     Friend WithEvents Label33 As Label
-    Friend WithEvents TxTCombustible As Label
-    Friend WithEvents Label37 As Label
     Friend WithEvents TxTFegali As Label
     Friend WithEvents Label35 As Label
     Friend WithEvents TxTDestino As Label
     Friend WithEvents Label39 As Label
     Friend WithEvents PBoxLastPDF As PictureBox
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label34 As Label
+    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents Label36 As Label
+    Friend WithEvents LFegali As Label
 End Class
