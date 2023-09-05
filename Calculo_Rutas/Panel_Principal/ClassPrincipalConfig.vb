@@ -14,7 +14,7 @@ Public Class ClassPrincipalConfig
 #Region "---------------------------------------------------------------PANEL PRINCIPAL (PDF)---------------------------------------------------------------"
     Public Function LastPDF(Panel As String, Form As Form)
         Try
-            Form.Opacity = 0.6
+            Form.Opacity = 0.1
             FormAC.LLastPDF.Text = Panel
             FormAC.ShowDialog()
         Catch ex As Exception
@@ -46,7 +46,7 @@ Public Class ClassPrincipalConfig
     'CREAR UN NUEVO REGISTRO EN ALGUN CATALOGO (REGISTER)
     Public Function NewCatalogo(CMB_Directorio As ComboBox, Form As Form)
         Try
-            Form.Opacity = 0.6
+            Form.Opacity = 0.1
             FormAC.LInfoTabla.Text = CMB_Directorio.Text
             FormAC.ShowDialog()
         Catch ex As Exception
@@ -57,7 +57,7 @@ Public Class ClassPrincipalConfig
     Public Function ObtenerCatalogo(CMB_Directorio As ComboBox, Lista_Catalago As ListBox, Form As Form)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
-            Form.Opacity = 0.6
+            Form.Opacity = 0.1
             Dim Item As DataRowView = Lista_Catalago.SelectedItem
             Dim CatalogoSelect As DataRow = Item.Row
 
@@ -279,7 +279,7 @@ Public Class ClassPrincipalConfig
     'CREAR UN NUEVO REGISTRO DE RUTA
     Public Function NewRuta(Form As Form)
         Try
-            Form.Opacity = 0.6
+            Form.Opacity = 0.1
             FormAC.LNewRuta.Text = "NuevaRuta"
             FormAC.StartPosition = FormStartPosition.CenterScreen
             FormAC.ShowDialog()
@@ -293,7 +293,7 @@ Public Class ClassPrincipalConfig
         Dim Cadena As String
         Dim TrayectoSplit As String()
         Try
-            Form.Opacity = 0.6
+            Form.Opacity = 0.1
             Dim consulta As String = "SELECT * FROM Rutas WHERE IdRuta = " & LIDRuta.Text & ";"
             Dim comando As OleDbCommand = New OleDbCommand(consulta)
             comando.Connection = conexionDB
@@ -466,7 +466,7 @@ Public Class ClassPrincipalConfig
 #Region "CREAR UNA NUEVA RUTA-CASETA"
     Public Function NewCasetaRuta(Form As Form)
         Try
-            Form.Opacity = 0.6
+            Form.Opacity = 0.1
             Dim Activador As Integer = 1
             Do
                 Dim FormCasetas01 As WinCasetas = New WinCasetas
@@ -480,7 +480,7 @@ Public Class ClassPrincipalConfig
     End Function
     Public Function ActualizarCasetaRuta(LRutaID As Label, LVehiculoID As Label, Form As Form)
         Try
-            Form.Opacity = 0.6
+            Form.Opacity = 0.1
             Dim ActivadorUp As Integer = 1
             Do
                 Dim FormCasetas02 As WinCasetas = New WinCasetas

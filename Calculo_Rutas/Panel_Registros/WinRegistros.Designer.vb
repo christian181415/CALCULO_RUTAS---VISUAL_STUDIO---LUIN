@@ -2227,7 +2227,9 @@ Partial Class WinRegistros
         Me.DTGLastPDF.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DTGLastPDF.ColumnHeadersVisible = False
         Me.DTGLastPDF.Location = New System.Drawing.Point(261, 43)
+        Me.DTGLastPDF.MultiSelect = False
         Me.DTGLastPDF.Name = "DTGLastPDF"
+        Me.DTGLastPDF.ReadOnly = True
         Me.DTGLastPDF.RowHeadersVisible = False
         Me.DTGLastPDF.Size = New System.Drawing.Size(230, 161)
         Me.DTGLastPDF.TabIndex = 2

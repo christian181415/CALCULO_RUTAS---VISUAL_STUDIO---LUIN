@@ -85,10 +85,9 @@ Public Class WinCasetas
     End Sub
     'BOTON PARA REGISTRAR LA INFORMACION
     Private Sub BtnNewCasetaRuta_Click(sender As Object, e As EventArgs) Handles BtnNewCasetaRuta.Click
-        NewConfig.RegistrarCasetaCR(CmbCRDestino, CmbCRVehiculo, DTGCasetaSelect, Me, LImporte, LIDRutaC, LIDCaseta, LIDVehiculo, P_CasetaRuta)
+        NewConfig.RegistrarCasetaCR(CmbCRDestino, CmbCRVehiculo, DTGCasetaSelect, Me, LIDRutaC, LIDVehiculo, P_CasetaRuta)
         Activador = 0
         LNewCaseta.Text = ""
-        WinPrincipal.Opacity = 1
     End Sub
     'BOTON PARA CERRAR EL FORMULARIO ACTUAL
     Private Sub BtnCasetaRutaClose_Click(sender As Object, e As EventArgs) Handles BtnCasetaRutaClose.Click
@@ -136,11 +135,9 @@ Public Class WinCasetas
         End If
     End Sub
     Private Sub BtnUpCasetaRuta_Click(sender As Object, e As EventArgs) Handles BtnUpCasetaRuta.Click
-        NewConfig.ActualizarCaseta_Ruta(LIDRutaUp, LIDVehiculoUp, DTGCasetaSelectUp, LIDCasetaUp, LImporteUp, Me)
+        NewConfig.ActualizarCaseta_Ruta(LIDRutaUp, LIDVehiculoUp, DTGCasetaSelectUp, Me, P_UpCasetaRuta)
         Activador = 0
         LUpdateCaseta.Text = ""
-        P_UpCasetaRuta.Location = New Point(726, 470)
-        WinPrincipal.Opacity = 1
     End Sub
     Private Sub BtnCasetaRutaCloseUp_Click(sender As Object, e As EventArgs) Handles BtnCasetaRutaCloseUp.Click
         Activador = 0
@@ -168,13 +165,31 @@ Public Class WinCasetas
         ClassToolTip.Show("5", "SeleccionCaseta.png", Texto, 250, 250)
     End Sub
 
-    Private Sub DTGCasetaSelect_KeyPress(sender As Object, e As KeyPressEventArgs) Handles DTGCasetaSelect.KeyPress
-        MsgBox(DTGCasetaSelect.CurrentCell.ColumnIndex)
+
+    Private Sub DTGCasetaSelect_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles DTGCasetaSelect.EditingControlShowing
+        Try
+            RemoveHandler e.Control.KeyPress, AddressOf KeyNumber
+            AddHandler e.Control.KeyPress, AddressOf KeyNumber
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN")
+        End Try
+    End Sub
+    Private Sub DTGCasetaSelectUp_EditingControlShowing(sender As Object, e As DataGridViewEditingControlShowingEventArgs) Handles DTGCasetaSelectUp.EditingControlShowing
+        Try
+            RemoveHandler e.Control.KeyPress, AddressOf KeyNumber
+            AddHandler e.Control.KeyPress, AddressOf KeyNumber
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN")
+        End Try
+    End Sub
+
+    Sub KeyNumber(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If Not (Char.IsControl(e.KeyChar) OrElse Char.IsDigit(e.KeyChar)) AndAlso (Not e.KeyChar = ".") Then
             e.Handled = True
         End If
     End Sub
-
 
 #End Region
 End Class

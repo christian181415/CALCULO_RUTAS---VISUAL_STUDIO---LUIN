@@ -13,7 +13,7 @@
         NewGIF.ReverseAtEnd = False
         TimerErrorAlert.Enabled = True
         'VALIDA LA CONEXION A BASE DE DATOS
-        NewConsultaP.ValidarConexionP(PBoxAlertIcon, P_Chofer, P_GastosDestino, P_Cofiguracion, PBoxConfiguracion, DTP_Fecha, LFecha, TimerErrorAlert)
+        NewConsultaP.ValidarConexionP(PBoxAlertIcon, P_Chofer, P_GastosDestino, P_Cofiguracion, PBoxConfiguracion, PBoxLastPDF, DTP_Fecha, LFecha, TimerErrorAlert)
         'MUESTRA LA INFORMACION
         Dim dtRutas As DataTable = NewConsultaC.MostrarRutas()
         CMB_Rutas.DataSource = dtRutas
@@ -29,7 +29,7 @@
         TimerAcciones.Start()
         TimerInfoDB.Start()
         'LIMPIA LOS COMPONENTES PARA INICIAR EN BLANCO
-        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, CBox_Alimentos)
+        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, LFegali, CBox_Alimentos)
     End Sub
 
     Private Sub PBoxAlertIcon_MouseHover_1(sender As Object, e As EventArgs) Handles PBoxAlertIcon.MouseHover
@@ -206,7 +206,7 @@
 #Region "-------------------------------------------------------PANEL PRINCIPAL (OPCIONES EXTRA)-----------------------------------------------------"
     'BOTON PARA LIMPIAR LOS COMPONENTES 
     Private Sub BTN_Limpiar_Click(sender As Object, e As EventArgs) Handles BTN_Limpiar.Click
-        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, CBox_Alimentos)
+        NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, LFegali, CBox_Alimentos)
     End Sub
     'BOTON PARA SALIR DEL SISTEMA
     Private Sub BTN_Salir_Click(sender As Object, e As EventArgs) Handles BTN_Salir.Click
@@ -222,8 +222,8 @@
                 Dim NuevoPDF As PDF = New PDF()
                 NuevoPDF.GenerarPDF(SFDialogPDF, DTP_Fecha.Text, CMB_Cliente.Text, CMB_Vehiculo.Text, L_Ruta_Destino.Text, TXT_Notas.Text, LToka.Text, LEfectivoTotal.Text, Total_Casetas.Text, L_Desgloce_Casetas, LKilometrosPDF.Text, LTiempoTrayectoPDF.Text)
                 Dim RutaArchivo As String = SFDialogPDF.FileName
-                NewConsultaP.RegistrarBitacora(RutaArchivo, CMB_Cliente.Text)
-                NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, CBox_Alimentos)
+                NewConsultaP.RegistrarBitacora(RutaArchivo, CMB_Cliente.Text, DTP_Fecha.Value.ToString)
+                NewConsultaP.LimpiarInfo(CMB_Cliente, CMB_Chofer, CMB_Vehiculo, L_Ruta_Destino, E_Alimentos, TxTViaticos, TXT_Notas, L_Desgloce_Casetas, Total_Casetas, LToka, LFegali, CBox_Alimentos)
                 SFDialogPDF.Dispose()
             Else
                 MsgBox("Faltan campos por rellenar.", MsgBoxStyle.Information, "Información | Corporativo LUIN | Generar PDF")
@@ -499,6 +499,17 @@
         Dim ImgDisable As System.Drawing.Bitmap = Bitmap.FromFile(System.AppDomain.CurrentDomain.BaseDirectory() + "\Assets\IMG\BtnCalendarDisable.png")
         PBoxLastPDF.BackgroundImage = ImgDisable
     End Sub
+
+    Private Sub LConfiguracion_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles LConfiguracion.MouseDoubleClick
+        Try
+            Me.Opacity = 0.1
+            Dim DropDB As New WinDropDB
+            DropDB.ShowDialog()
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN")
+        End Try
+    End Sub
+
 #End Region
 #End Region
 End Class

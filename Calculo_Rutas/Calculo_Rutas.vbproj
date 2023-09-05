@@ -112,6 +112,12 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuraciones\WinDropDB.Designer.vb">
+      <DependentUpon>WinDropDB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Configuraciones\WinDropDB.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Panel_Principal\WinPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     <Compile Include="Panel_Casetas\ClassCasetasData.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Configuraciones\WinDropDB.resx">
+      <DependentUpon>WinDropDB.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panel_Registros\WinRegistros.resx">
       <DependentUpon>WinRegistros.vb</DependentUpon>
     </EmbeddedResource>

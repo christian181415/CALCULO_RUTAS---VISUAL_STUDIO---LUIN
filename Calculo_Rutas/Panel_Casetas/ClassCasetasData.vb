@@ -14,9 +14,13 @@ Public Class ClassCasetasData
     Public Function MostrarDestinosCR(CmbCRDetino As ComboBox)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
-            Dim consulta As String = "SELECT * FROM Clientes " '&
+            'Dim consulta As String = "SELECT * FROM Clientes " '&
             '"INNER JOIN Rutas ON Rutas.Cliente_ID = Clientes.IdCliente " &
             '"WHERE IdRuta NOT IN (SELECT Ruta_ID FROM InfoRutas);"
+            Dim consulta As String = "SELECT Nombre " &
+                                    "FROM Clientes INNER JOIN Rutas ON Clientes.IdCliente = Rutas.Cliente_ID " &
+                                    "WHERE Status = True " &
+                                    "GROUP BY Nombre;"
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
             conexionDB.Open()
@@ -99,50 +103,55 @@ Public Class ClassCasetasData
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ObtenerIDCliente")
         End Try
     End Function
-    Public Function RegistrarCasetaCR(CmbCRDestino As ComboBox, CmbCRVehiculo As ComboBox, DTGCasetaSelect As DataGridView, Window As Form, LImporte As Label, LIDRuta As Label, LIDCaseta As Label, LIDVehiculo As Label, P_CasetaRuta As Panel)
+    Public Function RegistrarCasetaCR(CmbCRDestino As ComboBox, CmbCRVehiculo As ComboBox, DTGCasetaSelect As DataGridView, Window As Form, LIDRuta As Label, LIDVehiculo As Label, P_CasetaRuta As Panel)
         Try
-            For Fila As Integer = 0 To DTGCasetaSelect.Rows.Count - 1
-                If CmbCRDestino.Text <> String.Empty And CmbCRVehiculo.Text <> String.Empty And DTGCasetaSelect.Rows(Fila).Cells(1).Value IsNot Nothing Then
-                    Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-                    Dim consultaIDRuta As String = "SELECT IdCaseta FROM Casetas WHERE Caseta = '" & DTGCasetaSelect.Rows(Fila).Cells(0).Value & "';"
-                    Dim comandoIDRuta As OleDbCommand = New OleDbCommand(consultaIDRuta)
-                    comandoIDRuta.Connection = conexionDB
-                    conexionDB.Open()
-                    Dim reader As OleDbDataReader = comandoIDRuta.ExecuteReader
-                    While reader.Read
-                        LIDCaseta.Text = reader.GetInt32(0)
-                        LImporte.Text = DTGCasetaSelect.Rows(Fila).Cells(1).Value
-                    End While
-                    conexionDB.Close()
-                    conexionDB.Dispose()
-                Else
-                    If DTGCasetaSelect.Rows(Fila).Cells(1).Value Is Nothing Then
-                        MsgBox("Complete el importe de la celda: " & Fila, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
+            Dim Limite As Integer = DTGCasetaSelect.Rows.Count - 1
+            Dim DTGComplete As Boolean = Nothing
+            If CmbCRDestino.Text <> Nothing And CmbCRVehiculo.Text <> Nothing And Limite > -1 Then
+                For Fila As Integer = 0 To DTGCasetaSelect.Rows.Count - 1
+                    If DTGCasetaSelect.Rows(Fila).Cells(1).Value IsNot Nothing Then
+                        DTGComplete = True
                     Else
-                        MsgBox("Rellene todos los campos", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
+                        DTGComplete = False
+                        MsgBox("Complete los importes faltantes", MsgBoxStyle.Exclamation, "CAMPOS FALTANTES | Corporativo LUIN")
+                        Exit For
                     End If
-                End If
+                Next
 
-                If CmbCRDestino.Text <> String.Empty And CmbCRVehiculo.Text <> String.Empty And DTGCasetaSelect.Rows(Fila).Cells(1).Value IsNot Nothing Then
+                If DTGComplete = True Then
+                    Dim IDCaseta As Integer
+                    Dim Importe As Integer
                     Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-                    Dim consulta = "INSERT INTO InfoRutas(Importe_Caseta, Ruta_ID, Caseta_ID, Unidad_ID) VALUES('" & LImporte.Text & "', " & LIDRuta.Text & ", " & LIDCaseta.Text & ", " & LIDVehiculo.Text & ")"
                     conexionDB.Open()
-                    Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
-                    comando.ExecuteNonQuery()
+                    For Fila As Integer = 0 To DTGCasetaSelect.Rows.Count - 1
+                        Dim consultaIDRuta As String = "SELECT IdCaseta FROM Casetas WHERE Caseta = '" & DTGCasetaSelect.Rows(Fila).Cells(0).Value & "';"
+                        Dim comandoIDRuta As OleDbCommand = New OleDbCommand(consultaIDRuta, conexionDB)
+                        Dim reader As OleDbDataReader = comandoIDRuta.ExecuteReader
+                        While reader.Read
+                            IDCaseta = reader.GetInt32(0)
+                            Importe = DTGCasetaSelect.Rows(Fila).Cells(1).Value
+                        End While
+
+
+                        Dim consulta = "INSERT INTO InfoRutas(Importe_Caseta, Ruta_ID, Caseta_ID, Unidad_ID) VALUES('" & Importe & "', " & LIDRuta.Text & ", " & IDCaseta & ", " & LIDVehiculo.Text & ")"
+                        Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
+                        comando.ExecuteNonQuery()
+                    Next
+                    P_CasetaRuta.Location = New Point(726, 0)
                     conexionDB.Close()
                     conexionDB.Dispose()
                     Window.Close()
-                    P_CasetaRuta.Location = New Point(726, 0)
-                    MsgBox("Casetas asignadas", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
+                    MsgBox("Casetas asignadas", MsgBoxStyle.Information, "EXITO | Corporativo LUIN")
+                    WinPrincipal.Opacity = 1
                 End If
-            Next
+            Else
+                MsgBox("Para poder asignar casetas." & Chr(10) & "• Seleccione un destino" & Chr(10) & "• Seleccione un vehiculo" & Chr(10) & "• Asigne las casetas", MsgBoxStyle.Exclamation, "CAMPOS FALTANTES | Corporativo LUIN")
+            End If
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarRuta")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN")
         End Try
     End Function
 #End Region
-
-
 
 #Region "ACCIONES UPDATE"
     Public Function ObtenerDestino_Vehiculo(LIDRutaUp As Label, LNombreDestino As Label, LIDVehiculoUp As Label, LNombreVehiculo As Label)
@@ -185,51 +194,104 @@ Public Class ClassCasetasData
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | MostrarCasetasCR")
         End Try
     End Function
-    Public Function ActualizarCaseta_Ruta(LIDRutaUp As Label, LIDVehiculoUp As Label, DTGCasetaSelectUp As DataGridView, LIDCasetaUp As Label, LImporteUp As Label, Window As Form)
+    Public Function ActualizarCaseta_Ruta(LIDRutaUp As Label, LIDVehiculoUp As Label, DTGCasetaSelectUp As DataGridView, Window As Form, P_UpCasetaRuta As Panel)
+        'Try
+        '    If LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> "LIDVehiculoUp" And LIDRutaUp.Text <> String.Empty And LIDVehiculoUp.Text <> String.Empty Then
+        '        Dim conexionDB As New OleDbConnection(CadenaConexion)
+        '        Dim consulta As String = "DELETE * FROM InfoRutas WHERE Ruta_ID = " & LIDRutaUp.Text & " AND Unidad_ID = " & LIDVehiculoUp.Text
+        '        Dim comando As OleDbCommand = New OleDbCommand(consulta)
+        '        comando.Connection = conexionDB
+        '        conexionDB.Open()
+        '        Dim reader As OleDbDataReader = comando.ExecuteReader
+        '        conexionDB.Close()
+        '        conexionDB.Dispose()
+        '    End If
+
+        '    For Fila As Integer = 0 To DTGCasetaSelectUp.Rows.Count - 1
+        '        If LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> "LIDVehiculoUp" And LIDRutaUp.Text <> String.Empty And LIDVehiculoUp.Text <> String.Empty Then
+        '            Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
+        '            Dim consultaIDRuta As String = "SELECT IdCaseta FROM Casetas WHERE Caseta = '" & DTGCasetaSelectUp.Rows(Fila).Cells(0).Value & "';"
+        '            Dim comandoIDRuta As OleDbCommand = New OleDbCommand(consultaIDRuta)
+        '            comandoIDRuta.Connection = conexionDB
+        '            conexionDB.Open()
+        '            Dim reader As OleDbDataReader = comandoIDRuta.ExecuteReader
+        '            While reader.Read
+        '                LIDCasetaUp.Text = reader.GetInt32(0)
+        '                LImporteUp.Text = DTGCasetaSelectUp.Rows(Fila).Cells(1).Value
+        '            End While
+        '            conexionDB.Close()
+        '            conexionDB.Dispose()
+        '        End If
+
+        '        If LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> "LIDVehiculoUp" And LIDRutaUp.Text <> String.Empty And LIDVehiculoUp.Text <> String.Empty And LImporteUp.Text <> "LImporteUp" And LIDCasetaUp.Text <> "LIDCasetaUp" Then
+        '            Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
+        '            Dim consulta = "INSERT INTO InfoRutas(Importe_Caseta, Ruta_ID, Caseta_ID, Unidad_ID) VALUES('" & LImporteUp.Text & "', " & LIDRutaUp.Text & ", " & LIDCasetaUp.Text & ", " & LIDVehiculoUp.Text & ")"
+        '            conexionDB.Open()
+        '            Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
+        '            comando.ExecuteNonQuery()
+        '            conexionDB.Close()
+        '            conexionDB.Dispose()
+        '            Window.Close()
+        '        Else
+        '            MsgBox("Asigne las casetas correspondientes a la ruta para poder continuar", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
+        '        End If
+        '    Next
+        '    MsgBox("Casetas actualizadas", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
+        'Catch ex As Exception
+        '    MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ActualizarCaseta_Ruta")
+        'End Try
+
+
+
         Try
-            If LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> "LIDVehiculoUp" And LIDRutaUp.Text <> String.Empty And LIDVehiculoUp.Text <> String.Empty Then
-                Dim conexionDB As New OleDbConnection(CadenaConexion)
-                Dim consulta As String = "DELETE * FROM InfoRutas WHERE Ruta_ID = " & LIDRutaUp.Text & " AND Unidad_ID = " & LIDVehiculoUp.Text
-                Dim comando As OleDbCommand = New OleDbCommand(consulta)
-                comando.Connection = conexionDB
-                conexionDB.Open()
-                Dim reader As OleDbDataReader = comando.ExecuteReader
-                conexionDB.Close()
-                conexionDB.Dispose()
-            End If
+            Dim Limite As Integer = DTGCasetaSelectUp.Rows.Count - 1
+            Dim DTGComplete As Boolean = Nothing
+            If LIDRutaUp.Text <> Nothing And LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> Nothing And LIDVehiculoUp.Text <> "LIDVehiculoUp" And Limite > -1 Then
+                For Fila As Integer = 0 To DTGCasetaSelectUp.Rows.Count - 1
+                    If DTGCasetaSelectUp.Rows(Fila).Cells(1).Value.ToString <> String.Empty Then
+                        DTGComplete = True
+                    Else
+                        DTGComplete = False
+                        MsgBox("Complete los importes faltantes", MsgBoxStyle.Exclamation, "CAMPOS FALTANTES | Corporativo LUIN")
+                        Exit For
+                    End If
+                Next
 
-            For Fila As Integer = 0 To DTGCasetaSelectUp.Rows.Count - 1
-                If LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> "LIDVehiculoUp" And LIDRutaUp.Text <> String.Empty And LIDVehiculoUp.Text <> String.Empty Then
+                If DTGComplete = True Then
+                    Dim IDCaseta As Integer
+                    Dim Importe As Integer
                     Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-                    Dim consultaIDRuta As String = "SELECT IdCaseta FROM Casetas WHERE Caseta = '" & DTGCasetaSelectUp.Rows(Fila).Cells(0).Value & "';"
-                    Dim comandoIDRuta As OleDbCommand = New OleDbCommand(consultaIDRuta)
-                    comandoIDRuta.Connection = conexionDB
+                    Dim consultaDelete As String = "DELETE * FROM InfoRutas WHERE Ruta_ID = " & LIDRutaUp.Text & " AND Unidad_ID = " & LIDVehiculoUp.Text
+                    Dim comandoDelete As OleDbCommand = New OleDbCommand(consultaDelete, conexionDB)
                     conexionDB.Open()
-                    Dim reader As OleDbDataReader = comandoIDRuta.ExecuteReader
-                    While reader.Read
-                        LIDCasetaUp.Text = reader.GetInt32(0)
-                        LImporteUp.Text = DTGCasetaSelectUp.Rows(Fila).Cells(1).Value
-                    End While
-                    conexionDB.Close()
-                    conexionDB.Dispose()
-                End If
+                    comandoDelete.ExecuteReader()
 
-                If LIDRutaUp.Text <> "LIDRutaUp" And LIDVehiculoUp.Text <> "LIDVehiculoUp" And LIDRutaUp.Text <> String.Empty And LIDVehiculoUp.Text <> String.Empty And LImporteUp.Text <> "LImporteUp" And LIDCasetaUp.Text <> "LIDCasetaUp" Then
-                    Dim conexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-                    Dim consulta = "INSERT INTO InfoRutas(Importe_Caseta, Ruta_ID, Caseta_ID, Unidad_ID) VALUES('" & LImporteUp.Text & "', " & LIDRutaUp.Text & ", " & LIDCasetaUp.Text & ", " & LIDVehiculoUp.Text & ")"
-                    conexionDB.Open()
-                    Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
-                    comando.ExecuteNonQuery()
+                    For Fila As Integer = 0 To DTGCasetaSelectUp.Rows.Count - 1
+                        Dim consultaIDRuta As String = "SELECT IdCaseta FROM Casetas WHERE Caseta = '" & DTGCasetaSelectUp.Rows(Fila).Cells(0).Value & "';"
+                        Dim comandoIDRuta As OleDbCommand = New OleDbCommand(consultaIDRuta, conexionDB)
+                        Dim reader As OleDbDataReader = comandoIDRuta.ExecuteReader
+                        While reader.Read
+                            IDCaseta = reader.GetInt32(0)
+                            Importe = DTGCasetaSelectUp.Rows(Fila).Cells(1).Value
+                        End While
+
+
+                        Dim consulta = "INSERT INTO InfoRutas(Importe_Caseta, Ruta_ID, Caseta_ID, Unidad_ID) VALUES('" & Importe & "', " & LIDRutaUp.Text & ", " & IDCaseta & ", " & LIDVehiculoUp.Text & ")"
+                        Dim comando As OleDbCommand = New OleDbCommand(consulta, conexionDB)
+                        comando.ExecuteNonQuery()
+                    Next
+                    P_UpCasetaRuta.Location = New Point(726, 470)
                     conexionDB.Close()
                     conexionDB.Dispose()
                     Window.Close()
-                Else
-                    MsgBox("Asigne las casetas correspondientes a la ruta para poder continuar", MsgBoxStyle.Exclamation, "Error | Corporativo LUIN")
+                    MsgBox("Casetas actualizadas", MsgBoxStyle.Information, "EXITO | Corporativo LUIN")
+                    WinPrincipal.Opacity = 1
                 End If
-            Next
-            MsgBox("Casetas actualizadas", MsgBoxStyle.Information, "Exito | Corporativo LUIN")
+            Else
+                MsgBox("Debe asignar casetas", MsgBoxStyle.Exclamation, "CAMPOS FALTANTES | Corporativo LUIN")
+            End If
         Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | ActualizarCaseta_Ruta")
+            MsgBox(ex.Message, MsgBoxStyle.Critical, "ERROR | Corporativo LUIN")
         End Try
     End Function
 #End Region

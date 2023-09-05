@@ -9,7 +9,7 @@ Public Class ClassPrincipalData
 #End Region
 
 #Region "---------------------------------------------------------------LOAD PRINCIPAL---------------------------------------------------------------"
-    Public Function ValidarConexionP(AlertaIcon As PictureBox, P_Chofer As Panel, P_CalculoRuta As Panel, Panel_Cofiguracion As Panel, PBoxConfiguracion As PictureBox, DTP_Fecha As DateTimePicker, LFecha As Label, TimerErrorAlert As Timer)
+    Public Function ValidarConexionP(AlertaIcon As PictureBox, P_Chofer As Panel, P_CalculoRuta As Panel, Panel_Cofiguracion As Panel, PBoxConfiguracion As PictureBox, PBoxLastPDF As PictureBox, DTP_Fecha As DateTimePicker, LFecha As Label, TimerErrorAlert As Timer)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
             If conexionDB.State = ConnectionState.Closed Then
@@ -25,6 +25,7 @@ Public Class ClassPrincipalData
             P_CalculoRuta.Enabled = False
             Panel_Cofiguracion.Enabled = False
             PBoxConfiguracion.Enabled = False
+            PBoxLastPDF.Enabled = False
             DTP_Fecha.Enabled = False
             LFecha.Enabled = False
             MsgBox(ex.Message)
@@ -252,7 +253,7 @@ Public Class ClassPrincipalData
         BinaryStr.Close() 'Cierro el Stream
         BinaryStr.Dispose()
     End Function
-    Public Function RegistrarBitacora(RutaArchivo As String, ByRef Cliente As String)
+    Public Function RegistrarBitacora(RutaArchivo As String, ByRef Cliente As String, ByRef DTP_Fecha As String)
         Try
             Dim Binario As Byte() = Nothing
             Dim NombreArchivo As String = Nothing
@@ -263,8 +264,8 @@ Public Class ClassPrincipalData
             Binario = ConvertToBinary(RutaArchivo)
 
             Dim ConexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
-            Dim Consulta As String = "INSERT INTO Bitacoras(Nombre, Tipo, PDF, Cliente, FechaRegistro) " &
-                                     "VALUES(@Nombre,@Tipo,@PDF,@Cliente,'" & Date.Now() & "')"
+            Dim Consulta As String = "INSERT INTO Bitacoras(Nombre, Tipo, PDF, Cliente, FechaRuta, FechaRegistro) " &
+                                     "VALUES(@Nombre,@Tipo,@PDF,@Cliente,'" & DTP_Fecha & "','" & Date.Now() & "')"
             Dim Comando As OleDbCommand = New OleDbCommand(Consulta, ConexionDB)
             Comando.Parameters.AddWithValue("@Nombre", OleDbType.VarChar).Value = NombreArchivo
             Comando.Parameters.AddWithValue("@Tipo", OleDbType.VarChar).Value = Extension
@@ -274,12 +275,12 @@ Public Class ClassPrincipalData
             Comando.ExecuteNonQuery()
             ConexionDB.Close()
             ConexionDB.Dispose()
-            MsgBox("PDF Registrado", MsgBoxStyle.Information, "Corporativo LUIN | GUARDAR")
+            MsgBox("PDF Guardado", MsgBoxStyle.Information, "Corporativo LUIN | GUARDAR")
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Exclamation, "Error | Corporativo LUIN | RegistrarBitacora")
         End Try
     End Function
-    Public Function LimpiarInfo(CMB_Cliente As ComboBox, CMB_Chofer As ComboBox, CMB_Vehiculo As ComboBox, L_Ruta_Destino As Label, E_Alimentos As TextBox, TxTViaticos As TextBox, TXT_Notas As TextBox, L_Desgloce_Casetas As ListBox, Total_Casetas As Label, Total_Combustible As Label, CBox_Alimentos As CheckBox)
+    Public Function LimpiarInfo(CMB_Cliente As ComboBox, CMB_Chofer As ComboBox, CMB_Vehiculo As ComboBox, L_Ruta_Destino As Label, E_Alimentos As TextBox, TxTViaticos As TextBox, TXT_Notas As TextBox, L_Desgloce_Casetas As ListBox, Total_Casetas As Label, TOKA As Label, FEGALI As Label, CBox_Alimentos As CheckBox)
         CMB_Cliente.SelectedIndex = -1
         CMB_Chofer.SelectedIndex = -1
         CMB_Vehiculo.SelectedIndex = -1
@@ -293,7 +294,8 @@ Public Class ClassPrincipalData
         L_Desgloce_Casetas.Items.Clear()
         L_Desgloce_Casetas.SelectionMode = SelectionMode.None
         Total_Casetas.Text = "0.00"
-        Total_Combustible.Text = "0.00"
+        TOKA.Text = "0.00"
+        FEGALI.Text = "0.00"
     End Function
 #End Region
 

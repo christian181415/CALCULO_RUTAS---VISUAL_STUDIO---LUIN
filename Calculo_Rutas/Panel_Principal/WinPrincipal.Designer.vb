@@ -138,7 +138,7 @@ Partial Class WinPrincipal
         Me.CmbRutaImporte = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label17 = New System.Windows.Forms.Label()
+        Me.LConfiguracion = New System.Windows.Forms.Label()
         Me.BTN_Cerrar = New System.Windows.Forms.Button()
         Me.SFDialogPDF = New System.Windows.Forms.SaveFileDialog()
         Me.TimerAcciones = New System.Windows.Forms.Timer(Me.components)
@@ -1321,7 +1321,7 @@ Partial Class WinPrincipal
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(83, 140)
+        Me.Label18.Location = New System.Drawing.Point(85, 140)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(45, 13)
         Me.Label18.TabIndex = 53
@@ -1330,7 +1330,7 @@ Partial Class WinPrincipal
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(8, 140)
+        Me.Label13.Location = New System.Drawing.Point(10, 140)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(42, 13)
         Me.Label13.TabIndex = 52
@@ -1348,6 +1348,7 @@ Partial Class WinPrincipal
         Me.LVehiculoID.TabIndex = 51
         Me.LVehiculoID.Text = "VehiculoID"
         Me.LVehiculoID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LVehiculoID.Visible = False
         '
         'LRutaID
         '
@@ -1361,6 +1362,7 @@ Partial Class WinPrincipal
         Me.LRutaID.TabIndex = 50
         Me.LRutaID.Text = "RutaID"
         Me.LRutaID.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.LRutaID.Visible = False
         '
         'BtnEliminarCasetaRuta
         '
@@ -1368,7 +1370,7 @@ Partial Class WinPrincipal
         Me.BtnEliminarCasetaRuta.FlatAppearance.BorderSize = 0
         Me.BtnEliminarCasetaRuta.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(250, Byte), Integer), CType(CType(114, Byte), Integer), CType(CType(104, Byte), Integer))
         Me.BtnEliminarCasetaRuta.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnEliminarCasetaRuta.Location = New System.Drawing.Point(9, 430)
+        Me.BtnEliminarCasetaRuta.Location = New System.Drawing.Point(12, 430)
         Me.BtnEliminarCasetaRuta.Name = "BtnEliminarCasetaRuta"
         Me.BtnEliminarCasetaRuta.Size = New System.Drawing.Size(152, 23)
         Me.BtnEliminarCasetaRuta.TabIndex = 49
@@ -1379,7 +1381,7 @@ Partial Class WinPrincipal
         '
         Me.Label22.AutoSize = True
         Me.Label22.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label22.Location = New System.Drawing.Point(57, 116)
+        Me.Label22.Location = New System.Drawing.Point(62, 116)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(52, 13)
         Me.Label22.TabIndex = 48
@@ -1390,7 +1392,7 @@ Partial Class WinPrincipal
         Me.Lista_Casetas.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.Lista_Casetas.FormattingEnabled = True
         Me.Lista_Casetas.HorizontalScrollbar = True
-        Me.Lista_Casetas.Location = New System.Drawing.Point(8, 154)
+        Me.Lista_Casetas.Location = New System.Drawing.Point(10, 154)
         Me.Lista_Casetas.Name = "Lista_Casetas"
         Me.Lista_Casetas.SelectionMode = System.Windows.Forms.SelectionMode.None
         Me.Lista_Casetas.Size = New System.Drawing.Size(156, 234)
@@ -1402,7 +1404,7 @@ Partial Class WinPrincipal
         Me.BtnNewImporteC.FlatAppearance.BorderSize = 0
         Me.BtnNewImporteC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGreen
         Me.BtnNewImporteC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnNewImporteC.Location = New System.Drawing.Point(7, 401)
+        Me.BtnNewImporteC.Location = New System.Drawing.Point(11, 401)
         Me.BtnNewImporteC.Name = "BtnNewImporteC"
         Me.BtnNewImporteC.Size = New System.Drawing.Size(75, 23)
         Me.BtnNewImporteC.TabIndex = 44
@@ -1416,7 +1418,7 @@ Partial Class WinPrincipal
         Me.BtnUpdateImporteC.FlatAppearance.BorderSize = 0
         Me.BtnUpdateImporteC.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightSkyBlue
         Me.BtnUpdateImporteC.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnUpdateImporteC.Location = New System.Drawing.Point(88, 401)
+        Me.BtnUpdateImporteC.Location = New System.Drawing.Point(90, 401)
         Me.BtnUpdateImporteC.Name = "BtnUpdateImporteC"
         Me.BtnUpdateImporteC.Size = New System.Drawing.Size(75, 23)
         Me.BtnUpdateImporteC.TabIndex = 43
@@ -1430,7 +1432,7 @@ Partial Class WinPrincipal
         Me.CmbVehiculoImporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbVehiculoImporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbVehiculoImporte.FormattingEnabled = True
-        Me.CmbVehiculoImporte.Location = New System.Drawing.Point(9, 84)
+        Me.CmbVehiculoImporte.Location = New System.Drawing.Point(12, 84)
         Me.CmbVehiculoImporte.Name = "CmbVehiculoImporte"
         Me.CmbVehiculoImporte.Size = New System.Drawing.Size(152, 21)
         Me.CmbVehiculoImporte.TabIndex = 15
@@ -1439,7 +1441,7 @@ Partial Class WinPrincipal
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(6, 69)
+        Me.Label9.Location = New System.Drawing.Point(9, 68)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(56, 13)
         Me.Label9.TabIndex = 16
@@ -1452,7 +1454,7 @@ Partial Class WinPrincipal
         Me.CmbRutaImporte.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.CmbRutaImporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.CmbRutaImporte.FormattingEnabled = True
-        Me.CmbRutaImporte.Location = New System.Drawing.Point(9, 25)
+        Me.CmbRutaImporte.Location = New System.Drawing.Point(12, 25)
         Me.CmbRutaImporte.Name = "CmbRutaImporte"
         Me.CmbRutaImporte.Size = New System.Drawing.Size(152, 21)
         Me.CmbRutaImporte.TabIndex = 13
@@ -1461,7 +1463,7 @@ Partial Class WinPrincipal
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(6, 10)
+        Me.Label2.Location = New System.Drawing.Point(9, 9)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(34, 13)
         Me.Label2.TabIndex = 14
@@ -1470,23 +1472,23 @@ Partial Class WinPrincipal
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.Maroon
-        Me.Panel1.Controls.Add(Me.Label17)
+        Me.Panel1.Controls.Add(Me.LConfiguracion)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(185, 54)
         Me.Panel1.TabIndex = 2
         '
-        'Label17
+        'LConfiguracion
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label17.ForeColor = System.Drawing.Color.White
-        Me.Label17.Location = New System.Drawing.Point(13, 17)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(158, 20)
-        Me.Label17.TabIndex = 1
-        Me.Label17.Text = "CONFIGURACION"
+        Me.LConfiguracion.AutoSize = True
+        Me.LConfiguracion.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LConfiguracion.ForeColor = System.Drawing.Color.White
+        Me.LConfiguracion.Location = New System.Drawing.Point(13, 17)
+        Me.LConfiguracion.Name = "LConfiguracion"
+        Me.LConfiguracion.Size = New System.Drawing.Size(158, 20)
+        Me.LConfiguracion.TabIndex = 1
+        Me.LConfiguracion.Text = "CONFIGURACION"
         '
         'BTN_Cerrar
         '
@@ -1609,7 +1611,7 @@ Partial Class WinPrincipal
     Friend WithEvents Rutas As TabPage
     Friend WithEvents BTN_Cerrar As Button
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Label17 As Label
+    Friend WithEvents LConfiguracion As Label
     Friend WithEvents Panel6 As Panel
     Friend WithEvents Label26 As Label
     Friend WithEvents Total_Casetas As Label

@@ -340,8 +340,8 @@ Public Class ClassRegistrosData
     Public Function ShowDatePDF(Componente As Object)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
-            Dim consulta As String = "SELECT  FORMAT(FechaRegistro, 'dd/MM/yyyy') FROM Bitacoras" &
-                                    " GROUP BY FORMAT(FechaRegistro, 'dd/MM/yyyy');"
+            Dim consulta As String = "SELECT  FORMAT(FechaRuta, 'dd/MM/yyyy') FROM Bitacoras" &
+                                    " GROUP BY FORMAT(FechaRuta, 'dd/MM/yyyy');"
             Dim comando As OleDbCommand = New OleDbCommand(consulta)
             comando.Connection = conexionDB
             conexionDB.Open()
@@ -358,9 +358,9 @@ Public Class ClassRegistrosData
     Public Function ShowHoursPDF(Componente As Object)
         Dim conexionDB As New OleDbConnection(CadenaConexion)
         Try
-            Dim consulta As String = "SELECT Cliente, FORMAT(FechaRegistro, 'hh:nn:ss am/pm') FROM Bitacoras" &
-                                    " WHERE FORMAT(FechaRegistro, 'dd/MM/yyyy') = '" & Componente.SelectionStart & "'" &
-                                    " GROUP BY Cliente, FORMAT(FechaRegistro, 'hh:nn:ss am/pm');"
+            Dim consulta As String = "SELECT Cliente, FORMAT(FechaRuta, 'hh:nn:ss am/pm') FROM Bitacoras" &
+                                    " WHERE FORMAT(FechaRuta, 'dd/MM/yyyy') = '" & Componente.SelectionStart & "'" &
+                                    " GROUP BY Cliente, FORMAT(FechaRuta, 'hh:nn:ss am/pm');"
             conexionDB.Open()
             Dim adap As OleDbDataAdapter = New OleDbDataAdapter(consulta, conexionDB)
             Dim dsDatos As DataTable = New DataTable()
@@ -379,7 +379,7 @@ Public Class ClassRegistrosData
         BinaryStr.Close() 'Cierro el FileStream
         BinaryStr.Dispose()
     End Function
-    Public Function GetLastPDF(NombreCliente As String, FechaRegistro As String, SFDRutaPDF As SaveFileDialog)
+    Public Function GetLastPDF(NombreCliente As String, FechaRuta As String, SFDRutaPDF As SaveFileDialog)
         Try
             Dim Nombre As String = Nothing
             Dim PDF As Byte() = Nothing
@@ -387,17 +387,17 @@ Public Class ClassRegistrosData
             Dim ConexionDB As OleDbConnection = New OleDbConnection(CadenaConexion)
             Dim Consulta As String = "SELECT Nombre, PDF FROM Bitacoras " &
                                     "WHERE Cliente = @Cliente " &
-                                    "AND FechaRegistro = @FechaRegistro"
+                                    "AND FechaRuta = @FechaRuta"
             Dim Comando As OleDbCommand = New OleDbCommand(Consulta, ConexionDB)
             Comando.Parameters.AddWithValue("@Cliente", OleDbType.VarChar).Value = NombreCliente
-            Comando.Parameters.AddWithValue("@FechaRegistro", OleDbType.VarChar).Value = FechaRegistro
+            Comando.Parameters.AddWithValue("@FechaRegistro", OleDbType.VarChar).Value = FechaRuta
             ConexionDB.Open()
             Dim Reader As OleDbDataReader = Comando.ExecuteReader
             If Reader.Read Then
                 Nombre = Reader.GetString(0)
                 PDF = ConvertToPDFStream(Reader.GetStream(1))
             End If
-            SFDRutaPDF.FileName = "COPY_" & NombreCliente & "_" & Format(Date.Today, "ddMMyy")
+            SFDRutaPDF.FileName = "COPY_" & NombreCliente & "_" & Format(CDate(FechaRuta), "ddMMyy")
             If SFDRutaPDF.ShowDialog = DialogResult.OK Then
                 Dim RutaArchivo As String = SFDRutaPDF.FileName
                 File.WriteAllBytes(RutaArchivo, PDF)
